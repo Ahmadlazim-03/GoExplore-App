@@ -134,7 +134,7 @@
               </li>	
             </ul>
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" href="index.html"><h2>Admin</h2></a>
+                <a class="navbar-brand brand-logo" href="index.html"><h3>Admin</h3></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a>
             </div>
             <ul class="navbar-nav navbar-nav-right">
@@ -187,74 +187,70 @@
       <nav class="bottom-navbar">
         <div class="container">
             <ul class="nav page-navigation">
+				
               <li class="nav-item">
                 <a class="nav-link" href="index.html">
                   <i class="mdi mdi-file-document-box menu-icon"></i>
                   <span class="menu-title">Dashboard</span>
                 </a>
               </li>
-              <li class="nav-item">
+			  <li class="nav-item">
                   <a href="#" class="nav-link">
-                    <i class="mdi mdi-cube-outline menu-icon"></i>
-                    <span class="menu-title">UI Elements</span>
+                    <i class="mdi mdi-airplane menu-icon"></i>
+                    <span class="menu-title">Bookings</span>
                     <i class="menu-arrow"></i>
                   </a>
                   <div class="submenu">
                       <ul>
-                          <li class="nav-item"><a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                          <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                          <li class="nav-item"><a class="nav-link" href="pages/ui-features/buttons.html">All Bookings</a></li>
+                          <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Pending Approvals</a></li>
+						  <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Approved Bookings</a></li>
+						  <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Rejected Bookings</a></li>
                       </ul>
                   </div>
-              </li>
-              <li class="nav-item">
-                  <a href="pages/forms/basic_elements.html" class="nav-link">
-                    <i class="mdi mdi-chart-areaspline menu-icon"></i>
-                    <span class="menu-title">Form Elements</span>
-                    <i class="menu-arrow"></i>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a href="pages/charts/chartjs.html" class="nav-link">
-                    <i class="mdi mdi-finance menu-icon"></i>
-                    <span class="menu-title">Charts</span>
-                    <i class="menu-arrow"></i>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a href="pages/tables/basic-table.html" class="nav-link">
-                    <i class="mdi mdi-grid menu-icon"></i>
-                    <span class="menu-title">Tables</span>
-                    <i class="menu-arrow"></i>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a href="pages/icons/mdi.html" class="nav-link">
-                    <i class="mdi mdi-emoticon menu-icon"></i>
-                    <span class="menu-title">Icons</span>
-                    <i class="menu-arrow"></i>
-                  </a>
               </li>
               <li class="nav-item">
                   <a href="#" class="nav-link">
-                    <i class="mdi mdi-codepen menu-icon"></i>
-                    <span class="menu-title">Sample Pages</span>
+                    <i class="mdi mdi-earth menu-icon"></i>
+                    <span class="menu-title">Destination</span>
                     <i class="menu-arrow"></i>
                   </a>
                   <div class="submenu">
-                      <ul class="submenu-item">
-                          <li class="nav-item"><a class="nav-link" href="pages/samples/login.html">Login</a></li>
-                          <li class="nav-item"><a class="nav-link" href="pages/samples/login-2.html">Login 2</a></li>
-                          <li class="nav-item"><a class="nav-link" href="pages/samples/register.html">Register</a></li>
-                          <li class="nav-item"><a class="nav-link" href="pages/samples/register-2.html">Register 2</a></li>
-                          <li class="nav-item"><a class="nav-link" href="pages/samples/lock-screen.html">Lockscreen</a></li>
+                      <ul>
+                          <li class="nav-item"><a class="nav-link" href="pages/ui-features/buttons.html">All Destination</a></li>
+                          <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Add New Destination</a></li>
                       </ul>
                   </div>
               </li>
-              <li class="nav-item">
-                  <a href="docs/documentation.html" class="nav-link">
-                    <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                    <span class="menu-title">Documentation</span></a>
+			  <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="mdi mdi-account menu-icon"></i>
+                    <span class="menu-title">Profile</span>
+                    <i class="menu-arrow"></i>
+                  </a>
+                  <div class="submenu">
+                      <ul>
+					  	<li class="nav-item"><a class="nav-link" href="pages/ui-features/buttons.html">Edit Profile</a></li>
+                          <li class="nav-item"><a class="nav-link" href="pages/ui-features/buttons.html">Sign In</a></li>
+                          <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Sign Up</a></li>
+                      </ul>
+                  </div>
               </li>
+			  <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                    <span class="menu-title">Settings</span>
+                    <i class="menu-arrow"></i>
+                  </a>
+                  <div class="submenu">
+                      <ul>
+                          <li class="nav-item"><a class="nav-link" href="pages/ui-features/buttons.html">Manajemen User</a></li>
+                          <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Manajeen Menu</a></li>
+						  <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Manajeen Role</a></li>
+                      </ul>
+                  </div>
+              </li>
+
             </ul>
         </div>
       </nav>
