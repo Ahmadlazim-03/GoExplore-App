@@ -12,6 +12,7 @@
   <body>
     <div class="container-scroller">
     <div class="horizontal-menu">
+
       <nav class="navbar top-navbar col-lg-12 col-12 p-0">
         <div class="container-fluid">
           <div class="navbar-menu-wrapper d-flex align-items-center justify-content-between">
@@ -116,19 +117,12 @@
                 <a href="#" class="nav-link count-indicator "><i class="mdi mdi-message-reply-text"></i></a>
               </li>
               <li class="nav-item nav-search d-none d-lg-block ms-3">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="search">
-                        <i class="mdi mdi-magnify"></i>
-                      </span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="search" aria-label="search" aria-describedby="search">
-                </div>
+				<input type="text" class="form-control" placeholder="search" aria-label="search" aria-describedby="search">
               </li>	
             </ul>
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                 <a class="navbar-brand brand-logo" href="index.html"><h3>Admin</h3></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"><h3>Admin</h3></a>
+               
             </div>
             <ul class="navbar-nav navbar-nav-right">
                 <li class="nav-item dropdown d-lg-flex d-none">
@@ -231,9 +225,9 @@
                   </a>
                   <div class="submenu">
                       <ul>
-                          <li class="nav-item"><a class="nav-link" href="pages/ui-features/buttons.html">Manajemen User</a></li>
-                          <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Manajeen Menu</a></li>
-						  <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Manajeen Role</a></li>
+                          <li id="manajemen-user" class="nav-item"><a class="nav-link">Manajemen User</a></li>
+                          <li id="manajemen-menu" class="nav-item"><a class="nav-link">Manajemen Menu</a></li>
+						  <li id="manajemen-role" class="nav-item"><a class="nav-link">Manajemen Role</a></li>
                       </ul>
                   </div>
               </li>
@@ -242,14 +236,49 @@
         </div>
       </nav>
 
+	  
+
     </div>
     <!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<div class="main-panel">
-				
+				<div class="content-wrapper">
+					<div id="dashboard-section">
+						@include('admin/section/dashboard-section')
+					</div>
+					<div id="user-section">
+						@include('admin/section/user-section')
+					</div>
+					<div id="menu-section">
+						@include('admin/section/menu-section')
+					</div>
+					<div id="role-section">
+						@include('admin/section/role-section')
+					</div>
+				</div>
 			</div>
 		</div>
+			
     </div>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+	<script>
+		$(document).ready(function(){
+		
+
+			$('#manajemen-user').click(function(){
+				$('#dashboard-section').hide();
+			});
+			$('#manajemen-menu').click(function(){
+				$('#dashboard-section').hide();
+			});
+			$('#manajemen-role').click(function(){
+				$('#dashboard-section').hide();
+			});
+		});
+	</script>
 	
     <script src="vendors/base/vendor.bundle.base.js"></script>
     <script src="js/template.js"></script>
@@ -258,7 +287,11 @@
 	<script src="vendors/chartjs-plugin-datalabels/chartjs-plugin-datalabels.js"></script>
 	<script src="vendors/justgage/raphael-2.1.4.min.js"></script>
 	<script src="vendors/justgage/justgage.js"></script>
-    <script src="js/jquery.cookie.js" type="text/javascript"></script>
     <script src="js/dashboard.js"></script>
+	<script src="../../vendors/base/vendor.bundle.base.js"></script>
+	<script src="../../js/template.js"></script>
+	<script src="../../vendors/chart.js/Chart.min.js"></script>
+	<script src="../../js/chart.js"></script>
+
   </body>
 </html>
