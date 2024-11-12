@@ -18,9 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name', 'password', 'email', 'phone_number', 'profile_picture', 
+        'full_name', 'address', 'date_of_birth', 'gender', 'nationality', 
+        'contact_info', 'role', 'status'
     ];
 
     /**
@@ -44,5 +44,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'users_id');
+    }
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'users_id');
+    }
+    public function eTickets()
+    {
+        return $this->hasMany(E_ticket::class, 'users_id');
     }
 }

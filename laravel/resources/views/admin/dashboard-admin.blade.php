@@ -212,8 +212,7 @@
                   <div class="submenu">
                       <ul>
 					  	<li class="nav-item"><a class="nav-link" href="pages/ui-features/buttons.html">Edit Profile</a></li>
-                          <li class="nav-item"><a class="nav-link" href="pages/ui-features/buttons.html">Sign In</a></li>
-                          <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Sign Up</a></li>
+                          <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                       </ul>
                   </div>
               </li>
@@ -243,18 +242,7 @@
 		<div class="container-fluid page-body-wrapper">
 			<div class="main-panel">
 				<div class="content-wrapper">
-					<div id="dashboard-section">
-						@include('admin/section/dashboard-section')
-					</div>
-					<div id="user-section">
-						@include('admin/section/user-section')
-					</div>
-					<div id="menu-section">
-						@include('admin/section/menu-section')
-					</div>
-					<div id="role-section">
-						@include('admin/section/role-section')
-					</div>
+				
 				</div>
 			</div>
 		</div>
@@ -268,15 +256,7 @@
 		$(document).ready(function(){
 		
 
-			$('#manajemen-user').click(function(){
-				$('#dashboard-section').hide();
-			});
-			$('#manajemen-menu').click(function(){
-				$('#dashboard-section').hide();
-			});
-			$('#manajemen-role').click(function(){
-				$('#dashboard-section').hide();
-			});
+		
 		});
 	</script>
 	
