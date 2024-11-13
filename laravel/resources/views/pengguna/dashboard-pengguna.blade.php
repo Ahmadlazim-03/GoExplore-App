@@ -59,15 +59,9 @@
     </div>
   </nav>
     <!-- END nav -->
-    <div class="hero-wrap js-fullheight">
-        <!-- Video background -->
-        <video autoplay loop muted playsinline class="video-background">
-            <source src="{{ asset('pengguna/video/sby.mp4') }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
     
-        <!-- Overlay -->
-        <div class="overlay"></div>
+    <div class="hero-wrap js-fullheight" style="background-image: url('pengguna/images/sby.gif');">
+      <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
