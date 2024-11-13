@@ -28,7 +28,7 @@
 						<i class="zmdi zmdi-arrow-right"></i>
 					</button>
                     <div class="form-wrapper">
-						<p style="margin-left:30%; margin-top:10%;">Sign With Google</p>
+						<p style="margin-left:30%; margin-top:10%;"> <a href="/register" style="color: blue; text-decoration: none;">Belum Punya Akun?</a></p>
 					</div>
 				</form>
 			</div>
