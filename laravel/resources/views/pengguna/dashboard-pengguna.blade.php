@@ -40,16 +40,15 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="pengguna.about" class="nav-link">About</a></li>
-          <li class="nav-item"><a href="pengguna.destination" class="nav-link">Destination</a></li>
+          <li class="nav-item active"><a href="/dashboard-pengunjung" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="/destination" class="nav-link">Destination</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Profile
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="pengguna.profile">View Profile</a></li>
-                <li><a class="dropdown-item" href="pengguna.edit-profile">Edit Profile</a></li>
+                <li><a class="dropdown-item" href="/edit-profile">Edit Profile</a></li>
                 <li><a class="dropdown-item" href="logout">Log Out</a></li>
             </ul>
         </li>
@@ -473,78 +472,30 @@
 
     				
 
-    <section class="ftco-section bg-light">
-      <div class="container">
-        <div class="row justify-content-start mb-5 pb-3">
-          <div class="col-md-7 heading-section ftco-animate">
-            <span class="subheading">Recent Blog</span>
-            <h2><strong>Tips</strong> &amp; Articles</h2>
-          </div>
-        </div>
-        <div class="row d-flex">
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
-              </a>
-              <div class="text p-4 d-block">
-              	<span class="tag">Tips, Travel</span>
-                <h3 class="heading mt-3"><a href="#">8 Best homestay in Philippines that you don't miss out</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">August 12, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-              </a>
-              <div class="text p-4">
-              	<span class="tag">Culture</span>
-                <h3 class="heading mt-3"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">August 12, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-              </a>
-              <div class="text p-4">
-              	<span class="tag">Tips, Travel</span>
-                <h3 class="heading mt-3"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">August 12, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_4.jpg');">
-              </a>
-              <div class="text p-4">
-              	<span class="tag">Tips, Travel</span>
-                <h3 class="heading mt-3"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">August 12, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+	<section class="ftco-section bg-light">
+		<div class="container">
+		  <div class="row justify-content-start mb-5 pb-3">
+			<div class="col-md-7 heading-section ftco-animate">
+			  <span class="subheading">Surabayaku</span>
+			  <h2><strong>Weather</strong> in Surabaya</h2>
+			</div>
+		  </div>
+		  <div class="row d-flex">
+			<!-- Weather Info Container -->
+			<div id="weather-info" class="col-md-12 ftco-animate mt-4">
+			  <h3 id="city-name">Surabaya</h3>
+			  <div id="weather-icon" class="weather-icon"></div>
+			  <p id="weather-description">Loading weather...</p>
+			  <p id="temperature">Temperature: 0°C</p>
+			  <p id="humidity">Humidity: 0%</p>
+			  <p id="wind-speed">Wind Speed: 0 m/s</p>
+			  <p id="pressure">Pressure: 0 hPa</p>
+			  <p id="error-message">City not found or invalid API key</p>
+			</div>
+		  </div>
+		</div>
+	  </section>
+	
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
@@ -598,13 +549,6 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-
-            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          </div>
         </div>
       </div>
     </footer>
@@ -613,7 +557,62 @@
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+  <script>
+    const apiKey = 'YOUR_API_KEY'; // Ganti dengan API Key dari OpenWeatherMap
 
+    // Function to fetch weather data from OpenWeatherMap
+    async function getWeatherData(city) {
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=id`;
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        // Log the data to check if we are receiving it correctly
+        console.log(data);
+
+        // Check if the city is found
+        if (data.cod === 200) {
+          return data;
+        } else {
+          throw new Error('City not found');
+        }
+      } catch (error) {
+        document.getElementById('error-message').style.display = 'block';
+        console.error(error);
+      }
+    }
+
+    // Function to display weather information
+    function displayWeatherData(weatherData) {
+      // Display basic weather info
+      document.getElementById('city-name').textContent = weatherData.name;
+      document.getElementById('weather-description').textContent = weatherData.weather[0].description;
+      document.getElementById('temperature').textContent = `Temperature: ${weatherData.main.temp}°C`;
+      document.getElementById('humidity').textContent = `Humidity: ${weatherData.main.humidity}%`;
+      document.getElementById('wind-speed').textContent = `Wind Speed: ${weatherData.wind.speed} m/s`;
+      document.getElementById('pressure').textContent = `Pressure: ${weatherData.main.pressure} hPa`;
+
+      // Set weather icon animation
+      const weatherIconCode = weatherData.weather[0].icon;
+      const weatherIcon = document.getElementById('weather-icon');
+      weatherIcon.innerHTML = `<img src="https://openweathermap.org/img/wn/${weatherIconCode}@2x.png" alt="Weather Icon" />`;
+
+      // Hide error message if city is found
+      document.getElementById('error-message').style.display = 'none'; 
+    }
+
+    // Load default weather data for Surabaya
+    window.onload = async function() {
+      const city = 'Surabaya';
+      const weatherData = await getWeatherData(city);
+      if (weatherData) {
+        displayWeatherData(weatherData);
+      }
+    };
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 
   <script src="pengguna/js/jquery.min.js"></script>
   <script src="pengguna/js/jquery-migrate-3.0.1.min.js"></script>
@@ -632,6 +631,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="pengguna/js/google-map.js"></script>
   <script src="pengguna/js/main.js"></script>
-    
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+ 
   </body>
 </html>

@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="css/formcss/style.css">
 	</head>
 	<body>
-		<div class="wrapper" style="background-color: purple;">
+		<div class="wrapper" style="background-color: rgb(22, 15, 84);">
 			<div style="border-radius: 20px;" class="inner">
 				<div class="image-holder">
 					<img  style="border-radius: 15px;" src="https://i.pinimg.com/736x/0e/90/a0/0e90a017bbe27d090255c77d5792abeb.jpg" alt="">

@@ -11,7 +11,7 @@
 
 	<body>
 
-		<div class="wrapper" style="background-color: purple;">
+		<div class="wrapper" style="background-color: rgb(22, 15, 84);">
 			<div class="inner" style="border-radius: 20px;">
 				<div class="image-holder">
 					<img style="border-radius: 15px;" src="https://i.pinimg.com/736x/0e/90/a0/0e90a017bbe27d090255c77d5792abeb.jpg" alt="">
@@ -46,6 +46,9 @@
 					<button style="border-radius: 20px;" id="register">Register
 						<i class="zmdi zmdi-arrow-right"></i>
 					</button>
+					<div class="form-wrapper">
+						<p style="margin-left:30%; margin-top:10%;"> <a href="/login" style="color: blue; text-decoration: none;">Sudah Punya Akun?</a></p>
+					</div>
 				</form>
 			</div>
 		</div>
