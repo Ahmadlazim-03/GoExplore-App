@@ -79,64 +79,44 @@
             <span class="nav-link">Navigation</span>
           </li>
 
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="index.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
-              </span>
-              <span class="menu-title">Dashboard</span>
-            </a>
-          </li>
 
-          <li class="nav-item menu-items">
-            <a class="nav-link" data-bs-toggle="collapse" href="#bookings" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-icon">
-                <i class="mdi mdi-laptop"></i>
-              </span>
-              <span class="menu-title">Bookings</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="bookings">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="admin/pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin/pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin/pages/ui-features/typography.html">Typography</a></li>
-              </ul>
-            </div>
-          </li>
+          @foreach ( $DataMenu as $Menu)
+            @if ( $Menu->tipe_menu == "single" && $Menu->id_parent == null )
+              <li class="nav-item menu-items">
+                <a class="nav-link" href="/{{ $Menu->href }}">
+                  <span class="menu-icon">
+                    <i class="mdi {{ $Menu->icon_menu }}"></i>
+                  </span>
+                  <span class="menu-title">{{ $Menu->name }}</span>
+                </a>
+              </li>
+            @endif
+          @endforeach
 
-          <li class="nav-item menu-items">
-            <a class="nav-link" data-bs-toggle="collapse" href="#destination" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-icon">
-                <i class="mdi mdi-laptop"></i>
-              </span>
-              <span class="menu-title">Destination</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="destination">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="admin/pages/ui-features/buttons.html">All Destination</a></li>
-                <li class="nav-item"> <a class="nav-link" href="admin/pages/ui-features/dropdowns.html">Add New Destination</a></li>
-              </ul>
-            </div>
-          </li>
+          @foreach ( $DataMenu as $Menu)
+            @if ( $Menu->tipe_menu == "dropdown" && $Menu->id_parent !== null )
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-bs-toggle="collapse" href="#{{ $Menu->href }}" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-icon">
+                    <i class="mdi {{ $Menu->icon_menu }}"></i>
+                  </span>
+                  <span class="menu-title">{{ $Menu->name }}</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="{{ $Menu->href }}">
+                  <ul class="nav flex-column sub-menu">
+                      @foreach ( $DataMenu as $MenuDropdown)
+                        @if( $MenuDropdown->id_parent == $Menu->id )
+                          <li class="nav-item"> <a class="nav-link" href="/{{ $MenuDropdown->href }}">{{ $MenuDropdown->name }}</a></li>
+                        @endif
+                      @endforeach
+                  </ul>
+                </div>
+              </li>
+            @endif
+          @endforeach
 
-          <li class="nav-item menu-items">
-            <a class="nav-link" data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-icon">
-                <i class="mdi mdi-laptop"></i>
-              </span>
-              <span class="menu-title">Settings</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="settings">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/manajemen-user">Manajemen User</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/manajemen-role">Manajemen Role</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/manajemen-menu">Manajemen Menu</a></li>
-              </ul>
-            </div>
-          </li>
+          
 
         </ul>
       </nav>

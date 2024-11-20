@@ -48,7 +48,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="/manajemen-user-edit/{{ $value->id }}">Delete</a>
+                                            <a href="/manajemen-user-delete/{{ $value->id }}">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -134,8 +134,9 @@
                                 <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Role</label>
                                 <div class="col-sm-9">
                                     <select class="form-select" name="role" id="exampleSelectGender" required>
-                                        <option value="admin">Admin</option>
-                                        <option value="user">User</option>
+                                        @foreach( $DataRole as $data )
+                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -155,7 +156,7 @@
                     <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Edit User</h4>
-                        <p class="card-description"> Form tambah user </p>
+                        <p class="card-description"> Form edit user </p>
                         <form action="/manajemen-user-edit" method="POST" class="forms-sample" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
@@ -231,8 +232,9 @@
                                 <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Role</label>
                                 <div class="col-sm-9">
                                     <select class="form-select" name="role" id="exampleSelectGender" required>
-                                        <option value="admin">Admin</option>
-                                        <option value="user">User</option>
+                                        @foreach( $DataRole as $data )
+                                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

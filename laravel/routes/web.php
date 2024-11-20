@@ -30,12 +30,19 @@ Route::group([], function () {
 Route::middleware(AuthLogin::class)->group(function (){
     Route::view('/dashboard-admin', 'admin/index');
     
-    Route::get('/manajemen-user', [SettingController::class,'users']);
+    Route::get('/manajemenuser', [SettingController::class,'users']);
     Route::POST('/manajemen-user-create', [SettingController::class,'users_create']);
     Route::POST('/manajemen-user-edit', [SettingController::class,'users_edit']);
-    Route::get('/manajemen-user-edit/{id}', [SettingController::class,'users_delete']);
+    Route::get('/manajemen-user-delete/{id}', [SettingController::class,'users_delete']);
     
-    Route::get('/manajemen-role', [SettingController::class,'role']);
-    Route::get('/manajemen-menu', [SettingController::class,'menu']);
+    Route::get('/manajemenrole', [SettingController::class,'role']);
+    Route::POST('/manajemen-role-create', [SettingController::class,'role_create']);
+    Route::POST('/manajemen-role-edit', [SettingController::class,'role_edit']);
+    Route::get('/manajemen-role-delete/{id}', [SettingController::class,'role_delete']);
+
+    Route::get('/manajemenmenu', [SettingController::class,'menu']);
+    Route::POST('/manajemen-menu-create', [SettingController::class,'menu_create']);
+    Route::POST('/manajemen-menu-edit', [SettingController::class,'menu_edit']);
+    Route::get('/manajemen-menu-delete/{id}', [SettingController::class,'menu_delete']);
    
 });
