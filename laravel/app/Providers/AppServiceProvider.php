@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Menu;
 use App\Models\SettingMenu;
+use App\Models\Destination;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,5 +22,6 @@ class AppServiceProvider extends ServiceProvider
         View::share('DataRole', Role::all());
         View::share('DataMenu', Menu::all());
         View::share('DataSettingMenu', SettingMenu::all());
+        View::share('DataDestination', Destination::all());
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Middleware\AuthLogin;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\DestinationController;
 
 // Group Form
 Route::group([], function () {
@@ -24,6 +25,7 @@ Route::group([], function () {
     Route::view('/destination', 'landingpage/destination');
     Route::view('/about', 'landingpage/about');
     Route::view('/contact', 'landingpage/contact');
+
 });
 
 // Group Dashboard Admin
@@ -44,5 +46,10 @@ Route::middleware(AuthLogin::class)->group(function (){
     Route::POST('/manajemen-menu-create', [SettingController::class,'menu_create']);
     Route::POST('/manajemen-menu-edit', [SettingController::class,'menu_edit']);
     Route::get('/manajemen-menu-delete/{id}', [SettingController::class,'menu_delete']);
-   
+    
+    Route::get('/alldestination', [DestinationController::class,'all_destination']);
+});
+
+Route::get('/test', function(){
+    return view('single');
 });
