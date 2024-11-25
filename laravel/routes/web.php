@@ -30,7 +30,7 @@ Route::group([], function () {
 
 // Group Dashboard Admin
 Route::middleware(AuthLogin::class)->group(function (){
-    Route::view('/dashboard-admin', 'admin/index');
+    Route::view('/dashboard', 'admin/dashboard');
     
     Route::get('/manajemenuser', [SettingController::class,'users']);
     Route::POST('/manajemen-user-create', [SettingController::class,'users_create']);
@@ -48,8 +48,12 @@ Route::middleware(AuthLogin::class)->group(function (){
     Route::get('/manajemen-menu-delete/{id}', [SettingController::class,'menu_delete']);
     
     Route::get('/alldestination', [DestinationController::class,'all_destination']);
+    Route::POST('/create-destination', [DestinationController::class,'create_destination']);
+    Route::POST('/edit-destination', [DestinationController::class,'edit_destination']);
+    Route::get('/delete-destination/{id}', [DestinationController::class,'delete_destination']);
 });
 
-Route::get('/test', function(){
-    return view('single');
+
+Route::get('/destination/single-page/{id}', function(Request $request){
+    return view('landingpage/single-page');
 });

@@ -19,7 +19,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach ( $DataMenu as $value)
+                                @foreach ( $DataMenu->Where('id_parent', null) as $value)
+                                <tr>
+                                    <td> {{ $value->id }} </td>
+                                    <td> {{ $value->tipe_menu }} </td>
+                                    <td> {{ $value->name }} </td>
+                                    <td> {{ $value->icon_menu }} </td>
+                                    <td> {{ $value->href }} </td>
+                                    <td> {{ $value->id_parent }} </td>
+                                    <td> <a href="/manajemen-menu-delete/{{ $value->id }}">Delete</a> </td>  
+                                </tr>
+                                @endforeach
+
+                                @foreach ( $DataMenu->Where('id_parent', !null) as $value)
                                 <tr>
                                     <td> {{ $value->id }} </td>
                                     <td> {{ $value->tipe_menu }} </td>
@@ -86,7 +98,7 @@
                             <div class="col-sm-9">
                                 <select class="form-select" name="id_parent" id="exampleSelectParent" >
                                         <option value="0"></option>
-                                    @foreach ($DataMenu->Where('id_parent', null) as $data)
+                                    @foreach ($DataMenu->Where('id_parent', null || 'id_parent', 0 )->Where('tipe_menu', 'dropdown') as $data)
                                         <option value="{{ $data->id }}">{{ $data->name }}</option>
                                     @endforeach
                                 </select>
@@ -160,7 +172,7 @@
                             <div class="col-sm-9">
                                 <select class="form-select" name="id_parent" id="editSelectParent">
                                     <option value="0"></option>
-                                    @foreach ($DataMenu->Where('id_parent', null) as $data)
+                                    @foreach ($DataMenu->Where('id_parent', null || 'id_parent', 0 )->Where('tipe_menu', 'dropdown') as $data)
                                         <option value="{{ $data->id }}">{{ $data->name }}</option>
                                     @endforeach
                                 </select>
@@ -224,7 +236,4 @@
         }
     });
 </script>
-
-
-
 @endsection

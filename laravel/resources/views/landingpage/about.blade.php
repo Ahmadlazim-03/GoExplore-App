@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>DirEngine - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Go Explore - Find your Destination</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -64,7 +64,7 @@
     <section class="ftco-section">
     	<div class="container">
     		<div class="row d-md-flex">
-	    		<div class="col-md-6 ftco-animate img about-image" style="background-image: url(landingpage/images/about.jpg);">
+	    		<div class="col-md-6 ftco-animate img about-image" style="background-image: url({{ asset('landingpage/images/about.jpg') }});">
 	    		</div>
 	    		<div class="col-md-6 ftco-animate p-md-5">
 		    		<div class="row">

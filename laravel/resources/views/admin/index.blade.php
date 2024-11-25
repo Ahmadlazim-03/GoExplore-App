@@ -81,7 +81,7 @@
 
 
           @foreach ( $DataMenu as $Menu)
-            @if ( $Menu->tipe_menu == "single" && $Menu->id_parent == null )
+            @if ( $Menu->tipe_menu == "single" && $Menu->id_parent == null  )
               <li class="nav-item menu-items">
                 <a class="nav-link" href="/{{ $Menu->href }}">
                   <span class="menu-icon">
@@ -94,7 +94,7 @@
           @endforeach
 
           @foreach ( $DataMenu as $Menu)
-            @if ( $Menu->tipe_menu == "dropdown" && $Menu->id_parent !== null )
+            @if ( $Menu->tipe_menu == "dropdown" && $Menu->id_parent == null || $Menu->tipe_menu == "dropdown" && $Menu->id_parent == 0  )
               <li class="nav-item menu-items">
                 <a class="nav-link" data-bs-toggle="collapse" href="#{{ $Menu->href }}" aria-expanded="false" aria-controls="ui-basic">
                   <span class="menu-icon">
@@ -163,7 +163,7 @@
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
+                  <a href="/logout" class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-logout text-danger"></i>
@@ -188,7 +188,7 @@
         <div class="main-panel">
           <div class="content-wrapper">
           
-        @yield('content')
+            @yield('content')
          
           </div>
         

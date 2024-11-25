@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('Category',['Wisata Sejarah dan Budaya', 'Wisata Alam dan Taman', 'Wisata Modern dan Hiburan', 'Wisata Religi']);
             $table->string('Opening_hours', 225);
             $table->dateTime('tgl');
+            $table->timestamps();
         });
 
         Schema::create('bookings', function (Blueprint $table) {
