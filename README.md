@@ -1,5 +1,6 @@
 # Name Aplication : GoExplore-App
 Dosen : Fitri Retrialisca 
+
 Anggota Kelompok :
   - Ahmad Lazim ( 434231033 )
   - Reynaldi Susilo Waskito ( 434231083 )
