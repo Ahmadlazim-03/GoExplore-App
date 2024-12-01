@@ -23,54 +23,31 @@
   </head>
   <body>
     
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">dirEngine.</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item active"><a href="/destination" class="nav-link">Destination</a></li>
+		  <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+		  <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+          <li class="nav-item cta"><a href="/login" class="nav-link"><span>Login</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
     <section class="ftco-section ftco-degree-bg">
       <div class="container">
         <div class="row">
         	<div class="col-lg-3 sidebar">
-        		<div class="sidebar-wrap bg-light ftco-animate">
-        			<h3 class="heading mb-4">Find City</h3>
-        			<form action="#">
-        				<div class="fields">
-		              <div class="form-group">
-		                <input type="text" class="form-control" placeholder="Destination, City">
-		              </div>
-		              <div class="form-group">
-		                <div class="select-wrap one-third">
-	                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-	                    <select name="" id="" class="form-control" placeholder="Keyword search">
-	                      <option value="">Select Location</option>
-	                      <option value="">San Francisco USA</option>
-	                      <option value="">Berlin Germany</option>
-	                      <option value="">Lodon United Kingdom</option>
-	                      <option value="">Paris Italy</option>
-	                    </select>
-	                  </div>
-		              </div>
-		              <div class="form-group">
-		                <input type="text" id="checkin_date" class="form-control" placeholder="Date from">
-		              </div>
-		              <div class="form-group">
-		                <input type="text" id="checkin_date" class="form-control" placeholder="Date to">
-		              </div>
-		              <div class="form-group">
-		              	<div class="range-slider">
-		              		<span>
-										    <input type="number" value="25000" min="0" max="120000"/>	-
-										    <input type="number" value="50000" min="0" max="120000"/>
-										  </span>
-										  <input value="1000" min="0" max="120000" step="500" type="range"/>
-										  <input value="50000" min="0" max="120000" step="500" type="range"/>
-										  </svg>
-										</div>
-		              </div>
-		              <div class="form-group">
-		                <input type="submit" value="Search" class="btn btn-primary py-3 px-5">
-		              </div>
-		            </div>
-	            </form>
-        		</div>
-        		<div class="sidebar-wrap bg-light ftco-animate">
+        		
+        		<!-- <div class="sidebar-wrap bg-light ftco-animate">
         			<h3 class="heading mb-4">Star Rating</h3>
         			<form method="post" class="star-rating">
 							  <div class="form-check">
@@ -104,206 +81,200 @@
 							    </label>
 							  </div>
 							</form>
-        		</div>
+        		</div> -->
+				<div class="sidebar-wrap bg-light ftco-animate">
+					<h3 class="heading mb-4">Add Comment</h3>
+					
+					<form action="submit_comment.php" method="POST">
+						
+						<div class="form-group mb-4">
+							<label for="commentText">Your Comment</label>
+							<textarea id="commentText" name="commentText" class="form-control" rows="5"></textarea>
+						</div>
+
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="checkbox1">
+							<label class="form-check-label" for="checkbox1">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></p>
+							</label>
+						</div>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="checkbox2">
+							<label class="form-check-label" for="checkbox2">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
+							</label>
+						</div>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="checkbox3">
+							<label class="form-check-label" for="checkbox3">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
+							</label>
+						</div>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="checkbox4">
+							<label class="form-check-label" for="checkbox4">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
+							</label>
+						</div>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="checkbox5">
+							<label class="form-check-label" for="checkbox5">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
+							</label>
+						</div>
+						
+						<div class="form-group">
+		                <input type="submit" value="Add" class="btn btn-primary py-3 px-5">
+		              </div>
+					</form>
+				</div>
+
+
+				<div class="sidebar-wrap bg-light ftco-animate">
+					<h3 class="heading mb-4">Recent Comment</h3>
+					
+				
+					<div class="comment-item d-flex mb-4">
+						
+						<div class="profile-pic mr-3">
+							<img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="User's Profile" class="rounded-circle" width="50" height="50">
+						</div>
+						
+						
+						<div class="comment-content">
+						
+							<h5 class="username mb-2">Ahmad Lazim</h5>
+							
+							<p class="comment-text">This is a comment text. The user can type here.</p>
+							<i class="icon-star"></i>
+							<i class="icon-star"></i>
+							<i class="icon-star"></i>
+							<i class="icon-star"></i>
+    						<i class="icon-star"></i>
+
+							<hr>
+						</div>
+					</div>
+
+					<div class="comment-item d-flex mb-4">
+						
+						<div class="profile-pic mr-3">
+							<img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="User's Profile" class="rounded-circle" width="50" height="50">
+						</div>
+						
+						
+						<div class="comment-content">
+							
+							<h5 class="username mb-2">Reynaldi Susilo</h5>
+							
+							<p class="comment-text">This is a comment text. The user can type here.</p>
+							<i class="icon-star"></i>
+							<i class="icon-star"></i>
+							<i class="icon-star"></i>
+							<i class="icon-star"></i>
+    						<i class="icon-star"></i>
+
+							<hr>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
           </div>
           <div class="col-lg-9">
           	<div class="row">
           		<div class="col-md-12 ftco-animate">
           			<div class="single-slider owl-carousel">
-          				<div class="item">
-          					<div class="hotel-img" style="background-image: url({{ asset('landingpage/images/hotel-2.jpg') }});"></div>
-          				</div>
-          				<div class="item">
-          					<div class="hotel-img" style="background-image: url({{ asset('landingpage/images/hotel-3.jpg') }});"></div>
-          				</div>
-          				<div class="item">
-          					<div class="hotel-img" style="background-image: url({{ asset('landingpage/images/hotel-4.jpg') }});"></div>
-          				</div>
+
+					  	@foreach (json_decode($detail->image) as $value)
+							<div class="item">
+								<div class="hotel-img" style="background-image: url('{{ asset($value) }}');"></div>
+							</div>
+						@endforeach
+
+				
+
+						
           			</div>
           		</div>
           		<div class="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
-          			<span>Our Best hotels &amp; Rooms</span>
-          			<h2>Luxury Hotel in Paris</h2>
+          			<span>{{ $destination->Category }}</span>
+          			<h2>{{ $destination->Name_Destination }}</h2>
           			<p class="rate mb-5">
-          				<span class="loc"><a href="#"><i class="icon-map"></i> 291 South 21th Street, Suite 721 New York NY 10016</a></span>
-          				<span class="star">
+          				<span class="loc"><a href="{{ $destination->Link_Location }}"><i class="icon-map"></i> {{ $destination->Locations }}</a></span>
+						@if ( $detail->rating == 1 )
+          						<span class="star">
+    							<i class="icon-star"></i>
+    							<i class="icon-star-o"></i>
+    							<i class="icon-star-o"></i>
+    							<i class="icon-star-o"></i>
+    							<i class="icon-star-o"></i>
+    							{{ $detail->rating }} Rating</span>
+						@endif			
+						@if ( $detail->rating == 2 )
+          						<span class="star">
+    							<i class="icon-star"></i>
+    							<i class="icon-star"></i>
+    							<i class="icon-star-o"></i>
+    							<i class="icon-star-o"></i>
+    							<i class="icon-star-o"></i>
+    							{{ $detail->rating }} Rating</span>
+						@endif		
+						@if ( $detail->rating == 3 )
+          						<span class="star">
+    							<i class="icon-star"></i>
+    							<i class="icon-star"></i>
+    							<i class="icon-star"></i>
+    							<i class="icon-star-o"></i>
+    							<i class="icon-star-o"></i>
+    							{{ $detail->rating }} Rating</span>
+						@endif	
+						@if ( $detail->rating == 4 )
+          						<span class="star">
     							<i class="icon-star"></i>
     							<i class="icon-star"></i>
     							<i class="icon-star"></i>
     							<i class="icon-star"></i>
     							<i class="icon-star-o"></i>
-    							8 Rating</span>
-    						</p>
-    						<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-    						<div class="d-md-flex mt-5 mb-5">
-    							<ul>
-	    							<li>The Big Oxmox advised her not to do so</li>
-	    							<li>When she reached the first hills of the Italic Mountains</li>
-	    							<li>She had a last view back on the skyline of her hometown </li>
-	    							<li>Bookmarksgrove, the headline of Alphabet </li>
-	    						</ul>
-	    						<ul class="ml-md-5">
-	    							<li>Question ran over her cheek, then she continued</li>
-	    							<li>Pityful a rethoric question ran</li>
-	    							<li>Mountains, she had a last view back on the skyline</li>
-	    							<li>Headline of Alphabet Village and the subline</li>
-	    						</ul>
-    						</div>
-    						<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-          		</div>
-          		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-          			<h4 class="mb-4">Take A Tour</h4>
-          			<div class="block-16">
-		              <figure>
-		                <img src="{{ asset('landingpage/images/hotel-6.jpg') }}" alt="Image placeholder" class="img-fluid">
-		                <a href="https://vimeo.com/45830194" class="play-button popup-vimeo"><span class="icon-play"></span></a>
-		              </figure>
-		            </div>
-          		</div>
-          		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-          			<h4 class="mb-4">Our Rooms</h4>
-          			<div class="row">
-          				<div class="col-md-4">
-				    				<div class="destination">
-				    					<a href="hotel-single.html" class="img img-2" style="background-image: url({{ asset('landingpage/images/room-4.jpg') }});"></a>
-				    					<div class="text p-3">
-				    						<div class="d-flex">
-				    							<div class="one">
-						    						<h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-						    						<p class="rate">
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star-o"></i>
-						    							<span>8 Rating</span>
-						    						</p>
-					    						</div>
-					    						<div class="two">
-					    							<span class="price per-price">$40<br><small>/night</small></span>
-				    							</div>
-				    						</div>
-				    						<p>Far far away, behind the word mountains, far from the countries</p>
-				    						<hr>
-				    						<p class="bottom-area d-flex">
-				    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-				    							<span class="ml-auto"><a href="#">Book Now</a></span>
-				    						</p>
-				    					</div>
-				    				</div>
-				    			</div>
-				    			<div class="col-md-4">
-				    				<div class="destination">
-				    					<a href="hotel-single.html" class="img img-2" style="background-image: url({{ asset('landingpage/images/room-5.jpg') }});"></a>
-				    					<div class="text p-3">
-				    						<div class="d-flex">
-				    							<div class="one">
-						    						<h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-						    						<p class="rate">
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star-o"></i>
-						    							<span>8 Rating</span>
-						    						</p>
-					    						</div>
-					    						<div class="two">
-					    							<span class="price per-price">$40<br><small>/night</small></span>
-				    							</div>
-				    						</div>
-				    						<p>Far far away, behind the word mountains, far from the countries</p>
-				    						<hr>
-				    						<p class="bottom-area d-flex">
-				    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-				    							<span class="ml-auto"><a href="#">Book Now</a></span>
-				    						</p>
-				    					</div>
-				    				</div>
-				    			</div>
-				    			<div class="col-md-4">
-				    				<div class="destination">
-				    					<a href="hotel-single.html" class="img img-2" style="background-image: url({{ asset('landingpage/images/room-6.jpg') }});"></a>
-				    					<div class="text p-3">
-				    						<div class="d-flex">
-				    							<div class="one">
-						    						<h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-						    						<p class="rate">
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star-o"></i>
-						    							<span>8 Rating</span>
-						    						</p>
-					    						</div>
-					    						<div class="two">
-					    							<span class="price per-price">$40<br><small>/night</small></span>
-				    							</div>
-				    						</div>
-				    						<p>Far far away, behind the word mountains, far from the countries</p>
-				    						<hr>
-				    						<p class="bottom-area d-flex">
-				    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-				    							<span class="ml-auto"><a href="#">Book Now</a></span>
-				    						</p>
-				    					</div>
-				    				</div>
-				    			</div>
-          			</div>
-          		</div>
+    							{{ $detail->rating }} Rating</span>
+						@endif
+						@if ( $detail->rating == 5 )
+          						<span class="star">
+    							<i class="icon-star"></i>
+    							<i class="icon-star"></i>
+    							<i class="icon-star"></i>
+    							<i class="icon-star"></i>
+    							<i class="icon-star"></i>
+    							{{ $detail->rating }} Rating</span>
+						@endif									
+					</p>
+    				<p>{{ $detail->description }}</p>
+
+
+					<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+						<h4 class="mb-4">Take A Tour</h4>
+						<div class="block-16">
+							<figure>
+								<video width="100%" controls>
+									<source src="{{ asset('video/'.$detail->video) }}" type="video/mp4">
+									Your browser does not support the video tag.
+								</video>
+							</figure>
+						</div>
+					</div>
+          	
+				
           		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
           			<h4 class="mb-5">Check Availability &amp; Booking</h4>
           			<div class="fields">
           				<div class="row">
-          					<div class="col-md-6">
-				              <div class="form-group">
-				                <input type="text" class="form-control" placeholder="Name">
-				              </div>
-			              </div>
-			              <div class="col-md-6">
-				              <div class="form-group">
-				                <input type="text" class="form-control" placeholder="Email">
-				              </div>
-			              </div>
-			              <div class="col-md-6">
-				              <div class="form-group">
-				                <input type="text" id="checkin_date" class="form-control" placeholder="Date from">
-				              </div>
-			              </div>
-			              <div class="col-md-6">
-				              <div class="form-group">
-				                <input type="text" id="checkin_date" class="form-control" placeholder="Date to">
-				              </div>
-				            </div>
-				            <div class="col-md-6">
-					            <div class="form-group">
-				                <div class="select-wrap one-third">
-			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control" placeholder="Guest">
-			                      <option value="0">Guest</option>
-			                      <option value="1">1</option>
-			                      <option value="2">2</option>
-			                      <option value="3">3</option>
-			                      <option value="4">4</option>
-			                    </select>
-			                  </div>
-				              </div>
-			              </div>
-			              <div class="col-md-6">
-					            <div class="form-group">
-				                <div class="select-wrap one-third">
-			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control" placeholder="Children">
-			                      <option value="0">Children</option>
-			                      <option value="1">1</option>
-			                      <option value="2">2</option>
-			                      <option value="3">3</option>
-			                      <option value="4">4</option>
-			                    </select>
-			                  </div>
-				              </div>
-			              </div>
 				            <div class="col-md-12">
 				              <div class="form-group">
 				                <input type="submit" value="Check Availability" class="btn btn-primary py-3">
@@ -312,138 +283,54 @@
 		              </div>
 		            </div>
           		</div>
-          		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-          			<h4 class="mb-4">Review &amp; Ratings</h4>
-          			<div class="row">
-          				<div class="col-md-6">
-          					<form method="post" class="star-rating">
-										  <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
-												<label class="form-check-label" for="exampleCheck1">
-													<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i> 100 Ratings</span></p>
-												</label>
-										  </div>
-										  <div class="form-check">
-									      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-									      <label class="form-check-label" for="exampleCheck1">
-									    	   <p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i> 30 Ratings</span></p>
-									      </label>
-										  </div>
-										  <div class="form-check">
-									      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-									      <label class="form-check-label" for="exampleCheck1">
-									      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i> 5 Ratings</span></p>
-									     </label>
-										  </div>
-										  <div class="form-check">
-										    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-									      <label class="form-check-label" for="exampleCheck1">
-									      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i> 0 Ratings</span></p>
-									      </label>
-										  </div>
-										  <div class="form-check">
-									      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-									      <label class="form-check-label" for="exampleCheck1">
-									      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i> 0 Ratings</span></p>
-										    </label>
-										  </div>
-										</form>
-          				</div>
-          			</div>
-          		</div>
+          	
           		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-5">
-          			<h4 class="mb-4">Related Hotels</h4>
+          			<h4 class="mb-4">Related Destination</h4>
           			<div class="row">
-          				<div class="col-md-4">
-				    				<div class="destination">
-				    					<a href="hotel-single.html" class="img img-2" style="background-image: url({{ asset('landingpage/images/hotel-1.jpg') }});"></a>
-				    					<div class="text p-3">
-				    						<div class="d-flex">
-				    							<div class="one">
-						    						<h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-						    						<p class="rate">
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star-o"></i>
-						    							<span>8 Rating</span>
-						    						</p>
-					    						</div>
-					    						<div class="two">
-					    							<span class="price per-price">$40<br><small>/night</small></span>
-				    							</div>
-				    						</div>
-				    						<p>Far far away, behind the word mountains, far from the countries</p>
-				    						<hr>
-				    						<p class="bottom-area d-flex">
-				    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-				    							<span class="ml-auto"><a href="#">Book Now</a></span>
-				    						</p>
-				    					</div>
-				    				</div>
-				    			</div>
-				    			<div class="col-md-4">
-				    				<div class="destination">
-				    					<a href="hotel-single.html" class="img img-2" style="background-image: url({{ asset('landingpage/images/hotel-2.jpg') }});"></a>
-				    					<div class="text p-3">
-				    						<div class="d-flex">
-				    							<div class="one">
-						    						<h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-						    						<p class="rate">
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star-o"></i>
-						    							<span>8 Rating</span>
-						    						</p>
-					    						</div>
-					    						<div class="two">
-					    							<span class="price per-price">$40<br><small>/night</small></span>
-				    							</div>
-				    						</div>
-				    						<p>Far far away, behind the word mountains, far from the countries</p>
-				    						<hr>
-				    						<p class="bottom-area d-flex">
-				    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-				    							<span class="ml-auto"><a href="#">Book Now</a></span>
-				    						</p>
-				    					</div>
-				    				</div>
-				    			</div>
-				    			<div class="col-md-4">
-				    				<div class="destination">
-				    					<a href="hotel-single.html" class="img img-2" style="background-image: url({{ asset('landingpage/images/hotel-3.jpg') }});"></a>
-				    					<div class="text p-3">
-				    						<div class="d-flex">
-				    							<div class="one">
-						    						<h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-						    						<p class="rate">
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star-o"></i>
-						    							<span>8 Rating</span>
-						    						</p>
-					    						</div>
-					    						<div class="two">
-					    							<span class="price per-price">$40<br><small>/night</small></span>
-				    							</div>
-				    						</div>
-				    						<p>Far far away, behind the word mountains, far from the countries</p>
-				    						<hr>
-				    						<p class="bottom-area d-flex">
-				    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-				    							<span class="ml-auto"><a href="#">Book Now</a></span>
-				    						</p>
-				    					</div>
-				    				</div>
-				    			</div>
+
+					@foreach( $related as $value)
+
+						@if ( $value->idDestination != $detail->destinations_id )
+						<div class="col-md-4 ftco-animate">
+							<div class="destination">
+								<a href="/destination/single-page/{{ $value->idDestination }}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url({{ asset('img/'.$value->Image) }});">
+									<div class="icon d-flex justify-content-center align-items-center">
+								<span class="icon-search2"></span>
+							</div>
+								</a>
+								<div class="text p-3">
+									<div class="d-flex">
+										<div class="one">
+											<h3><a href="">{{ $value->Name_Destination }}</a></h3>
+											<p class="rate">
+												<i class="icon-star"></i>
+												<i class="icon-star"></i>
+												<i class="icon-star"></i>
+												<i class="icon-star"></i>
+												<i class="icon-star-o"></i>
+												<span>8 Rating</span>
+											</p>
+										</div>
+										<div class="two">
+											<span class="price">Rp.{{ $value->Price_perticket }}</span>
+										</div>
+									</div>
+									<p>{{ $value->Description }}</p>
+									<p class="days"><span>{{ $value->Opening_hours }}</span></p>
+									<hr>
+									<p class="bottom-area d-flex">
+										<span><i class="icon-map-o"></i> {{ $value->Locations}} </span> 
+										<span class="ml-auto"><a href="/destination/single-page/{{ $value->idDestination }}">View</a></span>
+									</p>
+								</div>
+							</div>
+						</div>
+						@endif
+
+					@endforeach
+
           			</div>
           		</div>
-
           	</div>
           </div> <!-- .col-md-8 -->
         </div>
@@ -516,7 +403,28 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-  
+  <script>
+    // Get all the checkboxes
+    const checkboxes = document.querySelectorAll('.form-check-input');
+    
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', function () {
+            // If any checkbox is checked, disable all others
+            if (this.checked) {
+                checkboxes.forEach((cb) => {
+                    if (cb !== this) {
+                        cb.disabled = true;
+                    }
+                });
+            } else {
+                // If unchecking, re-enable all checkboxes
+                checkboxes.forEach((cb) => {
+                    cb.disabled = false;
+                });
+            }
+        });
+    });
+	</script>
     <script src="{{ asset('landingpage/js/jquery.min.js') }}"></script>
     <script src="{{ asset('landingpage/js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ asset('landingpage/js/popper.min.js') }}"></script>

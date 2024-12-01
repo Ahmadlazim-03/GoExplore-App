@@ -8,6 +8,8 @@ use App\Http\Middleware\AuthLogin;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\DetailDestinationController;
+use App\Http\Controllers\SinglePageController;
 
 // Group Form
 Route::group([], function () {
@@ -51,9 +53,12 @@ Route::middleware(AuthLogin::class)->group(function (){
     Route::POST('/create-destination', [DestinationController::class,'create_destination']);
     Route::POST('/edit-destination', [DestinationController::class,'edit_destination']);
     Route::get('/delete-destination/{id}', [DestinationController::class,'delete_destination']);
+
+    Route::get('/detaildestination', [DetailDestinationController::class,'detail_destination']);
+    Route::POST('/create-detail-destination', [DetailDestinationController::class,'create_detail_destination']);
+    Route::POST('/edit-detail-destination', [DetailDestinationController::class,'edit_detail_destination']);
+    Route::get('/delete-detail-destination/{id}', [DetailDestinationController::class,'delete_detail_destination']);
 });
 
 
-Route::get('/destination/single-page/{id}', function(Request $request){
-    return view('landingpage/single-page');
-});
+Route::get('/destination/single-page/{id}', [SinglePageController::class,'index']);

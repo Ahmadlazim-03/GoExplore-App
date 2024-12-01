@@ -23,6 +23,21 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('detail_destinations', function (Blueprint $table) {
+            $table->id(); 
+            $table->unsignedInteger('destinations_id'); 
+            $table->json('image')->nullable(); 
+            $table->longText('description')->nullable(); 
+            $table->string('video')->nullable(); 
+            $table->enum('rating',[1,2,3,4,5])->nullable(); 
+            $table->timestamps();
+            $table->foreign('destinations_id')
+                  ->references('idDestination')
+                  ->on('destinations')
+                  ->onDelete('cascade');
+        });
+        
+
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('idBookings'); 
             $table->unsignedBigInteger('users_id'); 
@@ -31,8 +46,7 @@ return new class extends Migration
             $table->string('total_price', 225);
             $table->integer('number_of_ticket');
             $table->boolean('payment_status');
-            $table->integer('booking_code');
-        
+            $table->integer('booking_code');      
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('destinations_id')->references('idDestination')->on('destinations')->onDelete('cascade');
         });
@@ -85,5 +99,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('destinations');
+        Schema::dropIfExists('detail_destinations');
     }
 };

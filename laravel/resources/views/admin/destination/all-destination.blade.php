@@ -27,7 +27,7 @@
                                     <tr>
                                         <td>{{ $value->idDestination }}</td>
                                         <td>{{ $value->Name_Destination }}</td>
-                                        <td> {{ $value->Location  }} </td>
+                                        <td> {{ $value->Locations  }} </td>
                                         <td> {{ $value->Description }} </td>
                                         <td> {{ $value->Price_perticket }} </td>
                                         <td> {{ $value->Available_seat }} </td>

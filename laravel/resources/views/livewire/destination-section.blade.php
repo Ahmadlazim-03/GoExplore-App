@@ -84,42 +84,42 @@
           </div>
           <div class="col-lg-9">
           	<div class="row">
-					@foreach( $Destination as $value)
-          				<div class="col-md-4 ftco-animate">
-		    				<div class="destination">
-		    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(landingpage/images/destination-1.jpg);">
-		    						<div class="icon d-flex justify-content-center align-items-center">
-    							<span class="icon-search2"></span>
-    						</div>
-		    					</a>
-		    					<div class="text p-3">
-		    						<div class="d-flex">
-		    							<div class="one">
-				    						<h3><a href="#">{{ $value->Name_Destination }}</a></h3>
-				    						<p class="rate">
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star-o"></i>
-				    							<span>8 Rating</span>
-				    						</p>
-			    						</div>
-			    						<div class="two">
-			    							<span class="price">Rp.{{ $value->Price_perticket }}</span>
-		    							</div>
-		    						</div>
-		    						<p>{{ $value->Description }}</p>
-		    						<p class="days"><span>{{ $value->Opening_hours }}</span></p>
-		    						<hr>
-		    						<p class="bottom-area d-flex">
-		    							<span><i class="icon-map-o"></i> {{ $value->Locations}} </span> 
-		    							<span class="ml-auto"><a href="/destination/single-page/{{ $value->idDestination }}">View</a></span>
-		    						</p>
-		    					</div>
-		    				</div>
-		    			</div>
-		    		@endforeach
+				@foreach( $Destination as $value)
+					<div class="col-md-4 ftco-animate">
+						<div class="destination">
+							<a href="/destination/single-page/{{ $value->idDestination }}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('img/{{ $value->Image }}');">
+								<div class="icon d-flex justify-content-center align-items-center">
+							<span class="icon-search2"></span>
+						</div>
+							</a>
+							<div class="text p-3">
+								<div class="d-flex">
+									<div class="one">
+										<h3><a href="#">{{ $value->Name_Destination }}</a></h3>
+										<p class="rate">
+											<i class="icon-star"></i>
+											<i class="icon-star"></i>
+											<i class="icon-star"></i>
+											<i class="icon-star"></i>
+											<i class="icon-star-o"></i>
+											<span>8 Rating</span>
+										</p>
+									</div>
+									<div class="two">
+										<span class="price">Rp.{{ $value->Price_perticket }}</span>
+									</div>
+								</div>
+								<p>{{ $value->Description }}</p>
+								<p class="days"><span>{{ $value->Opening_hours }}</span></p>
+								<hr>
+								<p class="bottom-area d-flex">
+									<span><i class="icon-map-o"></i> {{ $value->Locations}} </span> 
+									<span class="ml-auto"><a href="/destination/single-page/{{ $value->idDestination }}">View</a></span>
+								</p>
+							</div>
+						</div>
+					</div>
+				@endforeach
           	</div>
 
 
