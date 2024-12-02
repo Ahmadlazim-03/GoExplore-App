@@ -19,7 +19,11 @@ class LoginController extends Controller
             if (Auth::user()->role == 1 ) {
                 return response()->json(['redirect' => '/dashboard']);
             }
-            return response()->json(['redirect' => '/dashboard-pengunjung']);
+
+            if (Auth::user()->role == 2 ) {
+                return response()->json(['redirect' => '/']);
+            }
+            return response()->json(['redirect' => '/']);
         }
  
         return back()->withErrors([

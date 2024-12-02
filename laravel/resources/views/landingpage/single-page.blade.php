@@ -25,7 +25,7 @@
     
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-      <a class="navbar-brand" href="index.html">dirEngine.</a>
+      <a class="navbar-brand" href="index.html">Go Explore.</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
       </button>
@@ -36,7 +36,11 @@
           <li class="nav-item active"><a href="/destination" class="nav-link">Destination</a></li>
 		  <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
 		  <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
-          <li class="nav-item cta"><a href="/login" class="nav-link"><span>Login</span></a></li>
+          @if(Auth::check())
+		  <li class="nav-item cta"><a href="/mybookings" class="nav-link"><span>My Booking</span></a></li>
+		  @else
+		  <li class="nav-item cta"><a href="/login" class="nav-link"><span>Login</span></a></li>
+		  @endif
         </ul>
       </div>
     </div>
@@ -258,7 +262,12 @@
     				<p>{{ $detail->description }}</p>
 
 
-					<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+
+          	</div>
+          </div> <!-- .col-md-8 -->
+        </div>
+
+		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
 						<h4 class="mb-4">Take A Tour</h4>
 						<div class="block-16">
 							<figure>
@@ -271,69 +280,68 @@
 					</div>
           	
 				
-          		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-          			<h4 class="mb-5">Check Availability &amp; Booking</h4>
-          			<div class="fields">
-          				<div class="row">
-				            <div class="col-md-12">
-				              <div class="form-group">
-				                <input type="submit" value="Check Availability" class="btn btn-primary py-3">
-				              </div>
-			              </div>
-		              </div>
-		            </div>
-          		</div>
-          	
-          		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-5">
-          			<h4 class="mb-4">Related Destination</h4>
-          			<div class="row">
-
-					@foreach( $related as $value)
-
-						@if ( $value->idDestination != $detail->destinations_id )
-						<div class="col-md-4 ftco-animate">
-							<div class="destination">
-								<a href="/destination/single-page/{{ $value->idDestination }}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url({{ asset('img/'.$value->Image) }});">
-									<div class="icon d-flex justify-content-center align-items-center">
-								<span class="icon-search2"></span>
-							</div>
-								</a>
-								<div class="text p-3">
-									<div class="d-flex">
-										<div class="one">
-											<h3><a href="">{{ $value->Name_Destination }}</a></h3>
-											<p class="rate">
-												<i class="icon-star"></i>
-												<i class="icon-star"></i>
-												<i class="icon-star"></i>
-												<i class="icon-star"></i>
-												<i class="icon-star-o"></i>
-												<span>8 Rating</span>
-											</p>
-										</div>
-										<div class="two">
-											<span class="price">Rp.{{ $value->Price_perticket }}</span>
-										</div>
-									</div>
-									<p>{{ $value->Description }}</p>
-									<p class="days"><span>{{ $value->Opening_hours }}</span></p>
-									<hr>
-									<p class="bottom-area d-flex">
-										<span><i class="icon-map-o"></i> {{ $value->Locations}} </span> 
-										<span class="ml-auto"><a href="/destination/single-page/{{ $value->idDestination }}">View</a></span>
-									</p>
+					<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+						<h4 class="mb-5">Check Availability &amp; Booking</h4>
+						<div class="fields">
+							<div class="row">
+								<div class="col-md-12">
+								<div class="form-group">
+									<input type="submit" value="Check Availability" class="btn btn-primary py-3">
 								</div>
 							</div>
 						</div>
-						@endif
+						</div>
+					</div>
+				
+					<div class="col-md-12 hotel-single ftco-animate mb-5 mt-5">
+						<h4 class="mb-4">Related Destination</h4>
+						<div class="row">
 
-					@endforeach
+						@foreach( $related as $value)
 
-          			</div>
-          		</div>
-          	</div>
-          </div> <!-- .col-md-8 -->
-        </div>
+							@if ( $value->idDestination != $detail->destinations_id )
+							<div class="col-md-4 ftco-animate">
+								<div class="destination">
+									<a href="/destination/single-page/{{ $value->idDestination }}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url({{ asset('img/'.$value->Image) }});">
+										<div class="icon d-flex justify-content-center align-items-center">
+									<span class="icon-search2"></span>
+								</div>
+									</a>
+									<div class="text p-3">
+										<div class="d-flex">
+											<div class="one">
+												<h3><a href="">{{ $value->Name_Destination }}</a></h3>
+												<p class="rate">
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+													<i class="icon-star-o"></i>
+													<span>8 Rating</span>
+												</p>
+											</div>
+											<div class="two">
+												<span class="price">Rp.{{ $value->Price_perticket }}</span>
+											</div>
+										</div>
+										<p>{{ $value->Description }}</p>
+										<p class="days"><span>{{ $value->Opening_hours }}</span></p>
+										<hr>
+										<p class="bottom-area d-flex">
+											<span><i class="icon-map-o"></i> {{ $value->Locations}} </span> 
+											<span class="ml-auto"><a href="/destination/single-page/{{ $value->idDestination }}">View</a></span>
+										</p>
+									</div>
+								</div>
+							</div>
+							@endif
+
+						@endforeach
+
+						</div>
+					</div>
+
+
       </div>
     </section> <!-- .section -->
 

@@ -42,7 +42,11 @@
           <li class="nav-item active"><a href="/destination" class="nav-link">Destination</a></li>
 		  <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
 		  <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
-          <li class="nav-item cta"><a href="/login" class="nav-link"><span>Login</span></a></li>
+      @if(Auth::check())
+		  <li class="nav-item cta"><a href="/mybookings" class="nav-link"><span>My Booking</span></a></li>
+		  @else
+		  <li class="nav-item cta"><a href="/login" class="nav-link"><span>Login</span></a></li>
+		  @endif
         </ul>
       </div>
     </div>

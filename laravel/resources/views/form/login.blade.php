@@ -1,40 +1,68 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>RegistrationForm_v1 by Colorlib</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="csrf-token" content="{{ csrf_token() }}">
-		<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
-		<link rel="stylesheet" href="css/formcss/style.css">
-	</head>
-	<body>
-		<div class="wrapper" style="background-color: rgb(22, 15, 84);">
-			<div style="border-radius: 20px;" class="inner">
-				<div class="image-holder">
-					<img  style="border-radius: 15px;" src="https://i.pinimg.com/736x/0e/90/a0/0e90a017bbe27d090255c77d5792abeb.jpg" alt="">
-				</div>
-				<form style="margin-top: 100px;">
-					<h3>Login Form</h3>
-					<div class="form-wrapper">
-						<input type="text" id="email" placeholder="Email Address" class="form-control">
-						<i class="zmdi zmdi-email"></i>
-					</div>
-					<div class="form-wrapper">
-						<input type="password" id="password" placeholder="Password" class="form-control">
-						<i class="zmdi zmdi-lock"></i>
-					</div>
-					<button style="border-radius: 20px;" id="login">Login
-						<i class="zmdi zmdi-arrow-right"></i>
-					</button>
-                    <div class="form-wrapper">
-						<p style="margin-left:30%; margin-top:10%;"> <a href="/register" style="color: blue; text-decoration: none;">Belum Punya Akun?</a></p>
-					</div>
-				</form>
-			</div>
-		</div>	
-	</body>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Corona Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/images/favicon.png" />
+  </head>
+  <body>
+    <div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="row w-100">
+          <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+            <div class="card col-lg-4 mx-auto">
+              <div class="card-body px-5 py-5">
+              <h3 class="card-title text-center mb-3">Login</h3>
+                <form>
+                  <div class="form-group">
+                    <label>Email *</label>
+                    <input type="text" class="form-control p_input" id="email">
+                  </div>
+                  <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password" class="form-control p_input"  id="password">
+                  </div>
+                  <div class="form-group d-flex align-items-center justify-content-between">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input"> Remember me </label>
+                    </div>
+                    <a href="#" class="forgot-pass">Forgot password</a>
+                  </div>
+                  <div class="text-center d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-block enter-btn"  id="login">Login</button>
+                  </div>
+                  <div class="d-flex">
+                    <button class="btn btn-facebook me-2 col">
+                      <i class="mdi mdi-facebook"></i> Facebook </button>
+                    <button class="btn btn-google col">
+                      <i class="mdi mdi-google-plus"></i> Google plus </button>
+                  </div>
+                  <p class="sign-up">Don't have an Account?<a href="/register"> Sign Up</a></p>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+        </div>
+        <!-- row ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/misc.js"></script>
+    <script src="assets/js/settings.js"></script>
+    <script src="assets/js/todolist.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function(){
@@ -75,4 +103,6 @@
 				})
 			});	
 	</script>
+    <!-- endinject -->
+  </body>
 </html>

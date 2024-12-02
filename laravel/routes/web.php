@@ -60,5 +60,5 @@ Route::middleware(AuthLogin::class)->group(function (){
     Route::get('/delete-detail-destination/{id}', [DetailDestinationController::class,'delete_detail_destination']);
 });
 
-
+Route::view('/mybookings', 'user/index');
 Route::get('/destination/single-page/{id}', [SinglePageController::class,'index']);
