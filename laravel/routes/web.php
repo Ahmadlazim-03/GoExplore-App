@@ -10,6 +10,9 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\DetailDestinationController;
 use App\Http\Controllers\SinglePageController;
+use App\Http\Controllers\OrderController;
+
+
 
 // Group Form
 Route::group([], function () {
@@ -25,9 +28,10 @@ Route::group([], function () {
 Route::group([], function () {
     Route::view('/', 'landingpage/home');
     Route::view('/destination', 'landingpage/destination');
+    Route::get('/destination/single-page/{id}', [SinglePageController::class,'index']);
     Route::view('/about', 'landingpage/about');
     Route::view('/contact', 'landingpage/contact');
-
+    Route::view('/test', 'landingpage/test');
 });
 
 // Group Dashboard Admin
@@ -60,5 +64,11 @@ Route::middleware(AuthLogin::class)->group(function (){
     Route::get('/delete-detail-destination/{id}', [DetailDestinationController::class,'delete_detail_destination']);
 });
 
-Route::view('/mybookings', 'user/index');
-Route::get('/destination/single-page/{id}', [SinglePageController::class,'index']);
+Route::view('/mybookings', 'user/mybookings');
+Route::view('/listbookings', 'user/listbookings');
+Route::view('/cancelbookings', 'user/cancelbookings');
+Route::view('/ticket', 'user/ticket');
+
+
+Route::get('/test',[OrderController::class,'index']);
+Route::POST('/checkout',[OrderController::class,'checkout']);

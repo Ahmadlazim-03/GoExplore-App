@@ -9,19 +9,20 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $table = 'transaction';
-    protected $primaryKey = 'idtransaction';
-
     protected $fillable = [
-        'payment_id', 'users_id', 'transaction_type', 
-        'amounts', 'transaction_date', 'status', 'remarks'
+        'users_id',
+        'payment_type',
+        'amounts',
+        'currency',
+        'transaction_date',
+        'transaction_status',
+        'order_id',
+        'payment_id',
+        'remarks',
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'users_id');
-    }
-    public function payment()
-    {
-        return $this->belongsTo(Payment::class, 'payment_id');
     }
 }

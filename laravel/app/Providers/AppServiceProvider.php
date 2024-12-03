@@ -10,6 +10,7 @@ use App\Models\Menu;
 use App\Models\SettingMenu;
 use App\Models\Destination;
 use App\Models\DetailDestination;
+use Midtrans\Config;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,8 +23,9 @@ class AppServiceProvider extends ServiceProvider
         View::share('DataUser', User::all());
         View::share('DataRole', Role::all());
         View::share('DataMenu', Menu::all());
-        View::share('DataSettingMenu', SettingMenu::all());
+
         View::share('DataDestination', Destination::all());
         View::share('DataDetailDestination', DetailDestination::all());
+ 
     }
 }

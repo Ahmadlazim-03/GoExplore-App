@@ -4,6 +4,7 @@
     <title>Go Explore - Find your Destination</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
     
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Alex+Brush" rel="stylesheet">
@@ -19,6 +20,11 @@
     <link rel="stylesheet" href="{{ asset('landingpage/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('landingpage/css/icomoon.css') }}">
     <link rel="stylesheet" href="{{ asset('landingpage/css/style.css') }}">
+	<script type="text/javascript"
+	src="https://app.sandbox.midtrans.com/snap/snap.js"
+    data-client-key="{{ config('midtrans.client_key') }}"></script>
+
+</body>
 
   </head>
   <body>
@@ -286,12 +292,141 @@
 							<div class="row">
 								<div class="col-md-12">
 								<div class="form-group">
-									<input type="submit" value="Check Availability" class="btn btn-primary py-3">
+									<input data-toggle="modal" data-target=".bd-example-modal-lg" type="submit" value="Check Availability" class="btn btn-primary py-3">
 								</div>
 							</div>
 						</div>
 						</div>
 					</div>
+					<style>
+						.custom-modal-lg {
+							max-width: 900px; 
+							margin-top: 75px;
+						}
+					</style>
+
+					<div
+					class="modal fade bd-example-modal-lg"
+					tabindex="-1"
+					role="dialog"
+					aria-labelledby="myLargeModalLabel"
+					aria-hidden="true"
+					>
+					<div class="modal-dialog modal-lg custom-modal-lg">
+						<div class="modal-content">
+						<div class="row no-gutters">
+							
+							<div class="col-md-6 p-4">
+							<div class="destination">
+								<a
+								href="/destination/single-page/{{ $destination->idDestination }}"
+								class="img img-2 d-flex justify-content-center align-items-center"
+								style="background-image: url({{ asset('img/' . $destination->Image) }});"
+								>
+								<div class="icon d-flex justify-content-center align-items-center">
+									<span class="icon-search2"></span>
+								</div>
+								</a>
+								<div class="text p-3">
+								<div class="d-flex">
+									<div class="one">
+									<h3>
+										<a href="">{{ $destination->Name_Destination }}</a>
+									</h3>
+									<p class="rate">
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star"></i>
+										<i class="icon-star-o"></i>
+										<span>8 Rating</span>
+									</p>
+									</div>
+									<div class="two">
+									<span class="price">Rp.{{ $destination->Price_perticket }}</span>
+									</div>
+								</div>
+								<p>{{ $destination->Description }}</p>
+								
+								<div class="d-flex justify-content-between align-items-center">
+									<p class="days mb-0"><span>{{ $destination->Opening_hours }}</span></p>
+									@if( $destination->Available_seat <= 0 )
+										<p class="mb-0" style="color:red;">Slot Habis</p>
+									@else 
+										<p class="mb-0">Tersisa <span style="color:red;">{{ $destination->Available_seat }}</span> Slot</p>
+									@endif
+								
+								</div>
+
+								<hr />
+								<p class="bottom-area d-flex">
+									<span>
+									<a href="{{ $destination->Link_Location }}"
+										><i class="icon-map-o"></i
+									></a>
+									{{ $destination->Locations }}
+									</span>
+								</p>
+								</div>
+							</div>
+							</div>
+						
+							<div class="col-md-6 p-4">
+							<h4 class="mb-3">Pendaftaran Tiket</h4>
+						
+							
+						
+								<div class="form-group">
+								<label for="phone">Nomor Telepon</label>
+								<input
+									type="tel"
+									class="form-control"
+									id="phone"
+									name="phone"
+									placeholder="Masukkan Nomor Telepon"
+									required
+								/>
+								</div>
+								<div class="form-group">
+								<label for="tickets">Jumlah Tiket</label>
+								<input
+									type="number"
+									class="form-control"
+									id="qty"
+									name="qty"
+									placeholder="Masukkan Jumlah Tiket"
+									min="1"
+									max="{{ $destination->Available_seat }}"
+									required
+								/>
+								</div>
+								<div class="form-group">
+								<label for="date">Tanggal</label>
+								<input
+									type="date"
+									class="form-control"
+									id="date"
+									name="date"
+									required
+								/>
+								</div>
+								<button @if( $destination->Available_seat <= 0 )
+										disabled 
+										@endif 
+								type="submit" id="pay-button" class="btn btn-info w-100 mt-2">
+								Pesan Tiket
+								</button>
+							
+
+							<div id="snap-container"></div>
+
+							</div>
+						</div>
+						</div>
+					</div>
+					</div>
+
+
 				
 					<div class="col-md-12 hotel-single ftco-animate mb-5 mt-5">
 						<h4 class="mb-4">Related Destination</h4>
@@ -407,32 +542,11 @@
         </div>
       </div>
     </footer>
+	<!-- loader -->
+  	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-  <script>
-    // Get all the checkboxes
-    const checkboxes = document.querySelectorAll('.form-check-input');
-    
-    checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener('change', function () {
-            // If any checkbox is checked, disable all others
-            if (this.checked) {
-                checkboxes.forEach((cb) => {
-                    if (cb !== this) {
-                        cb.disabled = true;
-                    }
-                });
-            } else {
-                // If unchecking, re-enable all checkboxes
-                checkboxes.forEach((cb) => {
-                    cb.disabled = false;
-                });
-            }
-        });
-    });
-	</script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.js"></script>
     <script src="{{ asset('landingpage/js/jquery.min.js') }}"></script>
     <script src="{{ asset('landingpage/js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ asset('landingpage/js/popper.min.js') }}"></script>
@@ -450,7 +564,90 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="{{ asset('landingpage/js/google-map.js') }}"></script>
     <script src="{{ asset('landingpage/js/main.js') }}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
+	<script>
+		$(document).ready(function () {
+			let csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-    
+			$('#pay-button').on('click', function () {
+			
+
+			var name = "{{ Auth::user()->name }}";
+			var id_user = {{ Auth::user()->id }};
+ 			var phone = "{{ Auth::user()->phone_number }}";
+			var qty = $('#qty').val();
+			var date = $('#date').val();
+			var mount = {{ $destination->Price_perticket }}; 
+
+
+			let timerInterval;
+				Swal.fire({
+				title: "Sedang Dalam Proses !!",
+	
+				timer: 1500,
+				timerProgressBar: true,
+				didOpen: () => {
+					Swal.showLoading();
+					const timer = Swal.getPopup().querySelector("b");
+					timerInterval = setInterval(() => {
+					timer.textContent = `${Swal.getTimerLeft()}`;
+					}, 100);
+				},
+				willClose: () => {
+					clearInterval(timerInterval);
+				}
+				}).then((result) => {
+
+					$.ajax({
+
+					url: "/checkout", 
+					method: "POST",
+					headers: {
+					'X-CSRF-TOKEN': csrfToken },
+					contentType: 'application/json', 
+					processData: false, 
+					data: 
+					JSON.stringify({
+						name: name,
+						phone: phone,
+						qty: qty,
+						date: date,
+						mount: mount,
+						id_user: id_user
+					}),
+					success: function (response) {	
+
+						var snapToken = response.snapToken;
+						window.snap.pay(response.snapToken, {
+						onSuccess: function(result) {
+							console.log(result);
+							alert("Pembayaran berhasil!");
+							window.location.href = '/mybbookings';  
+						},
+						onPending: function(result) {
+							console.log(result);
+							alert("Pembayaran sedang diproses. Harap tunggu.");
+						},
+						onError: function(result) {
+							console.log(result);
+							alert("Pembayaran gagal!");
+						},
+						onClose: function() {
+							alert('Anda menutup popup tanpa menyelesaikan pembayaran.');
+						}
+						});
+
+					},
+					error: function (xhr, status, error) {
+
+					alert('Midtrans sedang dalam gangguan !');
+					}
+					});
+				});	
+			});
+		});
+	</script>
+
   </body>
 </html>
