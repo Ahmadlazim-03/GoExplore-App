@@ -9,7 +9,9 @@
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
-        "midtrans/midtrans-php": "^2.6"
+        "midtrans/midtrans-php": "^2.6",
+        "picqer/php-barcode-generator": "^3.2",
+        "zendframework/zend-barcode": "^2.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

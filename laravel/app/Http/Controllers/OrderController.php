@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\E_ticket;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
+
+
 use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
     public function checkout(Request $request){
-        Log::info($request);
-
+    
         $request->request->add([
             'user_id' => $request->id_user,
             'count' => $request->qty,
@@ -38,8 +42,22 @@ class OrderController extends Controller
         ];
         
         $snapToken = \Midtrans\Snap::getSnapToken($params);
-    
-        // Return snapToken as JSON
+
+
+        if ($snapToken) {
+
+        
+            E_ticket::create([
+                "users_id" => $request->id_user,
+                "destination_id" => $request->id_destination,
+                "ticket_code" => Str::random(5),
+                "issue_date" => $request->date,
+                "valid_until" => Carbon::parse($request->date)->addDay(),
+                "qr_code" =>  "",
+                "status" => 'Unpaid'
+            ]);
+        } 
+
         return response()->json(['snapToken' => $snapToken]);
     }    
 }

@@ -410,12 +410,24 @@
 									required
 								/>
 								</div>
-								<button @if( $destination->Available_seat <= 0 )
-										disabled 
-										@endif 
-								type="submit" id="pay-button" class="btn btn-info w-100 mt-2">
-								Pesan Tiket
-								</button>
+
+								@if (Auth::check())
+
+									<button @if( $destination->Available_seat <= 0 )
+											disabled 
+											@endif 
+									type="submit" id="pay-button" class="btn btn-info w-100 mt-2">
+									Pesan Tiket
+									</button>
+
+								@else
+								
+									<a href="/login"><button 
+									type="submit" class="btn btn-info w-100 mt-2">
+									Pesan Tiket
+									</button></a>
+
+								@endif
 							
 
 							<div id="snap-container"></div>
@@ -571,14 +583,28 @@
 			let csrfToken = $('meta[name="csrf-token"]').attr('content');
 
 			$('#pay-button').on('click', function () {
-			
 
-			var name = "{{ Auth::user()->name }}";
-			var id_user = {{ Auth::user()->id }};
- 			var phone = "{{ Auth::user()->phone_number }}";
-			var qty = $('#qty').val();
-			var date = $('#date').val();
-			var mount = {{ $destination->Price_perticket }}; 
+
+				@if (Auth::check())
+
+				var name = "{{ Auth::user()->name }}";
+				var id_user = {{ Auth::user()->id }};
+				var phone = "{{ Auth::user()->phone_number }}";
+				var qty = $('#qty').val();
+				var date = $('#date').val();
+				var mount = {{ $destination->Price_perticket }}; 
+				var id_destination = {{ $destination->idDestination }}
+
+				@else 
+
+				var name = "";
+				var id_user = ;
+				var phone = "";
+				var qty = $('#qty').val();
+				var date = $('#date').val();
+				var mount = ""; 
+
+				@endif
 
 
 			let timerInterval;
@@ -614,16 +640,18 @@
 						qty: qty,
 						date: date,
 						mount: mount,
-						id_user: id_user
+						id_user: id_user,
+						id_destination: id_destination,
+			
 					}),
 					success: function (response) {	
 
 						var snapToken = response.snapToken;
 						window.snap.pay(response.snapToken, {
 						onSuccess: function(result) {
-							console.log(result);
-							alert("Pembayaran berhasil!");
-							window.location.href = '/mybbookings';  
+							
+							alert('berhasil');
+
 						},
 						onPending: function(result) {
 							console.log(result);
@@ -635,7 +663,7 @@
 						},
 						onClose: function() {
 							alert('Anda menutup popup tanpa menyelesaikan pembayaran.');
-						}
+						} 
 						});
 
 					},

@@ -69,10 +69,9 @@ return new class extends Migration
 
         Schema::create('e_tickets', function (Blueprint $table) {
             $table->id('ticket_id');
-            $table->integer('order_id'); 
             $table->unsignedBigInteger('users_id'); 
             $table->unsignedInteger('destination_id'); 
-            $table->integer('ticket_code')->nullable();
+            $table->string('ticket_code')->nullable();
             $table->dateTime('issue_date')->nullable();
             $table->dateTime('valid_until')->nullable();
             $table->string('qr_code', 500)->nullable();
