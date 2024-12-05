@@ -13,9 +13,9 @@ class E_ticket extends Model
     protected $primaryKey = 'ticket_id';
 
     protected $fillable = [
-        'bookings_id', 'users_id', 'destination_id', 
+        'bookings_id', 'users_id', 'destination_id','order_id', 
         'ticket_code', 'issue_date', 'valid_until', 
-        'qr_code', 'statuss'
+        'qr_code', 'status'
     ];
 
     

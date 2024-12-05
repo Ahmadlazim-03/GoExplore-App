@@ -43,6 +43,7 @@ class OrderController extends Controller
         
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
+        Log::info($snapToken);
 
         if ($snapToken) {
 
@@ -50,6 +51,7 @@ class OrderController extends Controller
             E_ticket::create([
                 "users_id" => $request->id_user,
                 "destination_id" => $request->id_destination,
+                "order_id" => Order::latest('id')->first()->id,
                 "ticket_code" => Str::random(5),
                 "issue_date" => $request->date,
                 "valid_until" => Carbon::parse($request->date)->addDay(),

@@ -11,7 +11,7 @@ use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\DetailDestinationController;
 use App\Http\Controllers\SinglePageController;
 use App\Http\Controllers\OrderController;
-
+use App\Http\Controllers\MyBookingsController;
 
 
 // Group Form
@@ -62,9 +62,10 @@ Route::middleware(AuthLogin::class)->group(function (){
     Route::POST('/create-detail-destination', [DetailDestinationController::class,'create_detail_destination']);
     Route::POST('/edit-detail-destination', [DetailDestinationController::class,'edit_detail_destination']);
     Route::get('/delete-detail-destination/{id}', [DetailDestinationController::class,'delete_detail_destination']);
+
+    Route::get('/mybookings', [MyBookingsController::class,'index']);
 });
 
-Route::view('/mybookings', 'user/mybookings');
 Route::view('/listbookings', 'user/listbookings');
 Route::view('/cancelbookings', 'user/cancelbookings');
 Route::view('/ticket', 'user/ticket');

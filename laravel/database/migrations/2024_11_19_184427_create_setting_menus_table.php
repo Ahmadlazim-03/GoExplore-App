@@ -75,7 +75,7 @@ return new class extends Migration
             $table->dateTime('issue_date')->nullable();
             $table->dateTime('valid_until')->nullable();
             $table->string('qr_code', 500)->nullable();
-            $table->boolean('status')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
