@@ -60,6 +60,9 @@ class OrderController extends Controller
             ]);
         } 
 
-        return response()->json(['snapToken' => $snapToken]);
+        return response()->json([
+            'snapToken' => $snapToken,
+            'latest_id_ticket' => E_ticket::latest('ticket_id')->first()->ticket_id
+        ]);
     }    
 }

@@ -4,6 +4,31 @@
 <script src="https://cdn.tailwindcss.com">
 </script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+<style>
+    @foreach( $ticket as $value )
+        .myModal{{ $value->ticket_id }} {
+            visibility: hidden; 
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s ease 0.3s; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 50;
+        }
+        
+        .myModal{{ $value->ticket_id }}.show {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.3s ease, visibility 0s ease 0s;
+        }
+    @endforeach
+</style>
+
     <main class="h-full overflow-y-auto">
         <div class="container px-6 mx-auto grid">
         <h2
@@ -13,7 +38,6 @@
         </h2>
 
 
-        <!-- New Table -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="w-full overflow-x-auto">
             <table class="w-full whitespace-no-wrap">
@@ -26,6 +50,7 @@
                     <th class="px-4 py-3">Status</th>
                     <th class="px-4 py-3">Date</th>
                     <th class="px-4 py-3">Ticket</th>
+                    <th class="px-4 py-3">Option</th>
 
                 </tr>
                 </thead>
@@ -33,7 +58,7 @@
                 class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                 >
 
-                @foreach( $ticket->where('users_id',Auth::user()->id) as $value  )
+                @foreach( $ticket as $value  )
 
         
                     <tr class="text-gray-700 dark:text-gray-400">
@@ -97,175 +122,114 @@
                     @endforeach
 
                         <td>
-                        <a href="/ticket">
-                            <button
-                            class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                            >
-                            View Ticket
-                            </button>
+                            <a href="/ticket/{{ $value->ticket_id }}">
+                                <button
+                                class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                >
+                                View Ticket
+                                </button>
+                            </a>                
+                        </td>
+
+                        <td>
+                       
+                        <button class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-red openModal{{ $value->ticket_id }}">
+                            Cancel Ticket
+                        </button>
+
+                      
+                        <div class="myModal{{ $value->ticket_id }} fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50 hidden">
+                            <div class="bg-white p-6 rounded-lg w-96">
+                                <h2 class="text-lg font-semibold mb-4">Cancel Ticket</h2>
+                                <textarea id="alasan" class="longtextInput{{ $value->ticket_id }} w-full p-3 border rounded-lg" rows="5" placeholder="Masukkan alasan cancel ticket..."></textarea>
+                                <div class="mt-4 flex justify-end">
+                                    <button class="closeModal{{ $value->ticket_id }} btnClose px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400">Close</button>
+                                    <button class="ml-2 submitModal{{ $value->ticket_id }} px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700" data-ticket-id="{{ $value->ticket_id }}">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+
                         </a>                
                         </td>
                     </tr>
 
                 @endforeach
 
-                <!-- <tr class="text-gray-700 dark:text-gray-400">
-                    <td class="px-4 py-3">
-                    <div class="flex items-center text-sm">
-                    
-                        <div
-                        class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
-                        >
-                        <img
-                            class="object-cover w-full h-full rounded-full"
-                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&facepad=3&fit=facearea&s=707b9c33066bf8808c934c8ab394dff6"
-                            alt=""
-                            loading="lazy"
-                        />
-                        <div
-                            class="absolute inset-0 rounded-full shadow-inner"
-                            aria-hidden="true"
-                        ></div>
-                        </div>
-                        <div>
-                        <p class="font-semibold">Jolina Angelie</p>
-                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                            Unpaid
-                        </p>
-                        </div>
-                    </div>
-                    </td>
-                    <td class="px-4 py-3 text-sm">
-                    $ 369.95
-                    </td>
-                    <td class="px-4 py-3 text-xs">
-                    <span
-                        class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
-                    >
-                        Unpaid
-                    </span>
-                    </td>
-                    <td class="px-4 py-3 text-sm">
-                    6/10/2020
-                    </td>
-                    <td>
-                    <button
-                    class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                    >
-                    View Ticket
-                    
-                    </button>
-                    </td>
-                </tr> -->
-
                 </tbody>
             </table>
             </div>
-            <div
-            class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
-            >
-            <span class="flex items-center col-span-3">
-                Showing 21-30 of 100
-            </span>
-            <span class="col-span-2"></span>
-            <!-- Pagination -->
-            <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-                <nav aria-label="Table navigation">
-                <ul class="inline-flex items-center">
-                    <li>
-                    <button
-                        class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
-                        aria-label="Previous"
-                    >
-                        <svg
-                        aria-hidden="true"
-                        class="w-4 h-4 fill-current"
-                        viewBox="0 0 20 20"
-                        >
-                        <path
-                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                            clip-rule="evenodd"
-                            fill-rule="evenodd"
-                        ></path>
-                        </svg>
-                    </button>
-                    </li>
-                    <li>
-                    <button
-                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                    >
-                        1
-                    </button>
-                    </li>
-                    <li>
-                    <button
-                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                    >
-                        2
-                    </button>
-                    </li>
-                    <li>
-                    <button
-                        class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple"
-                    >
-                        3
-                    </button>
-                    </li>
-                    <li>
-                    <button
-                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                    >
-                        4
-                    </button>
-                    </li>
-                    <li>
-                    <span class="px-3 py-1">...</span>
-                    </li>
-                    <li>
-                    <button
-                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                    >
-                        8
-                    </button>
-                    </li>
-                    <li>
-                    <button
-                        class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                    >
-                        9
-                    </button>
-                    </li>
-                    <li>
-                    <button
-                        class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
-                        aria-label="Next"
-                    >
-                        <svg
-                        class="w-4 h-4 fill-current"
-                        aria-hidden="true"
-                        viewBox="0 0 20 20"
-                        >
-                        <path
-                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                            clip-rule="evenodd"
-                            fill-rule="evenodd"
-                        ></path>
-                        </svg>
-                    </button>
-                    </li>
-                </ul>
-                </nav>
-            </span>
-            </div>
+           
         </div>
 
-        <!-- Charts -->
+         <div class="mt-3">
+            
+         {{ $ticket->links() }}
+
+         </div>
+    
         
         <div class="grid gap-6 mb-8 md:grid-cols-2">
         
         </div>
         </div>
     </main>
+   
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function(){
+            let csrfToken = $('meta[name="csrf-token"]').attr('content');
+            @foreach ($ticket as $value)
+                $('.openModal{{ $value->ticket_id }}').click(function(){
+                    $('.myModal{{ $value->ticket_id }}').addClass('show'); 
+                });
+            @endforeach
+
+            @foreach ($ticket as $value)
+                $('.closeModal{{ $value->ticket_id }}').click(function(){
+                    $('.myModal{{ $value->ticket_id }}').removeClass('show'); 
+                });
+            @endforeach
+
+            @foreach ($ticket as $value)
+                $('.submitModal{{ $value->ticket_id }}').click(function(){
+                    var id = $(this).data('ticket-id');
+                    var alasan = $('.longtextInput{{ $value->ticket_id }}').val();
+
+                    $.ajax({
+                    url: "/cancelbookings", 
+                    method: "POST",
+                    headers: {
+                    'X-CSRF-TOKEN': csrfToken },
+                    contentType: 'application/json', 
+                    processData: false, 
+                    data: 
+                    JSON.stringify({
+                        id: id,
+                        alasan: alasan
+                    }),
+                    success: function (response) {	
+                        Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Dana akan dikembalikan ke Rekening anda!",
+                        showConfirmButton: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                    },
+                    error: function (xhr, status, error) {
+                        console.log('gagal');
+                    }
+                    });
+                });
+            @endforeach
+        });
+    </script>
 @endsection
 
 

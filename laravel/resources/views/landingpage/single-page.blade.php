@@ -23,6 +23,75 @@
 	<script type="text/javascript"
 	src="https://app.sandbox.midtrans.com/snap/snap.js"
     data-client-key="{{ config('midtrans.client_key') }}"></script>
+	<style>
+		.video-container {
+			width: 100%; 
+			padding-left: 15px;
+			padding-right: 15px; 
+			border: 5px solid #FF5733; 
+			border-radius: 20px; 
+			background: #fff; 
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.15); 
+			overflow: hidden; 
+			transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out; 
+			position: relative; 
+		}
+
+		.video-container:hover {
+			transform: scale(1.05); 
+			box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2), 0 6px 15px rgba(0, 0, 0, 0.25); 
+			border-color: #FF4500; 
+		}
+
+		.video-container::before {
+			content: ""; 
+			position: absolute;
+			top: 50%; 
+			left: 50%; 
+			width: 0;
+			height: 0;
+			background-color: #FF5733; 
+			transition: all 0.5s ease-out;
+			border-radius: 50%;
+			z-index: 1;
+		}
+
+		.video-container.loaded::before {
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			border-radius: 0; 
+		}
+
+		.styled-video {
+			width: 100%; 
+			height: auto; 
+			display: block; 
+			border-radius: 15px; 
+			transition: transform 0.3s ease-in-out; 
+		}
+
+		.video-container:hover .styled-video {
+			transform: scale(1.00); 
+			filter: brightness(1.1); 
+		}
+
+		.styled-video {
+			animation: fadeIn 1s ease-out;
+		}
+
+		@keyframes fadeIn {
+			0% {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	</style>
 
 </body>
 
@@ -55,149 +124,6 @@
     <section class="ftco-section ftco-degree-bg">
       <div class="container">
         <div class="row">
-        	<div class="col-lg-3 sidebar">
-        		
-        		<!-- <div class="sidebar-wrap bg-light ftco-animate">
-        			<h3 class="heading mb-4">Star Rating</h3>
-        			<form method="post" class="star-rating">
-							  <div class="form-check">
-									<input type="checkbox" class="form-check-input" id="exampleCheck1">
-									<label class="form-check-label" for="exampleCheck1">
-										<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></p>
-									</label>
-							  </div>
-							  <div class="form-check">
-						      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-						      <label class="form-check-label" for="exampleCheck1">
-						    	   <p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-						      </label>
-							  </div>
-							  <div class="form-check">
-						      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-						      <label class="form-check-label" for="exampleCheck1">
-						      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-						     </label>
-							  </div>
-							  <div class="form-check">
-							    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-						      <label class="form-check-label" for="exampleCheck1">
-						      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-						      </label>
-							  </div>
-							  <div class="form-check">
-						      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-						      <label class="form-check-label" for="exampleCheck1">
-						      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-							    </label>
-							  </div>
-							</form>
-        		</div> -->
-				<div class="sidebar-wrap bg-light ftco-animate">
-					<h3 class="heading mb-4">Add Comment</h3>
-					
-					<form action="submit_comment.php" method="POST">
-						
-						<div class="form-group mb-4">
-							<label for="commentText">Your Comment</label>
-							<textarea id="commentText" name="commentText" class="form-control" rows="5"></textarea>
-						</div>
-
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox1">
-							<label class="form-check-label" for="checkbox1">
-								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox2">
-							<label class="form-check-label" for="checkbox2">
-								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox3">
-							<label class="form-check-label" for="checkbox3">
-								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox4">
-							<label class="form-check-label" for="checkbox4">
-								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="checkbox5">
-							<label class="form-check-label" for="checkbox5">
-								<p class="rate"><span><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-							</label>
-						</div>
-						
-						<div class="form-group">
-		                <input type="submit" value="Add" class="btn btn-primary py-3 px-5">
-		              </div>
-					</form>
-				</div>
-
-
-				<div class="sidebar-wrap bg-light ftco-animate">
-					<h3 class="heading mb-4">Recent Comment</h3>
-					
-				
-					<div class="comment-item d-flex mb-4">
-						
-						<div class="profile-pic mr-3">
-							<img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="User's Profile" class="rounded-circle" width="50" height="50">
-						</div>
-						
-						
-						<div class="comment-content">
-						
-							<h5 class="username mb-2">Ahmad Lazim</h5>
-							
-							<p class="comment-text">This is a comment text. The user can type here.</p>
-							<i class="icon-star"></i>
-							<i class="icon-star"></i>
-							<i class="icon-star"></i>
-							<i class="icon-star"></i>
-    						<i class="icon-star"></i>
-
-							<hr>
-						</div>
-					</div>
-
-					<div class="comment-item d-flex mb-4">
-						
-						<div class="profile-pic mr-3">
-							<img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="User's Profile" class="rounded-circle" width="50" height="50">
-						</div>
-						
-						
-						<div class="comment-content">
-							
-							<h5 class="username mb-2">Reynaldi Susilo</h5>
-							
-							<p class="comment-text">This is a comment text. The user can type here.</p>
-							<i class="icon-star"></i>
-							<i class="icon-star"></i>
-							<i class="icon-star"></i>
-							<i class="icon-star"></i>
-    						<i class="icon-star"></i>
-
-							<hr>
-						</div>
-					</div>
-				</div>
-
-
-
-
-
-
-
-
-
-          </div>
           <div class="col-lg-9">
           	<div class="row">
           		<div class="col-md-12 ftco-animate">
@@ -272,18 +198,211 @@
           	</div>
           </div> <!-- .col-md-8 -->
         </div>
+		<div class="col-lg-3 sidebar">
+        		
+
+
+			<div class="sidebar-wrap bg-light ftco-animate">
+				<h3 class="heading mb-4">Add Comment</h3>
+
+				@if(Auth::check())
+					<form action="/tambah-comment/{{ $destination->idDestination }}" method="POST">
+						@csrf
+						<div class="form-group mb-4">
+							<label for="commentText">Your Comment</label>
+							<textarea  id="commentText" name="comment" class="form-control" rows="5"></textarea>
+						</div>
+
+						<div class="form-check">
+							<input type="radio" name="rating" value="5" class="form-check-input" id="checkbox1">
+							<label class="form-check-label" for="checkbox1">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></p>
+							</label>
+						</div>
+						<div class="form-check">
+							<input type="radio" name="rating" value="4" class="form-check-input" id="checkbox2">
+							<label class="form-check-label" for="checkbox2">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
+							</label>
+						</div>
+						<div class="form-check">
+							<input type="radio" name="rating" value="3" class="form-check-input" id="checkbox3">
+							<label class="form-check-label" for="checkbox3">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
+							</label>
+						</div>
+						<div class="form-check">
+							<input type="radio" name="rating" value="2" class="form-check-input" id="checkbox4">
+							<label class="form-check-label" for="checkbox4">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
+							</label>
+						</div>
+						<div class="form-check">
+							<input type="radio" name="rating" value="1" class="form-check-input" id="checkbox5">
+							<label class="form-check-label" for="checkbox5">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
+							</label>
+						</div>
+
+						
+						<div class="form-group">
+						<input type="submit" value="Add" class="btn btn-primary py-3 px-5">
+						</div>
+					</form>
+				@else 
+				
+						
+						<div class="form-group mb-4">
+							<label for="commentText">Your Comment</label>
+							<textarea  id="commentText" name="commentText" class="form-control" rows="5"></textarea>
+						</div>
+
+						<div class="form-check">
+							<input type="radio" name="rating" value="5" class="form-check-input" id="checkbox1">
+							<label class="form-check-label" for="checkbox1">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></p>
+							</label>
+						</div>
+						<div class="form-check">
+							<input type="radio" name="rating" value="4" class="form-check-input" id="checkbox2">
+							<label class="form-check-label" for="checkbox2">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
+							</label>
+						</div>
+						<div class="form-check">
+							<input type="radio" name="rating" value="3" class="form-check-input" id="checkbox3">
+							<label class="form-check-label" for="checkbox3">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
+							</label>
+						</div>
+						<div class="form-check">
+							<input type="radio" name="rating" value="2" class="form-check-input" id="checkbox4">
+							<label class="form-check-label" for="checkbox4">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
+							</label>
+						</div>
+						<div class="form-check">
+							<input type="radio" name="rating" value="1" class="form-check-input" id="checkbox5">
+							<label class="form-check-label" for="checkbox5">
+								<p class="rate"><span><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
+							</label>
+						</div>
+
+						
+						<div class="form-group">
+						<a href="/login"><input type="submit" value="Add" class="btn btn-primary py-3 px-5"></a>
+					</div>			
+				@endif
+				
+			
+			</div>
+
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			<script>
+				$(document).ready(function() {
+					$('.form-check-input').on('change', function() {
+						$('.form-check-input').not(this).prop('checked', false);
+					});
+				});
+			</script>
+
+
+
+    <div class="sidebar-wrap bg-light ftco-animate">
+        <h3 class="heading mb-4">Recent Comment</h3>
+                
+        @foreach( $DB_comment as $comment)
+            <div class="comment-item d-flex mb-4">					
+                <div class="profile-pic mr-3">
+                        @foreach(DB::table('users')->where('id', $comment->id_user)->get() as $user)
+                            <img src="{{ asset('img/'.$user->profile_picture) }}" alt="User's Profile" class="rounded-circle" width="50" height="50">
+                        @endforeach
+                </div>              
+                <div class="comment-content">   
+                    <h5 class="username mb-2">
+                        @foreach(DB::table('users')->where('id', $comment->id_user)->get() as $user)
+                            {{ $user->name }}
+                        @endforeach
+                    </h5>                  
+                    <p class="comment-text">
+                        {{ $comment->comment }}
+                    </p>
+
+                    @if( $comment->rating == 5)
+                        <i class="icon-star"></i>
+                        <i class="icon-star"></i>
+                        <i class="icon-star"></i>
+                        <i class="icon-star"></i>
+                        <i class="icon-star"></i>
+                    @endif
+
+                    @if( $comment->rating == 4)
+                        <i class="icon-star"></i>
+                        <i class="icon-star"></i>
+                        <i class="icon-star"></i>
+                        <i class="icon-star"></i>
+                        <i class="icon-star-o"></i>
+                    @endif
+
+                    @if( $comment->rating == 3)
+                        <i class="icon-star"></i>
+                        <i class="icon-star"></i>
+                        <i class="icon-star"></i>
+                        <i class="icon-star-o"></i>
+                        <i class="icon-star-o"></i>
+                    @endif
+
+                    @if( $comment->rating == 2)
+                        <i class="icon-star"></i>
+                        <i class="icon-star"></i>
+                        <i class="icon-star-o"></i>
+                        <i class="icon-star-o"></i>
+                        <i class="icon-star-o"></i>
+                    @endif
+
+                    @if( $comment->rating == 1)
+                        <i class="icon-star"></i>
+                        <i class="icon-star-o"></i>
+                        <i class="icon-star-o"></i>
+                        <i class="icon-star-o"></i>
+                        <i class="icon-star-o"></i>
+                    @endif
+
+                    <hr>
+                </div>
+            </div>
+        @endforeach
+		<div class="d-flex justify-content-center">
+    {{ $DB_comment->links('pagination::bootstrap-4') }}
+</div>
+
+    </div>
+				
+
+
+
+
+
+
+
+
+
+          </div>
+					
 
 		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-						<h4 class="mb-4">Take A Tour</h4>
-						<div class="block-16">
-							<figure>
-								<video width="100%" controls>
-									<source src="{{ asset('video/'.$detail->video) }}" type="video/mp4">
-									Your browser does not support the video tag.
-								</video>
-							</figure>
-						</div>
-					</div>
+			<h4 class="mb-4">Take A Tour</h4>
+			<div class="block-16 video-container">
+				<figure>
+					<video class="styled-video mt-3" controls>
+						<source src="{{ asset('video/'.$detail->video) }}" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+				</figure>
+			</div>
+		</div>
+
+
           	
 				
 					<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
@@ -554,8 +673,6 @@
         </div>
       </div>
     </footer>
-	<!-- loader -->
-  	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.js"></script>
@@ -646,11 +763,47 @@
 					}),
 					success: function (response) {	
 
+						var latest_id_ticket = response.latest_id_ticket;
+						var id = {{ $destination->idDestination }};
+						var count_seat = $('#qty').val();
+
 						var snapToken = response.snapToken;
 						window.snap.pay(response.snapToken, {
 						onSuccess: function(result) {
 							
-							alert('berhasil');
+							$.ajax({
+							url: "/success-paid", 
+							method: "POST",
+							headers: {
+							'X-CSRF-TOKEN': csrfToken },
+							contentType: 'application/json', 
+							processData: false, 
+							data: 
+							JSON.stringify({
+								latest_id_ticket: latest_id_ticket,
+								id: id,
+								count_seat : count_seat
+							}),
+							success: function (response) {	
+								Swal.fire({
+									title: "Ticket Berhasil dipesan !",
+									text: "Ingin Melihat Ticket ?",
+									icon: "success",
+									showCancelButton: true,
+									confirmButtonColor: "#3085d6",
+									cancelButtonColor: "#d33",
+									confirmButtonText: "Ya"
+									}).then((result) => {
+									if (result.isConfirmed) {
+									 	window.location.href = '/mybookings'
+									}
+								});
+							},
+							error: function (xhr, status, error) {
+
+								alert('Status UnPaid!')
+							}
+							});
 
 						},
 						onPending: function(result) {
@@ -676,6 +829,10 @@
 			});
 		});
 	</script>
+
+	
+
+
 
   </body>
 </html>

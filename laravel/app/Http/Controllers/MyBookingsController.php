@@ -12,7 +12,7 @@ class MyBookingsController extends Controller
 {
     public function index(){
         return view('user/mybookings',[
-            "ticket" => E_ticket::all()->where('users_id',Auth::user()->id),
+            "ticket" => E_ticket::where('users_id', Auth::user()->id)->where('status', 'Paid')->orderBy('ticket_id', 'asc')->paginate(10), 
             "destination" => Destination::all(),
             "order" => Order::all()
         ]);

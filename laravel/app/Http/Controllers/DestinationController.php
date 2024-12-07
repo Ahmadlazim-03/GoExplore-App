@@ -8,6 +8,24 @@ use Carbon\Carbon;
 
 class DestinationController extends Controller
 {
+    public function index(){
+        if(request('search') ||  request('category') || request('min_price') || request('max_price') || request('rating')){
+            
+            $min = request('min_price');
+            $max = request('max_price');
+            $query = Destination::where('Name_Destination', 'like', '%' . request('search') . '%')
+                                ->where('Category', 'like', '%' . request('category') . '%')
+                                ->where('Price_perticket', [$min, $max]);
+            return view('landingpage/destination',[
+                "Destination" => $query->paginate(6)
+            ]);
+        } else {
+            return view('landingpage/destination',[
+                "Destination" => Destination::paginate(6)
+            ]);
+        }
+    }
+
     public function all_destination(){
         return view('admin/destination/all-destination');
     }

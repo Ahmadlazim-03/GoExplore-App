@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DetailDestination;
 use App\Models\Destination;
+use App\Models\Comment;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 class SinglePageController extends Controller
 
@@ -19,7 +22,24 @@ class SinglePageController extends Controller
         return view('landingpage/single-page',[
             "detail" => $data1,
             "destination" => $data2,
-            "related" => $data3
+            "related" => $data3,
+            "DB_comment" => Comment::where('id_destination',request()->route('id'))
+                                    ->latest()
+                                    ->paginate(3)
         ]);
+    }
+
+    public function tambah_comment($id, Request $request){
+        $add = Comment::create([
+            "id_destination" => $id,
+            "id_user" => Auth::user()->id,
+            "rating" => $request->rating,
+            "comment" => $request->comment,
+        ]);
+    
+
+        if($add){
+            return redirect()->back()->with('success','Komentar berhasil ditambahkan');
+        }
     }
 }
