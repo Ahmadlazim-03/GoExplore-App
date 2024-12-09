@@ -39,6 +39,7 @@ Route::group([], function () {
     Route::view('/about', 'landingpage/about');
     Route::view('/contact', 'landingpage/contact');
     Route::view('/test', 'landingpage/test');
+    Route::view('/blog/8-best-homestay-surabaya', 'blog.single');
 });
 
 // Group Dashboard Admin
