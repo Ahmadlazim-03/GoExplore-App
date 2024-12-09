@@ -78,7 +78,7 @@
                     @foreach( $DB_ticket as $ticket)
                         @if ( $ticket->ticket_id == $cancelbook->id_ticket )
                         <td class="px-4 py-3 text-sm">
-                            {{ $ticket->issue_date }}
+                            {{ \Carbon\Carbon::parse($ticket->issue_date)->format('d-m-Y') }}
                         </td>
                         @endif
                     @endforeach

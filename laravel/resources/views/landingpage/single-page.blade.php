@@ -91,6 +91,7 @@
 				transform: translateY(0);
 			}
 		}
+		
 	</style>
 
 </body>
@@ -100,7 +101,7 @@
     
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Go Explore.</a>
+      <a class="navbar-brand" href="index.html">Go Explore</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
       </button>
@@ -108,13 +109,14 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-          <li class="nav-item active"><a href="/destination" class="nav-link">Destination</a></li>
+          <li class="nav-item cta"><a href="/destination" class="nav-link">Destination</a></li>
 		  <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
 		  <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
           @if(Auth::check())
-		  <li class="nav-item cta"><a href="/mybookings" class="nav-link"><span>My Booking</span></a></li>
+		  <li class="nav-item"><a href="/mybookings" class="nav-link"><span>My Booking</span></a></li>
+          <li class="nav-item"><a href="/logout" class="nav-link"><span>Logout</span></a></li>
 		  @else
-		  <li class="nav-item cta"><a href="/login" class="nav-link"><span>Login</span></a></li>
+		  <li class="nav-item"><a href="/login" class="nav-link"><span>Login</span></a></li>
 		  @endif
         </ul>
       </div>
@@ -134,11 +136,9 @@
 								<div class="hotel-img" style="background-image: url('{{ asset($value) }}');"></div>
 							</div>
 						@endforeach
-
 				
-
-						
           			</div>
+		
           		</div>
           		<div class="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
           			<span>{{ $destination->Category }}</span>
@@ -210,7 +210,7 @@
 						@csrf
 						<div class="form-group mb-4">
 							<label for="commentText">Your Comment</label>
-							<textarea  id="commentText" name="comment" class="form-control" rows="5"></textarea>
+							<textarea  id="commentText" name="comment" class="form-control" rows="5" required></textarea>
 						</div>
 
 						<div class="form-check">
@@ -494,18 +494,7 @@
 							<h4 class="mb-3">Pendaftaran Tiket</h4>
 						
 							
-						
-								<div class="form-group">
-								<label for="phone">Nomor Telepon</label>
-								<input
-									type="tel"
-									class="form-control"
-									id="phone"
-									name="phone"
-									placeholder="Masukkan Nomor Telepon"
-									required
-								/>
-								</div>
+					
 								<div class="form-group">
 								<label for="tickets">Jumlah Tiket</label>
 								<input
@@ -697,6 +686,7 @@
 	
 	<script>
 		$(document).ready(function () {
+					
 			let csrfToken = $('meta[name="csrf-token"]').attr('content');
 
 			$('#pay-button').on('click', function () {

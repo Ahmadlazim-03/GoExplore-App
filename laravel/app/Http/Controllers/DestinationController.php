@@ -4,24 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Destination;
+use App\Models\ListBookings;
 use Carbon\Carbon;
 
 class DestinationController extends Controller
 {
     public function index(){
-        if(request('search') ||  request('category') || request('min_price') || request('max_price') || request('rating')){
-            
-            $min = request('min_price');
-            $max = request('max_price');
+        if(request('search') ||  request('category') || request('rating')){
             $query = Destination::where('Name_Destination', 'like', '%' . request('search') . '%')
                                 ->where('Category', 'like', '%' . request('category') . '%')
-                                ->where('Price_perticket', [$min, $max]);
+                                ->where('rating', 'like', '%' . request('rating') . '%');
             return view('landingpage/destination',[
-                "Destination" => $query->paginate(6)
+                "Destination" => $query->paginate(6),
+                "DB_ListBookings" => ListBookings::all()
             ]);
         } else {
             return view('landingpage/destination',[
-                "Destination" => Destination::paginate(6)
+                "Destination" => Destination::paginate(6),
+                "DB_ListBookings" => ListBookings::all()
             ]);
         }
     }

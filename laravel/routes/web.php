@@ -15,6 +15,9 @@ use App\Http\Controllers\MyBookingsController;
 use App\Http\Controllers\AcceptPaidController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CancelBookingsController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AddListController;
+use App\Http\Controllers\ListBookingsController;
 
 
 // Group Form
@@ -29,7 +32,7 @@ Route::group([], function () {
 
 // Group Dashboard Pengguna
 Route::group([], function () {
-    Route::view('/', 'landingpage/home');
+    Route::get('/', [HomeController::class,'index']);
     Route::get('/destination', [DestinationController::class,'index']);
     Route::get('/destination/single-page/{id}', [SinglePageController::class,'index']);
     Route::POST('/tambah-comment/{id}',[SinglePageController::class,'tambah_comment']);
@@ -68,15 +71,15 @@ Route::middleware(AuthLogin::class)->group(function (){
     Route::get('/delete-detail-destination/{id}', [DetailDestinationController::class,'delete_detail_destination']);
 
     Route::get('/mybookings', [MyBookingsController::class,'index']);
+    Route::get('/listbookings',[ListBookingsController::class,'index']);
+    Route::get('/cancelbookings',[CancelBookingsController::class,'show_cancel_bookings']);
 });
 
-
-Route::view('/listbookings', 'user/listbookings');
-Route::get('/cancelbookings',[CancelBookingsController::class,'show_cancel_bookings']);
 Route::POST('/cancelbookings',[CancelBookingsController::class,'cancel_bookings']);
 Route::get('/ticket/{id}',[TicketController::class,'show_ticket']);
 
 
 Route::POST('/checkout',[OrderController::class,'checkout']);
 Route::POST('/success-paid',[AcceptPaidController::class,'change_status']);
+Route::POST('/add-list',[AddListController::class,'index']);
 

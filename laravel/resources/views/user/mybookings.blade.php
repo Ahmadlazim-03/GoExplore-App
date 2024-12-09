@@ -117,17 +117,17 @@
 
                     @foreach( $order->Where('id',$value->order_id) as $values)
                         <td class="px-4 py-3 text-sm">
-                            {{ $values->date }}
+                        {{ \Carbon\Carbon::parse($values->date)->format('d-m-Y') }}
                         </td>
                     @endforeach
 
                         <td>
                             <a href="/ticket/{{ $value->ticket_id }}">
-                                <button
-                                class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                >
-                                View Ticket
-                                </button>
+                            <button
+                                class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-500 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
+                            >
+                            View Ticket                            
+                            </button>
                             </a>                
                         </td>
 

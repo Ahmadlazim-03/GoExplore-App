@@ -4,6 +4,7 @@
     <title>Go Explore - Find your Destination</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Alex+Brush" rel="stylesheet">
@@ -26,28 +27,32 @@
     <link rel="stylesheet" href="landingpage/css/flaticon.css">
     <link rel="stylesheet" href="landingpage/css/icomoon.css">
     <link rel="stylesheet" href="landingpage/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
   </head>
   <body>
     
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Go Explore.</a>
+      <a class="navbar-brand" href="index.html">Go Explore</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
       </button>
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-          <li class="nav-item active"><a href="/destination" class="nav-link">Destination</a></li>
-		  <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
-		  <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
-      @if(Auth::check())
-		  <li class="nav-item cta"><a href="/mybookings" class="nav-link"><span>My Booking</span></a></li>
-		  @else
-		  <li class="nav-item cta"><a href="/login" class="nav-link"><span>Login</span></a></li>
-		  @endif
+          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item cta"><a href="/destination" class="nav-link">Destination</a></li>
+          <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+          @if(Auth::check())
+          <li class="nav-item"><a href="/mybookings" class="nav-link"><span>My Booking</span></a></li>
+          <li class="nav-item"><a href="/logout" class="nav-link"><span>Logout</span></a></li>
+          @else
+          <li class="nav-item"><a href="/login" class="nav-link"><span>Login</span></a></li>
+          @endif
         </ul>
+        
       </div>
     </div>
   </nav>
@@ -64,15 +69,6 @@
         </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
 
 
     <section class="ftco-section ftco-degree-bg">
@@ -143,42 +139,145 @@
           <div class="col-lg-9">
           	<div class="row">
 
-              @foreach( $Destination as $value)
-                <div class="col-md-4 ftco-animate">
-                  <div class="destination">
-                    <a href="/destination/single-page/{{ $value->idDestination }}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('img/{{ $value->Image }}');">
-                      <div class="icon d-flex justify-content-center align-items-center">
-                    <span class="icon-search2"></span>
-                  </div>
-                    </a>
-                    <div class="text p-3">
-                      <div class="d-flex">
-                        <div class="one">
-                          <h3><a href="#">{{ $value->Name_Destination }}</a></h3>
-                          <p class="rate">
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
-                            <i class="icon-star-o"></i>
-                            <span>8 Rating</span>
-                          </p>
-                        </div>
-                        <div class="two">
-                          <span class="price">Rp.{{ $value->Price_perticket }}</span>
-                        </div>
+            @if ( $Destination->count() == 0)
+            <style>
+              .no-result-container {
+                  text-align: center;
+                  padding: 20px;
+                  background: #fff;
+                  border-radius: 10px;
+                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                  max-width: 400px;
+                  margin: auto; 
+              }
+
+              .no-result-icon i {
+                  font-size: 100px;
+                  color: #999; 
+                  margin-bottom: 20px;
+              }
+
+              .no-result-text {
+                  font-size: 24px;
+                  font-weight: bold; 
+                  margin: 10px 0;
+              }
+
+              .no-result-subtext {
+                  font-size: 16px; 
+                  color: #666;
+              }
+            </style>
+
+            <div class="no-result-container">
+                <div class="no-result-icon">
+                <i class="fas fa-search-minus"></i>
+                </div>
+                <h2 class="no-result-text">Oops! Tidak ada hasil yang ditemukan.</h2>
+                <p class="no-result-subtext">Coba gunakan kata kunci yang spesifik untuk mencari lagi.</p>
+            </div>
+            @else 
+              @foreach( $Destination as $value)             
+              <div class="col-md-4 ftco-animate">
+                <div class="destination">
+                  <a href="/destination/single-page/{{ $value->idDestination }}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('img/{{ $value->Image }}');">
+                    <div class="icon d-flex justify-content-center align-items-center">
+                  <span class="icon-search2"></span>
+                </div>
+                  </a>
+                  <div class="text p-3">
+                    <div class="d-flex">
+                      <div class="one">
+                        <h3><a href="#">{{ $value->Name_Destination }}</a></h3>
+
+                        @if ( $value->rating == 5 )
+                        <p class="rate">
+                          <i class="icon-star"></i>
+                          <i class="icon-star"></i>
+                          <i class="icon-star"></i>
+                          <i class="icon-star"></i>
+                          <i class="icon-star"></i>
+                          <span>{{ $value->rating }} Rating</span>
+                        </p>
+                        @endif
+                       
+                        @if ( $value->rating == 4 )
+                        <p class="rate">
+                          <i class="icon-star"></i>
+                          <i class="icon-star"></i>
+                          <i class="icon-star"></i>
+                          <i class="icon-star"></i>
+                          <i class="icon-star-o"></i>
+                          <span>{{ $value->rating }} Rating</span>
+                        </p>
+                        @endif
+                    
+                        @if ( $value->rating == 3 )
+                        <p class="rate">
+                          <i class="icon-star"></i>
+                          <i class="icon-star"></i>
+                          <i class="icon-star"></i>
+                          <i class="icon-star-o"></i>
+                          <i class="icon-star-o"></i>
+                          <span>{{ $value->rating }} Rating</span>
+                        </p>
+                        @endif
+
+                        @if ( $value->rating == 2 )
+                        <p class="rate">
+                          <i class="icon-star"></i>
+                          <i class="icon-star"></i>
+                          <i class="icon-star-o"></i>
+                          <i class="icon-star-o"></i>
+                          <i class="icon-star-o"></i>
+                          <span>{{ $value->rating }} Rating</span>
+                        </p>
+                        @endif
+
+                        @if ( $value->rating == 1 )
+                        <p class="rate">
+                          <i class="icon-star"></i>
+                          <i class="icon-star-o"></i>
+                          <i class="icon-star-o"></i>
+                          <i class="icon-star-o"></i>
+                          <i class="icon-star-o"></i>
+                          <span>{{ $value->rating }} Rating</span>
+                        </p>
+                        @endif
+          
                       </div>
-                      <p>{{ $value->Description }}</p>
-                      <p class="days"><span>{{ $value->Opening_hours }}</span></p>
-                      <hr>
-                      <p class="bottom-area d-flex">
-                        <span><i class="icon-map-o"></i> {{ $value->Locations}} </span> 
-                        <span class="ml-auto"><a href="/destination/single-page/{{ $value->idDestination }}">View</a></span>
-                      </p>
+                      <div class="two">
+                        <span class="price">Rp.{{ $value->Price_perticket }}</span>
+                      </div>
                     </div>
+                    <p>{{ $value->Description }}</p>
+                    <p class="days"><span>{{ $value->Opening_hours }}</span></p>
+                    <hr>
+                      <p class="bottom-area d-flex" >
+                          @if(Auth::check())
+                            @if( $DB_ListBookings->contains(function($booking) use ($value) {
+                              return $booking->id_user == Auth::user()->id && $booking->id_destination == $value->idDestination;
+                            }) )
+                            <span class="ml-auto">
+                                <button class="btn btn-success add-list" data-id="{{ $value->idDestination }}">Added</button>
+                              </span>
+                            @else
+      
+                              <span class="ml-auto">
+                                <button class="btn btn-primary add-list" data-id="{{ $value->idDestination }}"><i class="fas fa-shopping-cart"></i> Add List</button>
+                              </span>
+                            @endif
+                          @else
+                            <span class="ml-auto">
+                                <button class="btn btn-primary add-list-false" data-id="{{ $value->idDestination }}"><i class="fas fa-shopping-cart"></i> Add List</button>
+                            </span>
+                          @endif
+                        </p>
                   </div>
                 </div>
+              </div>
               @endforeach
+            @endif
 
           	</div>
 
@@ -192,14 +291,6 @@
         </div>
       </div>
     </section> <!-- .section -->
-
-
-
-
-
-
-
-
 
 
 
@@ -261,8 +352,8 @@
           <div class="col-md-12 text-center">
 
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>
       </div>
@@ -288,21 +379,86 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="landingpage/js/google-map.js"></script>
   <script src="landingpage/js/main.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
-    // Simpan posisi scroll saat halaman di-scroll
     window.addEventListener("scroll", function () {
         localStorage.setItem("scrollPosition", window.scrollY);
     });
-
-    // Set posisi scroll saat halaman dimuat ulang
     window.addEventListener("load", function () {
         const scrollPosition = localStorage.getItem("scrollPosition");
         if (scrollPosition) {
             window.scrollTo(0, scrollPosition);
         }
     });
-</script>
+  </script>
+  <script>
+	$(document).ready(function(){
+		let csrfToken = $('meta[name="csrf-token"]').attr('content');
+		$('.add-list-false').click(function(){
+			window.location.href = "/login"
+		})
+		$('.add-list').click(function(){
+			@if (Auth::check())
+			var id_user = {{ Auth::user()->id }};
+			var id_destination = $(this).data('id'); 
+			@else 
+			window.location.href ='/login'
+			@endif
+			$.ajax({
+				url: "/add-list", 
+				method: "POST",
+				headers: {
+					'X-CSRF-TOKEN': csrfToken
+				},
+				contentType: 'application/json', 
+				processData: false, 
+				data: JSON.stringify({
+					id_user: id_user,
+					id_destination: id_destination,
+				}),
+				success: function (response) {	
+
+					if(response.menambah){
+						Swal.fire({
+						position: "center",
+						icon: "success",
+						title: "Berhasil Menambahkan ke Daftar List",
+						showConfirmButton: false,
+						timer: 1500
+					});
+
+						$('.btn.btn-primary.add-list[data-id="' + id_destination + '"]')
+						.text('Added')       
+						.removeClass('btn-primary')       
+						.addClass('btn-success')          
+					  
+					}
+		
+					if(response.menghapus){
+						Swal.fire({
+						position: "center",
+						icon: "success",
+						title: "Berhasil Menghapus dari Daftar List",
+						showConfirmButton: false,
+						timer: 1500
+					});
+
+						$('.btn.btn-success.add-list[data-id="' + id_destination + '"]')
+						.text('Add List')       
+						.removeClass('btn-success')       
+						.addClass('btn-primary')          
+						    
+					}
+				},
+				error: function (xhr, status, error) {
+					alert('Gagal !');
+				}
+			});
+		});
+	});
+  </script>
 
     
   </body>
