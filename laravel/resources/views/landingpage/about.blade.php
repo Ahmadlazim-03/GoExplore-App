@@ -137,18 +137,18 @@
 						        </div>
 						        <div id="menuone" class="collapse show">
 						          <div class="card-body">
-												<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+												<p>Discover Surabaya's iconic landmarks, hidden gems, and vibrant cultural experiences curated just for you.</p>
 						          </div>
 						        </div>
 						      </div>
 
 						      <div class="card">
 						        <div class="card-header">
-										  <a class="card-link" data-toggle="collapse"  href="#menutwo" aria-expanded="false" aria-controls="menutwo">Italic Mountains, she had a last <span class="collapsed"><i class="icon-plus-circle"></i></span><span class="expanded"><i class="icon-minus-circle"></i></span></a>
+										  <a class="card-link" data-toggle="collapse"  href="#menutwo" aria-expanded="false" aria-controls="menutwo">How can I book tickets through Go Explore? <span class="collapsed"><i class="icon-plus-circle"></i></span><span class="expanded"><i class="icon-minus-circle"></i></span></a>
 						        </div>
 						        <div id="menutwo" class="collapse">
 						          <div class="card-body">
-												<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+												<p>Easily book tickets online through our platform with secure and seamless payment options.</p>
 						          </div>
 						        </div>
 						      </div>
