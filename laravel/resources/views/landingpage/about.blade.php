@@ -88,27 +88,28 @@
 
 		              <div class="tab-pane fade show active" id="v-pills-whatwedo" role="tabpanel" aria-labelledby="v-pills-whatwedo-tab">
 		              	<div>
-			                <h2 class="mb-4">Your Gateway to Surabaya's Best Destinations</h2>
-			              	<p>
-                        Discover the charm of Surabaya, the City of Heroes, with Go Explore as your trusted companion.</p>
-			                <p>From iconic landmarks to hidden gems, plan your journey effortlessly and enjoy the best of Surabaya!</p>
-				            </div>
+                      <h2 class="mb-4">Gerbang Anda ke Destinasi Terbaik di Surabaya</h2>
+                      <p>
+                          Temukan pesona Surabaya, Kota Pahlawan, dengan Go Explore sebagai teman setia Anda.</p>
+                      <p>Mulai dari landmark ikonik hingga tempat tersembunyi, rencanakan perjalanan Anda dengan mudah dan nikmati yang terbaik dari Surabaya!</p>
+                      </div>
+                      
 		              </div>
 
 		              <div class="tab-pane fade" id="v-pills-mission" role="tabpanel" aria-labelledby="v-pills-mission-tab">
-		                <div>
-			                <h2 class="mb-4">Empowering Memorable Journeys</h2>
-			              	<p>To inspire and simplify travel in Surabaya by connecting explorers with the city's rich culture, iconic landmarks, and hidden treasures, creating unforgettable memories for every journey.
-                      </p>
-			               
-				            </div>
+                    <div>
+                      <h2 class="mb-4">Memberdayakan Perjalanan yang Tak Terlupakan</h2>
+                      <p>Untuk menginspirasi dan mempermudah perjalanan di Surabaya dengan menghubungkan para penjelajah dengan budaya kaya kota ini, landmark ikonik, dan harta karun tersembunyi, menciptakan kenangan tak terlupakan bagi setiap perjalanan.</p>
+                  </div>
+                  
 		              </div>
 
 		              <div class="tab-pane fade" id="v-pills-goal" role="tabpanel" aria-labelledby="v-pills-goal-tab">
-		                <div>
-			                <h2 class="mb-4">Help Our Customer</h2>
-			              	<p>To provide a seamless and enjoyable travel experience, helping customers discover, plan, and explore Surabaya’s best destinations with ease and confidence.</p>
-				            </div>
+                    <div>
+                      <h2 class="mb-4">Membantu Pelanggan Kami</h2>
+                      <p>Untuk memberikan pengalaman perjalanan yang lancar dan menyenangkan, membantu pelanggan menemukan, merencanakan, dan menjelajahi destinasi terbaik di Surabaya dengan mudah dan percaya diri.</p>
+                  </div>
+                  
 		              </div>
 		            </div>
 		          </div>
@@ -132,61 +133,65 @@
     					<div class="row">
     						<div class="col-md-6">
     							<div class="card">
-						        <div class="card-header">
-										  <a class="card-link" data-toggle="collapse"  href="#menuone" aria-expanded="true" aria-controls="menuone">What destinations can I explore with Go Explore? <span class="collapsed"><i class="icon-plus-circle"></i></span><span class="expanded"><i class="icon-minus-circle"></i></span></a>
-						        </div>
-						        <div id="menuone" class="collapse show">
-						          <div class="card-body">
-												<p>Discover Surabaya's iconic landmarks, hidden gems, and vibrant cultural experiences curated just for you.</p>
-						          </div>
-						        </div>
+                    <div class="card-header">
+                      <a class="card-link" data-toggle="collapse" href="#menuone" aria-expanded="true" aria-controls="menuone">Destinasi apa saja yang bisa saya jelajahi dengan Go Explore? <span class="collapsed"><i class="icon-plus-circle"></i></span><span class="expanded"><i class="icon-minus-circle"></i></span></a>
+                  </div>
+                  <div id="menuone" class="collapse show">
+                      <div class="card-body">
+                          <p>Temukan landmark ikonik Surabaya, tempat-tempat tersembunyi, dan pengalaman budaya yang hidup yang disusun khusus untuk Anda.</p>
+                      </div>
+                  </div>                  
 						      </div>
 
 						      <div class="card">
 						        <div class="card-header">
-										  <a class="card-link" data-toggle="collapse"  href="#menutwo" aria-expanded="false" aria-controls="menutwo">How can I book tickets through Go Explore? <span class="collapsed"><i class="icon-plus-circle"></i></span><span class="expanded"><i class="icon-minus-circle"></i></span></a>
-						        </div>
-						        <div id="menutwo" class="collapse">
-						          <div class="card-body">
-												<p>Easily book tickets online through our platform with secure and seamless payment options.</p>
-						          </div>
-						        </div>
+                      <a class="card-link" data-toggle="collapse" href="#menutwo" aria-expanded="false" aria-controls="menutwo">Bagaimana cara saya memesan tiket melalui Go Explore? <span class="collapsed"><i class="icon-plus-circle"></i></span><span class="expanded"><i class="icon-minus-circle"></i></span></a>
+                  </div>
+                  <div id="menutwo" class="collapse">
+                      <div class="card-body">
+                          <p>Pesan tiket dengan mudah secara online melalui platform kami dengan opsi pembayaran yang aman dan lancar.</p>
+                      </div>
+                  </div>
+                  
 						      </div>
 
 						      <div class="card">
-						        <div class="card-header">
-										  <a class="card-link" data-toggle="collapse"  href="#menu3" aria-expanded="false" aria-controls="menu3"> Does Go Explore offer personalized recommendations? <span class="collapsed"><i class="icon-plus-circle"></i></span><span class="expanded"><i class="icon-minus-circle"></i></span></a>
-						        </div>
-						        <div id="menu3" class="collapse">
-						          <div class="card-body">
-												<p>Yes, we provide tailored suggestions based on your interests and preferences.</p>
-						          </div>
-						        </div>
+                    <div class="card-header">
+                      <a class="card-link" data-toggle="collapse" href="#menu3" aria-expanded="false" aria-controls="menu3">Apakah Go Explore menawarkan rekomendasi yang dipersonalisasi? <span class="collapsed"><i class="icon-plus-circle"></i></span><span class="expanded"><i class="icon-minus-circle"></i></span></a>
+                  </div>
+                  <div id="menu3" class="collapse">
+                      <div class="card-body">
+                          <p>Ya, kami memberikan saran yang disesuaikan berdasarkan minat dan preferensi Anda.</p>
+                      </div>
+                  </div>
+                  
 						      </div>
     						</div>
 
     						<div class="col-md-6">
     							<div class="card">
 						        <div class="card-header">
-										  <a class="card-link" data-toggle="collapse"  href="#menu4" aria-expanded="false" aria-controls="menu4">Can I create a custom travel itinerary? <span class="collapsed"><i class="icon-plus-circle"></i></span><span class="expanded"><i class="icon-minus-circle"></i></span></a>
-						        </div>
-						        <div id="menu4" class="collapse">
-						          <div class="card-body">
-												<p>Absolutely! Plan your journey with our flexible itinerary tools to make the most of your trip.</p>
-						          </div>
-						        </div>
+                      <a class="card-link" data-toggle="collapse" href="#menu4" aria-expanded="false" aria-controls="menu4">Apakah saya dapat membuat rencana perjalanan kustom? <span class="collapsed"><i class="icon-plus-circle"></i></span><span class="expanded"><i class="icon-minus-circle"></i></span></a>
+                  </div>
+                  <div id="menu4" class="collapse">
+                      <div class="card-body">
+                          <p>Tentu saja! Rencanakan perjalanan Anda dengan alat rencana perjalanan fleksibel kami untuk memaksimalkan liburan Anda.</p>
+                      </div>
+                  </div>
+                  
 						      </div>
 
-						      <div class="card">
-						        <div class="card-header">
-										  <a class="card-link" data-toggle="collapse"  href="#menu5" aria-expanded="false" aria-controls="menu5">How do I contact support for help?<span class="collapsed"><i class="icon-plus-circle"></i></span><span class="expanded"><i class="icon-minus-circle"></i></span></a>
-						        </div>
-						        <div id="menu5" class="collapse">
-						          <div class="card-body">
-												<p>Reach out to our friendly customer support team through the contact section on our website.</p>
-						          </div>
-						        </div>
-						      </div>
+                  <div class="card">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#menu5" aria-expanded="false" aria-controls="menu5">Bagaimana cara menghubungi dukungan untuk bantuan? <span class="collapsed"><i class="icon-plus-circle"></i></span><span class="expanded"><i class="icon-minus-circle"></i></span></a>
+                    </div>
+                    <div id="menu5" class="collapse">
+                        <div class="card-body">
+                            <p>Hubungi tim dukungan pelanggan kami yang ramah melalui bagian kontak di situs web kami.</p>
+                        </div>
+                    </div>
+                </div>
+                
 
 						      
     						</div>
