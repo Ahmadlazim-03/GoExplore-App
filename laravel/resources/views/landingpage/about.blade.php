@@ -69,7 +69,7 @@
     <section class="ftco-section">
     	<div class="container">
     		<div class="row d-md-flex">
-	    		<div class="col-md-6 ftco-animate img about-image" style="background-image: url({{ asset('landingpage/images/about.jpg') }});">
+	    		<div class="col-md-6 ftco-animate img about-image" style="background-image: url({{ asset('landingpage/images/sby.png') }});">
 	    		</div>
 	    		<div class="col-md-6 ftco-animate p-md-5">
 		    		<div class="row">
@@ -88,25 +88,26 @@
 
 		              <div class="tab-pane fade show active" id="v-pills-whatwedo" role="tabpanel" aria-labelledby="v-pills-whatwedo-tab">
 		              	<div>
-			                <h2 class="mb-4">Offering Reliable Hosting</h2>
-			              	<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-			                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
+			                <h2 class="mb-4">Your Gateway to Surabaya's Best Destinations</h2>
+			              	<p>
+                        Discover the charm of Surabaya, the City of Heroes, with Go Explore as your trusted companion.</p>
+			                <p>From iconic landmarks to hidden gems, plan your journey effortlessly and enjoy the best of Surabaya!</p>
 				            </div>
 		              </div>
 
 		              <div class="tab-pane fade" id="v-pills-mission" role="tabpanel" aria-labelledby="v-pills-mission-tab">
 		                <div>
-			                <h2 class="mb-4">Exceptional Web Solutions</h2>
-			              	<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-			                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
+			                <h2 class="mb-4">Empowering Memorable Journeys</h2>
+			              	<p>To inspire and simplify travel in Surabaya by connecting explorers with the city's rich culture, iconic landmarks, and hidden treasures, creating unforgettable memories for every journey.
+                      </p>
+			               
 				            </div>
 		              </div>
 
 		              <div class="tab-pane fade" id="v-pills-goal" role="tabpanel" aria-labelledby="v-pills-goal-tab">
 		                <div>
 			                <h2 class="mb-4">Help Our Customer</h2>
-			              	<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-			                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
+			              	<p>To provide a seamless and enjoyable travel experience, helping customers discover, plan, and explore Surabaya’s best destinations with ease and confidence.</p>
 				            </div>
 		              </div>
 		            </div>
@@ -132,7 +133,7 @@
     						<div class="col-md-6">
     							<div class="card">
 						        <div class="card-header">
-										  <a class="card-link" data-toggle="collapse"  href="#menuone" aria-expanded="true" aria-controls="menuone">When she reached the first hills? <span class="collapsed"><i class="icon-plus-circle"></i></span><span class="expanded"><i class="icon-minus-circle"></i></span></a>
+										  <a class="card-link" data-toggle="collapse"  href="#menuone" aria-expanded="true" aria-controls="menuone">What destinations can I explore with Go Explore? <span class="collapsed"><i class="icon-plus-circle"></i></span><span class="expanded"><i class="icon-minus-circle"></i></span></a>
 						        </div>
 						        <div id="menuone" class="collapse show">
 						          <div class="card-body">
