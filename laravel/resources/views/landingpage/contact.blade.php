@@ -114,74 +114,123 @@
     </section>
 
 
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
-  <div class="container">
-    <div class="row mb-5">
-      <!-- Go Explore Section -->
-      <div class="col-md-3">
-        <div class="ftco-footer-widget mb-4">
-          <h2 class="ftco-heading-2 text-white">Go Explore</h2>
-          <p class="text-white">Setiap Langkah di Surabaya Menawarkan Cerita Baru. Bergabunglah dengan Kami dalam Menyusuri Kota Ini dan Temukan Keajaiban yang Menanti.</p>
-          <ul class="ftco-footer-social list-unstyled mt-5">
-            <li class="ftco-animate"><a href="#" class="text-white"><span class="icon-twitter"></span></a></li>
-            <li class="ftco-animate"><a href="#" class="text-white"><span class="icon-facebook"></span></a></li>
-            <li class="ftco-animate"><a href="#" class="text-white"><span class="icon-instagram"></span></a></li>
-          </ul>
+    <footer class="ftco-footer ftco-bg-pink ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <!-- Go Explore Section -->
+          <div class="col-md-3">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2 text-white">Go Explore</h2>
+              <p class="text-white">Setiap Langkah di Surabaya Menawarkan Cerita Baru. Bergabunglah dengan Kami dalam Menyusuri Kota Ini dan Temukan Keajaiban yang Menanti.</p>
+              <ul class="ftco-footer-social list-unstyled mt-5">
+                <li class="ftco-animate"><a href="#" class="text-white"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#" class="text-white"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#" class="text-white"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+    
+          <!-- Information Section -->
+          <div class="col-md-3">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2 text-white">Information</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block text-white">About</a></li>
+                <li><a href="#" class="py-2 d-block text-white">Destination</a></li>
+                <li><a href="#" class="py-2 d-block text-white">Login</a></li>
+                <li><a href="#" class="py-2 d-block text-white">Become a partner</a></li>
+                <li><a href="#" class="py-2 d-block text-white">Best Price Guarantee</a></li>
+                <li><a href="#" class="py-2 d-block text-white">Privacy and Policy</a></li>
+              </ul>
+            </div>
+          </div>
+    
+          <!-- Customer Support Section -->
+          <div class="col-md-3">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2 text-white">Customer Support</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block text-white">FAQ</a></li>
+                <li><a href="#" class="py-2 d-block text-white">Payment Option</a></li>
+                <li><a href="#" class="py-2 d-block text-white">Booking Tips</a></li>
+                <li><a href="#" class="py-2 d-block text-white">How it works</a></li>
+                <li><a href="#" class="py-2 d-block text-white">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+    
+          <!-- Contact Information Section -->
+          <div class="col-md-3">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2 text-white">Have a Questions?</h2>
+              <div class="block-23 mb-3">
+                <ul>
+                  <li><span class="icon icon-map-marker text-white"></span><span class="text text-white">Surabaya</span></li>
+                  <li><a href="#" class="text-white"><span class="icon icon-phone"></span><span class="text text-white">+62 12345678</span></a></li>
+                  <li><a href="#" class="text-white"><span class="icon icon-envelope"></span><span class="text text-white">@goexplorecom</span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <!-- Information Section -->
-      <div class="col-md-3">
-        <div class="ftco-footer-widget mb-4">
-          <h2 class="ftco-heading-2 text-white">Information</h2>
-          <ul class="list-unstyled">
-            <li><a href="#" class="py-2 d-block text-white">About</a></li>
-            <li><a href="#" class="py-2 d-block text-white">Destination</a></li>
-            <li><a href="#" class="py-2 d-block text-white">Login</a></li>
-            <li><a href="#" class="py-2 d-block text-white">Become a partner</a></li>
-            <li><a href="#" class="py-2 d-block text-white">Best Price Guarantee</a></li>
-            <li><a href="#" class="py-2 d-block text-white">Privacy and Policy</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Customer Support Section -->
-      <div class="col-md-3">
-        <div class="ftco-footer-widget mb-4">
-          <h2 class="ftco-heading-2 text-white">Customer Support</h2>
-          <ul class="list-unstyled">
-            <li><a href="#" class="py-2 d-block text-white">FAQ</a></li>
-            <li><a href="#" class="py-2 d-block text-white">Payment Option</a></li>
-            <li><a href="#" class="py-2 d-block text-white">Booking Tips</a></li>
-            <li><a href="#" class="py-2 d-block text-white">How it works</a></li>
-            <li><a href="#" class="py-2 d-block text-white">Contact Us</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Contact Information Section -->
-      <div class="col-md-3">
-        <div class="ftco-footer-widget mb-4">
-          <h2 class="ftco-heading-2 text-white">Have a Questions?</h2>
-          <div class="block-23 mb-3">
-            <ul>
-              <li><span class="icon icon-map-marker text-white"></span><span class="text text-white">Surabaya</span></li>
-              <li><a href="#" class="text-white"><span class="icon icon-phone"></span><span class="text text-white">+62 12345678</span></a></li>
-              <li><a href="#" class="text-white"><span class="icon icon-envelope"></span><span class="text text-white">@goexplorecom</span></a></li>
-            </ul>
+    
+        <!-- Footer Bottom Section -->
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p class="text-white">© 2024 Go Explore. All Rights Reserved.</p>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Footer Bottom Section -->
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <p class="text-white">© 2024 Go Explore. All Rights Reserved.</p>
-      </div>
-    </div>
-  </div>
-</footer>
+    </footer>
+    
+    <!-- Custom CSS -->
+    <style>
+      .ftco-footer {
+        background-color: #ff69b4;  /* Pink background */
+        color: #fff;  /* White text */
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+      .ftco-footer .ftco-heading-2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #fff;  /* White for headings */
+      }
+      .ftco-footer .list-unstyled a {
+        color: #fff; /* White links */
+        text-decoration: none;
+        font-size: 1rem;
+      }
+      .ftco-footer .list-unstyled a:hover {
+        color: #ff1493;  /* Darker pink on hover */
+      }
+      .ftco-footer .text-white {
+        color: #fff !important; /* Ensuring all text remains white */
+      }
+      .ftco-footer-social a {
+        font-size: 1.5rem;
+        margin-right: 15px;
+        color: #fff;  /* White color for social icons */
+      }
+      .ftco-footer-social a:hover {
+        color: #ff1493;  /* Darker pink on hover */
+      }
+      .ftco-footer .block-23 ul {
+        list-style: none;
+        padding: 0;
+      }
+      .ftco-footer .block-23 ul li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .ftco-footer .block-23 ul li .icon {
+        font-size: 1.5rem;
+        margin-right: 10px;
+      }
+    </style>
+    
 
 
   
