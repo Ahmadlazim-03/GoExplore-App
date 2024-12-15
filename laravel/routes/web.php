@@ -40,6 +40,7 @@ Route::group([], function () {
     Route::view('/contact', 'landingpage/contact');
     Route::view('/test', 'landingpage/test');
     Route::view('/blog/8-best-homestay-surabaya', 'blog.single');
+    Route::view('/read-more', 'landingpage.read-more')->name('read-more');
 });
 
 // Group Dashboard Admin

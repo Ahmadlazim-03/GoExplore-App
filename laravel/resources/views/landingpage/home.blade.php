@@ -418,7 +418,10 @@
            	<li><strong>Reservasi Cepat </strong>: Pesan tiket dalam hitungan menit tanpa antre.</li>
 			<li><strong>Harga Terbaik</strong>: Kami menawarkan berbagai promo dan diskon menarik.</li>
 			<li><strong>Layanan 24/7</strong>: Dukungan pelanggan selalu tersedia untuk membantu Anda.</li>
-            <p><a href="#" class="btn btn-primary btn-outline-primary mt-4 px-4 py-3">Read more</a></p>
+			<p>
+				<a href="{{ route('read-more') }}" class="btn btn-primary btn-outline-primary mt-4 px-4 py-3">Read more</a>
+			  </p>			  
+			  
           </div>
 					<div class="col-md-1"></div>
           <div class="col-md-6 heading-section ftco-animate">
