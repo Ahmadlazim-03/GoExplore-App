@@ -15,6 +15,7 @@ class OrderController extends Controller
 {
     public function checkout(Request $request){
     
+
         $request->request->add([
             'user_id' => $request->id_user,
             'count' => $request->qty,
@@ -42,8 +43,6 @@ class OrderController extends Controller
         ];
         
         $snapToken = \Midtrans\Snap::getSnapToken($params);
-
-        Log::info($snapToken);
 
         if ($snapToken) {
 

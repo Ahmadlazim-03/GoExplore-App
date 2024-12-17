@@ -85,3 +85,4 @@ Route::POST('/checkout',[OrderController::class,'checkout']);
 Route::POST('/success-paid',[AcceptPaidController::class,'change_status']);
 Route::POST('/add-list',[AddListController::class,'index']);
 
+

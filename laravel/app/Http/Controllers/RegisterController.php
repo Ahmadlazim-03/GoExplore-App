@@ -23,7 +23,7 @@ class RegisterController extends Controller
         $create = User::create($credentials);
 
         if($create){
-            return response()->json(['redirect' => '/dashboard-pengunjung']);
+            return response()->json(['redirect' => '/login']);
         }
         return response()->json(['error' => 'Invalid credentials'], 401);
     }
