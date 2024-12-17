@@ -271,53 +271,6 @@
       </div>
     </footer>
     
-    <!-- Custom CSS -->
-    <style>
-      .ftco-footer {
-        background-color: #ff69b4;  /* Pink background */
-        color: #fff;  /* White text */
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-      }
-      .ftco-footer .ftco-heading-2 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: #fff;  /* White for headings */
-      }
-      .ftco-footer .list-unstyled a {
-        color: #fff; /* White links */
-        text-decoration: none;
-        font-size: 1rem;
-      }
-      .ftco-footer .list-unstyled a:hover {
-        color: #ff1493;  /* Darker pink on hover */
-      }
-      .ftco-footer .text-white {
-        color: #fff !important; /* Ensuring all text remains white */
-      }
-      .ftco-footer-social a {
-        font-size: 1.5rem;
-        margin-right: 15px;
-        color: #fff;  /* White color for social icons */
-      }
-      .ftco-footer-social a:hover {
-        color: #ff1493;  /* Darker pink on hover */
-      }
-      .ftco-footer .block-23 ul {
-        list-style: none;
-        padding: 0;
-      }
-      .ftco-footer .block-23 ul li {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-      }
-      .ftco-footer .block-23 ul li .icon {
-        font-size: 1.5rem;
-        margin-right: 10px;
-      }
-    </style>
     
 
 
