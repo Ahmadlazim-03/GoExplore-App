@@ -22,8 +22,10 @@
   
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a class="sidebar-brand brand-logo" href="index.html"><img src="admin/assets/images/logo.svg" alt="logo" /></a>
-          <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="admin/assets/images/logo-mini.svg" alt="logo" /></a>
+        <a href="/" style="text-decoration: none; color: white;">
+          <h3>Go Explore</h3>
+        </a>
+          <a class="sidebar-brand brand-logo-mini" href="index.html"><h1>Go Explore</h1></a>
         </div>
         <ul class="nav">
           <li class="nav-item profile">
@@ -35,7 +37,6 @@
                 </div>
                 <div class="profile-name">
                   <h5 class="mb-0 font-weight-normal">{{ Auth()->user()->name }}</h5>
-                  <span>Gold Member</span>
                 </div>
               </div>
               <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -151,17 +152,8 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                   <h6 class="p-3 mb-0">Profile</h6>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
-                    <div class="preview-thumbnail">
-                      <div class="preview-icon bg-dark rounded-circle">
-                        <i class="mdi mdi-cog text-success"></i>
-                      </div>
-                    </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Settings</p>
-                    </div>
-                  </a>
+                  
+                
                   <div class="dropdown-divider"></div>
                   <a href="/logout" class="dropdown-item preview-item">
                     <div class="preview-thumbnail">

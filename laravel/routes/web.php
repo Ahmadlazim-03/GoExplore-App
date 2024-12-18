@@ -18,6 +18,9 @@ use App\Http\Controllers\CancelBookingsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AddListController;
 use App\Http\Controllers\ListBookingsController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EditProfileController;
+use App\Http\Controllers\EmailController;
 
 
 // Group Form
@@ -41,12 +44,13 @@ Route::group([], function () {
     Route::view('/test', 'landingpage/test');
     Route::view('/blog/8-best-homestay-surabaya', 'blog.single');
     Route::view('/read-more', 'landingpage.read-more')->name('read-more');
+    Route::GET('/editprofile', [EditProfileController::class,'index']);
+    Route::POST('/editprofile', [EditProfileController::class,'edit']);
 });
 
 // Group Dashboard Admin
 Route::middleware(AuthLogin::class)->group(function (){
-    Route::view('/dashboard', 'admin/dashboard');
-    
+    Route::get('/dashboard', [DashboardController::class,'index']);
     Route::get('/manajemenuser', [SettingController::class,'users']);
     Route::POST('/manajemen-user-create', [SettingController::class,'users_create']);
     Route::POST('/manajemen-user-edit', [SettingController::class,'users_edit']);
@@ -75,6 +79,11 @@ Route::middleware(AuthLogin::class)->group(function (){
     Route::get('/mybookings', [MyBookingsController::class,'index']);
     Route::get('/listbookings',[ListBookingsController::class,'index']);
     Route::get('/cancelbookings',[CancelBookingsController::class,'show_cancel_bookings']);
+
+    Route::get('/allbookings',function(){
+        return view('admin/booking/all-booking');
+    });
+    
 });
 
 Route::POST('/cancelbookings',[CancelBookingsController::class,'cancel_bookings']);
@@ -85,4 +94,7 @@ Route::POST('/checkout',[OrderController::class,'checkout']);
 Route::POST('/success-paid',[AcceptPaidController::class,'change_status']);
 Route::POST('/add-list',[AddListController::class,'index']);
 
+Route::get('/editprofile', [EditProfileController::class,'index']);
 
+Route::POST('/send-email', [EmailController::class,'index']);
+Route::get('/show-email/{id}', [EmailController::class,'show']);

@@ -44,6 +44,9 @@
           <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
           @if(Auth::check())
           <li class="nav-item"><a href="/mybookings" class="nav-link"><span>My Booking</span></a></li>
+          @if ( Auth::user()->role == 1 )
+            <li class="nav-item"><a href="/dashboard" class="nav-link"><span>Admin</span></a></li>
+          @endif
           <li class="nav-item"><a href="/logout" class="nav-link"><span>Logout</span></a></li>
           @else
           <li class="nav-item"><a href="/login" class="nav-link"><span>Login</span></a></li>

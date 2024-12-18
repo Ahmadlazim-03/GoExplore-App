@@ -16,6 +16,7 @@ class LoginController extends Controller
  
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            Auth::user()->update(['status' => 'active']);
             if (Auth::user()->role == 1 ) {
                 return response()->json(['redirect' => '/dashboard']);
             }

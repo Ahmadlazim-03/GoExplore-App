@@ -7,17 +7,11 @@
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">$12.34</h3>
-                          <p class="text-success ms-2 mb-0 font-weight-medium">+3.5%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
+                          <h3 class="mb-0">{{ DB::table('destinations')->count() }}</h3>
                         </div>
                       </div>
                     </div>
-                    <h6 class="text-muted font-weight-normal">Potential growth</h6>
+                    <h6 class="text-muted font-weight-normal">All Destination</h6>
                   </div>
                 </div>
               </div>
@@ -27,17 +21,11 @@
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">$17.34</h3>
-                          <p class="text-success ms-2 mb-0 font-weight-medium">+11%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
+                          <h3 class="mb-0">{{ DB::table('e_tickets')->where('status', 'Paid')->count() }}</h3>
                         </div>
                       </div>
                     </div>
-                    <h6 class="text-muted font-weight-normal">Revenue current</h6>
+                    <h6 class="text-muted font-weight-normal">All Bookings</h6>
                   </div>
                 </div>
               </div>
@@ -47,17 +35,11 @@
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">$12.34</h3>
-                          <p class="text-danger ms-2 mb-0 font-weight-medium">-2.4%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-danger">
-                          <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+                          <h3 class="mb-0">{{ DB::table('cancel_bookings')->count() }}</h3>
                         </div>
                       </div>
                     </div>
-                    <h6 class="text-muted font-weight-normal">Daily Income</h6>
+                    <h6 class="text-muted font-weight-normal">All Cancel Bookings</h6>
                   </div>
                 </div>
               </div>
@@ -67,17 +49,11 @@
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">$31.53</h3>
-                          <p class="text-success ms-2 mb-0 font-weight-medium">+3.5%</p>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
+                          <h3 class="mb-0">{{ DB::table('users')->where('status',"active")->count() }}</h3>
                         </div>
                       </div>
                     </div>
-                    <h6 class="text-muted font-weight-normal">Expense current</h6>
+                    <h6 class="text-muted font-weight-normal">All User Online</h6>
                   </div>
                 </div>
               </div>
@@ -91,264 +67,156 @@
                       <div class="daoughnutchart-wrapper">
                         <canvas id="transaction-history" class="transaction-chart"></canvas>
                       </div>
-                      <div class="custom-value">$1200 <span>Total</span>
+                      <div class="custom-value">{{ DB::table('destinations')->count() }}<span>Total Destination</span>
                       </div>
                     </div>
                     <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                       <div class="text-md-center text-xl-left">
-                        <h6 class="mb-1">Transfer to Paypal</h6>
-                        <p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
+                        <h6 class="mb-1">Amount of Income</h6>
+                        <p class="text-muted mb-0">
+                          {{ \Carbon\Carbon::now()->format('d F Y') }}
+                        </p>
                       </div>
                       <div class="align-self-center flex-grow text-end text-md-center text-xl-right py-md-2 py-xl-0">
-                        <h6 class="font-weight-bold mb-0">$236</h6>
+                        <h6 class="font-weight-bold mb-0"> Rp. {{ number_format(DB::table('orders')->sum('total_price'), 0, ',', '.') }}</h6>
                       </div>
                     </div>
                     <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                       <div class="text-md-center text-xl-left">
-                        <h6 class="mb-1">Tranfer to Stripe</h6>
-                        <p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
+                        <h6 class="mb-1">Cancel Transaction</h6>
+                        <p class="text-muted mb-0">{{ \Carbon\Carbon::now()->format('d F Y') }}</p>
                       </div>
                       <div class="align-self-center flex-grow text-end text-md-center text-xl-right py-md-2 py-xl-0">
-                        <h6 class="font-weight-bold mb-0">$593</h6>
+                        <h6 class="font-weight-bold mb-0">{{ DB::table('e_tickets')->where('status','Unpaid')->count() }}</h6>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+
               <div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex flex-row justify-content-between">
-                      <h4 class="card-title mb-1">Open Projects</h4>
-                      <p class="text-muted mb-1">Your data status</p>
+                      <h4 class="card-title mb-1">Information Destination</h4>
+                      <p class="text-muted mb-1">Detail Destination</p>
                     </div>
                     <div class="row">
                       <div class="col-12">
                         <div class="preview-list">
+
+
+
+
+                        @foreach( $DB_Destination as $item )
+
                           <div class="preview-item border-bottom">
                             <div class="preview-thumbnail">
-                              <div class="preview-icon bg-primary">
-                                <i class="mdi mdi-file-document"></i>
-                              </div>
+                                <img src="{{ asset('img/'.$item->Image) }}" alt="">
                             </div>
                             <div class="preview-item-content d-sm-flex flex-grow">
                               <div class="flex-grow">
-                                <h6 class="preview-subject">Admin dashboard design</h6>
-                                <p class="text-muted mb-0">Broadcast web app mockup</p>
+                                <h6 class="preview-subject">{{ $item->Name_Destination }}</h6>
+                                <p class="text-muted mb-0">Available Seat : {{ $item->Available_seat }}</p>
                               </div>
                               <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                                <p class="text-muted">15 minutes ago</p>
-                                <p class="text-muted mb-0">30 tasks, 5 issues </p>
+                                <p class="text-muted">Bookings : {{ DB::table('e_tickets')->where('destination_id', $item->idDestination)->where('status', 'Paid')->count() }}</p>
                               </div>
                             </div>
                           </div>
-                          <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-success">
-                                <i class="mdi mdi-cloud-download"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                              <div class="flex-grow">
-                                <h6 class="preview-subject">Wordpress Development</h6>
-                                <p class="text-muted mb-0">Upload new design</p>
-                              </div>
-                              <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                                <p class="text-muted">1 hour ago</p>
-                                <p class="text-muted mb-0">23 tasks, 5 issues </p>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-info">
-                                <i class="mdi mdi-clock"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                              <div class="flex-grow">
-                                <h6 class="preview-subject">Project meeting</h6>
-                                <p class="text-muted mb-0">New project discussion</p>
-                              </div>
-                              <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                                <p class="text-muted">35 minutes ago</p>
-                                <p class="text-muted mb-0">15 tasks, 2 issues</p>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-danger">
-                                <i class="mdi mdi-email-open"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                              <div class="flex-grow">
-                                <h6 class="preview-subject">Broadcast Mail</h6>
-                                <p class="text-muted mb-0">Sent release details to team</p>
-                              </div>
-                              <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                                <p class="text-muted">55 minutes ago</p>
-                                <p class="text-muted mb-0">35 tasks, 7 issues </p>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="preview-item">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-warning">
-                                <i class="mdi mdi-chart-pie"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                              <div class="flex-grow">
-                                <h6 class="preview-subject">UI Design</h6>
-                                <p class="text-muted mb-0">New application planning</p>
-                              </div>
-                              <div class="mr-auto text-sm-right pt-2 pt-sm-0">
-                                <p class="text-muted">50 minutes ago</p>
-                                <p class="text-muted mb-0">27 tasks, 4 issues </p>
-                              </div>
-                            </div>
-                          </div>
+
+                        @endforeach
+
+
+
+
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+
+
+
+
             </div>
           
             <div class="row ">
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Order Status</h4>
+                    <h4 class="card-title">User Online</h4>
                     <div class="table-responsive">
                       <table class="table">
                         <thead>
                           <tr>
-                            <th>
-                              <div class="form-check form-check-muted m-0">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input" id="check-all">
-                                </label>
-                              </div>
-                            </th>
-                            <th> Client Name </th>
-                            <th> Order No </th>
-                            <th> Product Cost </th>
-                            <th> Project </th>
-                            <th> Payment Mode </th>
-                            <th> Start Date </th>
-                            <th> Payment Status </th>
+                           
+                            <th> Name </th>
+                            <th> Email </th>
+                            <th> Address </th>
+                            <th> Gender </th>
+                            <th> Nationality </th>
+                            <th> Contact Info </th>
+                            <th> Status </th>
                           </tr>
                         </thead>
                         <tbody>
+
+                        @foreach( $DB_User->where('status',"active") as $item)
                           <tr>
                             <td>
-                              <div class="form-check form-check-muted m-0">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input">
-                                </label>
-                              </div>
+                              <img src="{{ asset('img/'.$item->profile_picture) }}">
+                              <span class="ps-2">{{ $item->name }}</span>
                             </td>
+                            <td> {{ $item->email }} </td>
+                            <td> {{ $item->address }} </td>
+                            <td> {{ $item->gender }} </td>
+                            <td> {{ $item->nationality }} </td>
+                            <td> {{ $item->contact_info }} </td>
                             <td>
-                              <img src="assets/images/faces/face1.jpg" alt="image" />
-                              <span class="ps-2">Henry Klein</span>
-                            </td>
-                            <td> 02312 </td>
-                            <td> $14,500 </td>
-                            <td> Dashboard </td>
-                            <td> Credit card </td>
-                            <td> 04 Dec 2019 </td>
-                            <td>
-                              <div class="badge badge-outline-success">Approved</div>
+                              <div class="badge badge-outline-success">Online</div>
                             </td>
                           </tr>
+                        @endforeach
+      
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row ">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">User Message</h4>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
                           <tr>
-                            <td>
-                              <div class="form-check form-check-muted m-0">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input">
-                                </label>
-                              </div>
-                            </td>
-                            <td>
-                              <img src="assets/images/faces/face2.jpg" alt="image" />
-                              <span class="ps-2">Estella Bryan</span>
-                            </td>
-                            <td> 02312 </td>
-                            <td> $14,500 </td>
-                            <td> Website </td>
-                            <td> Cash on delivered </td>
-                            <td> 04 Dec 2019 </td>
-                            <td>
-                              <div class="badge badge-outline-warning">Pending</div>
-                            </td>
+                           
+                            <th> Email Form </th>
+                            <th> Created At </th>
+                            <th></th>
+                           
                           </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach( DB::table('emails')->get() as $item)
                           <tr>
-                            <td>
-                              <div class="form-check form-check-muted m-0">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input">
-                                </label>
-                              </div>
-                            </td>
-                            <td>
-                              <img src="assets/images/faces/face5.jpg" alt="image" />
-                              <span class="ps-2">Lucy Abbott</span>
-                            </td>
-                            <td> 02312 </td>
-                            <td> $14,500 </td>
-                            <td> App design </td>
-                            <td> Credit card </td>
-                            <td> 04 Dec 2019 </td>
-                            <td>
-                              <div class="badge badge-outline-danger">Rejected</div>
-                            </td>
+                
+                            <td> {{ $item->email }} </td>
+                            <td> {{ $item->created_at }} </td>
+                            <td><a href="/show-email/{{ $item->id }}">Lihat Email</a></td>
                           </tr>
-                          <tr>
-                            <td>
-                              <div class="form-check form-check-muted m-0">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input">
-                                </label>
-                              </div>
-                            </td>
-                            <td>
-                              <img src="assets/images/faces/face3.jpg" alt="image" />
-                              <span class="ps-2">Peter Gill</span>
-                            </td>
-                            <td> 02312 </td>
-                            <td> $14,500 </td>
-                            <td> Development </td>
-                            <td> Online Payment </td>
-                            <td> 04 Dec 2019 </td>
-                            <td>
-                              <div class="badge badge-outline-success">Approved</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="form-check form-check-muted m-0">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input">
-                                </label>
-                              </div>
-                            </td>
-                            <td>
-                              <img src="assets/images/faces/face4.jpg" alt="image" />
-                              <span class="ps-2">Sallie Reyes</span>
-                            </td>
-                            <td> 02312 </td>
-                            <td> $14,500 </td>
-                            <td> Website </td>
-                            <td> Credit card </td>
-                            <td> 04 Dec 2019 </td>
-                            <td>
-                              <div class="badge badge-outline-success">Approved</div>
-                            </td>
-                          </tr>
+                        @endforeach
+      
                         </tbody>
                       </table>
                     </div>

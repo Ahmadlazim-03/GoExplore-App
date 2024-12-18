@@ -4,6 +4,7 @@
     <title>Go Explore - Find your Destination</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Alex+Brush" rel="stylesheet">
@@ -44,6 +45,9 @@
 		  <li class="nav-item cta"><a href="/contact" class="nav-link">Contact</a></li>
       @if(Auth::check())
       <li class="nav-item"><a href="/mybookings" class="nav-link"><span>My Booking</span></a></li>
+      @if ( Auth::user()->role == 1 )
+			  <li class="nav-item"><a href="/dashboard" class="nav-link"><span>Admin</span></a></li>
+			@endif
       <li class="nav-item"><a href="/logout" class="nav-link"><span>Logout</span></a></li>
 		  @else
 		  <li class="nav-item"><a href="/login" class="nav-link"><span>Login</span></a></li>
@@ -88,27 +92,82 @@
         </div>
         <div class="row block-9">
           <div class="col-md-6 pr-md-5">
-            <form action="#">
+          
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
+                  <input id="name" type="text" class="form-control" name="name" placeholder="Your Name" required>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email">
+                  <input id="email" type="email" class="form-control" name="email" placeholder="Your Email" required>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject">
+                  <input id="subject" type="text" class="form-control" name="subject" placeholder="Subject" required>
               </div>
               <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                  <textarea name="message" id="pesan" cols="30" rows="7" class="form-control" placeholder="pesan" required></textarea>
               </div>
               <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                  <input id="submit-button" type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
               </div>
-            </form>
+        
+
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.js"></script>
+
+          <script>
+              $(document).ready(function () {
+                  let csrfToken = $('meta[name="csrf-token"]').attr('content');    
+                  $('#submit-button').on('click', function () {
+
+                    var name = $('#name').val();
+                    var email = $('#email').val();
+                    var subject = $('#subject').val();
+                    var pesan = $('#pesan').val();
+                    $.ajax({
+                    url: "/send-email",
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    contentType: 'application/json',
+                    processData: false,
+                    data: JSON.stringify({
+                        name: name,
+                        email: email,
+                        subject: subject,
+                        pesan: pesan,
+                    }),
+                    success: function (response) {
+                      Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Email berhasil terkirim !",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                    },
+                    error: function (xhr, status, error) {
+                        alert('gagal !');
+                    }
+                });
+                  });
+              });
+          </script>
+
           
           </div>
 
-          <div class="col-md-6" id="map"></div>
+          <div class="col-md-6">
+              <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.725174355423!2d112.75613117460442!3d-7.272081871457202!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fbd38ea51a2f%3A0x2640d21feb8c9fd8!2sUniversitas%20Airlangga%20-%20Kampus%20Dharmawangsa%20(B)!5e0!3m2!1sid!2sid!4v1734475406656!5m2!1sid!2sid"
+                  width="100%" 
+                  height="400" 
+                  style="border:0;" 
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+          </div>
+          
         </div>
       </div>
     </section>
