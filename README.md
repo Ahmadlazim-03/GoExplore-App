@@ -1,5 +1,5 @@
 # Name Aplication : GoExplore-App
-Dosen : Fitri Retrialisca 
+Dosen : Fitri Retrialisca S.Kom M.Kom
 
 Anggota Kelompok :
   - Ahmad Lazim ( 434231033 )
