@@ -11,8 +11,7 @@
         "livewire/livewire": "^3.5",
         "midtrans/midtrans-php": "^2.6",
         "nesbot/carbon": "^3.8",
-        "picqer/php-barcode-generator": "^3.2",
-        "zendframework/zend-barcode": "^2.5"
+        "picqer/php-barcode-generator": "^3.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

@@ -12,7 +12,7 @@ class Destination extends Model
     protected $primaryKey = 'idDestination';
 
     protected $fillable = [
-        'Name_Destination', 'Locations', 'Description', 
+        'Name_Destination', 'Locations', 'Link_Location', 'Description', 
         'Price_perticket', 'Available_seat', 'Image', 
         'Category', 'Opening_hours', 'tgl'
     ];

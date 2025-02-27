@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     public function register (Request $request){
-        if($request){
-            Log::info("masuk");
-        } else {
-            Log::info("Error");
-        }
         
         $credentials = $request->validate([
             "name" => ['required'],

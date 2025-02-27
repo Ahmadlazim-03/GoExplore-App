@@ -11,16 +11,16 @@ return new class extends Migration
     {
         Schema::create('destinations', function (Blueprint $table) {
             $table->increments('idDestination'); 
-            $table->string('Name_Destination', 225);
-            $table->string('Locations', 225);
-            $table->string('Link_Location');
-            $table->string('Description', 1500);
-            $table->string('Price_perticket', 20);
-            $table->string('Available_seat', 5);
-            $table->string('Image', 100);
-            $table->enum('Category',['Wisata Sejarah dan Budaya', 'Wisata Alam dan Taman', 'Wisata Modern dan Hiburan', 'Wisata Religi']);
-            $table->string('Opening_hours', 225);
-            $table->dateTime('tgl');
+            $table->string('Name_Destination', 225)->nullable();
+            $table->string('Locations', 225)->nullable();
+            $table->string('Link_Location')->nullable();
+            $table->string('Description', 1500)->nullable();
+            $table->string('Price_perticket', 20)->nullable();
+            $table->string('Available_seat', 5)->nullable();
+            $table->string('Image', 100)->nullable();
+            $table->enum('Category',['Wisata Sejarah dan Budaya', 'Wisata Alam dan Taman', 'Wisata Modern dan Hiburan', 'Wisata Religi'])->nullable();
+            $table->string('Opening_hours', 225)->nullable();
+            $table->dateTime('tgl')->nullable();
             $table->timestamps();
         });
 
