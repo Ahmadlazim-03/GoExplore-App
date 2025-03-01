@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DetailDestination;
+use Illuminate\Support\Facades\Log;
 
 class DetailDestinationController extends Controller
 {
@@ -39,6 +40,7 @@ class DetailDestinationController extends Controller
     }
 
     public function edit_detail_destination(Request $request){
+       Log::info($request->all());
         $detail_destination = DetailDestination::findOrFail($request->id_detail_destination);
 
         $images = [];

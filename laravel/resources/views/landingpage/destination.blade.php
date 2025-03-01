@@ -84,58 +84,66 @@
               @csrf
         			<h3 class="heading mb-4">Find Destination</h3>
         
-        				<div class="fields">
-		              <div class="form-group">
-		                <input type="text" class="form-control" placeholder="Destination Name" name="search">
-		              </div>
-		              <div class="form-group">
-		                <div class="select-wrap one-third">
-	                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-	                    <select name="category" id="" class="form-control" placeholder="Keyword search">
-	                      <option value="">Select Category</option>
-	                      <option value="Wisata Sejarah dan Budaya">Wisata Sejarah dan Budaya</option>
-	                      <option value="Wisata Alam dan Taman">Wisata Alam dan Taman</option>
-	                      <option value="Wisata Modern dan Hiburan">Wisata Modern dan Hiburan</option>
-	                      <option value="Wisata Religi">Wisata Religi</option>
-	                    </select>
-	                  </div>
-		              </div>
+              <div class="fields">         
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Destination Name" name="name" id="searchInput">
+                  </div>
 
-                  <div class="form-check">
-                    <input name="rating" value="5" type="radio" class="form-check-input" id="rating5">
-                    <label class="form-check-label" for="rating5">
-                        <p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></p>
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input name="rating" value="4" type="radio" class="form-check-input" id="rating4">
-                    <label class="form-check-label" for="rating4">
-                        <p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input name="rating" value="3" type="radio" class="form-check-input" id="rating3">
-                    <label class="form-check-label" for="rating3">
-                        <p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input name="rating" value="2" type="radio" class="form-check-input" id="rating2">
-                    <label class="form-check-label" for="rating2">
-                        <p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input name="rating" value="1" type="radio" class="form-check-input" id="rating1">
-                    <label class="form-check-label" for="rating1">
-                        <p class="rate"><span><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-                    </label>
-                </div>
-		              <div class="form-group">
-		                <input type="submit" value="Search" class="btn btn-primary py-3 px-5">
-		              </div>
-		            </div>
-	            </form>
+                  <div class="form-group">
+                      <div class="select-wrap one-third">
+                          <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                          <select name="category" id="categorySelect" class="form-control">
+                              <option value="">Select Category</option>
+                              <option value="Wisata Sejarah dan Budaya">Wisata Sejarah dan Budaya</option>
+                              <option value="Wisata Alam dan Taman">Wisata Alam dan Taman</option>
+                              <option value="Wisata Modern dan Hiburan">Wisata Modern dan Hiburan</option>
+                              <option value="Wisata Religi">Wisata Religi</option>
+                          </select>
+                      </div>
+                  </div>
+
+                  <div id="ratingContainer">
+                      @for ($i = 5; $i >= 1; $i--)
+                          <div class="form-check">
+                              <input name="rating" value="{{ $i }}" type="radio" class="form-check-input" id="rating{{ $i }}">
+                              <label class="form-check-label" for="rating{{ $i }}">
+                                  <p class="rate">
+                                      <span>
+                                          @for ($j = 1; $j <= 5; $j++)
+                                              <i class="{{ $j <= $i ? 'icon-star' : 'icon-star-o' }}"></i>
+                                          @endfor
+                                      </span>
+                                  </p>
+                              </label>
+                          </div>
+                      @endfor
+                  </div>
+
+                  <div class="form-group">
+                      <input type="submit" value="Search" class="btn btn-primary py-3 px-5" id="searchBtn" disabled>
+                  </div>
+              </div>
+          </form>
+
+          <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                  let searchInput = document.getElementById("searchInput");
+                  let categorySelect = document.getElementById("categorySelect");
+                  let ratingContainer = document.getElementById("ratingContainer");
+                  let searchBtn = document.getElementById("searchBtn");
+
+                  function checkInput() {
+                      let isSearchFilled = searchInput.value.trim() !== "";
+                      let isCategoryFilled = categorySelect.value !== "";
+                      let isRatingFilled = document.querySelector('input[name="rating"]:checked') !== null;
+                      searchBtn.disabled = !(isSearchFilled || isCategoryFilled || isRatingFilled);
+                  }
+                  searchInput.addEventListener("input", checkInput);
+                  categorySelect.addEventListener("change", checkInput);
+                  ratingContainer.addEventListener("change", checkInput);
+              });
+          </script>
+	          </form>
         		</div>
         	
           </div>

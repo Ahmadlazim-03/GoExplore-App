@@ -15,12 +15,13 @@ return new class extends Migration
             $table->string('Locations', 225)->nullable();
             $table->string('Link_Location')->nullable();
             $table->string('Description', 1500)->nullable();
-            $table->string('Price_perticket', 20)->nullable();
-            $table->string('Available_seat', 5)->nullable();
+            $table->string('Price_perticket', length: 20)->nullable();
+            $table->string('Available_seat', length: 5)->nullable();
             $table->string('Image', 100)->nullable();
             $table->enum('Category',['Wisata Sejarah dan Budaya', 'Wisata Alam dan Taman', 'Wisata Modern dan Hiburan', 'Wisata Religi'])->nullable();
             $table->string('Opening_hours', 225)->nullable();
             $table->dateTime('tgl')->nullable();
+            $table->enum('rating', ['1', '2', '3', '4', '5'])->nullable();
             $table->timestamps();
         });
 
@@ -37,21 +38,7 @@ return new class extends Migration
                   ->on('destinations')
                   ->onDelete('cascade');
         });
-        
-
-        Schema::create('bookings', function (Blueprint $table) {
-            $table->increments('idBookings'); 
-            $table->unsignedBigInteger('users_id'); 
-            $table->unsignedInteger('destinations_id'); 
-            $table->dateTime('booking_date');
-            $table->string('total_price', 225);
-            $table->integer('number_of_ticket');
-            $table->boolean('payment_status');
-            $table->integer('booking_code');      
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('destinations_id')->references('idDestination')->on('destinations')->onDelete('cascade');
-        });
-
+    
 
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
@@ -71,6 +58,7 @@ return new class extends Migration
             $table->id('ticket_id');
             $table->unsignedBigInteger('users_id'); 
             $table->unsignedInteger('destination_id'); 
+            $table->integer('order_id')->nullable();
             $table->string('ticket_code')->nullable();
             $table->dateTime('issue_date')->nullable();
             $table->dateTime('valid_until')->nullable();

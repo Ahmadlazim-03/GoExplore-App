@@ -1,0 +1,169 @@
+<?php
+
+namespace Tests\Feature;
+
+use Tests\TestCase;
+use App\Models\User;
+use App\Models\Destination;
+use PHPUnit\Framework\Attributes\Test;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+
+class CRUD_DestinationTest extends TestCase
+{
+
+    use RefreshDatabase;
+
+    #[Test]
+    public function user_and_admin_can_read_destination()
+    {
+        Destination::create([
+            'Name_Destination' => 'Candi Borobudur',
+            'Locations' => 'Magelang',
+            'Link_Location' => 'https://google/maps/example',
+            'Description' => 'Candi Borobudur adalah candi Buddha terbesar di dunia.',
+            'Price_perticket' => '50000',
+            'Available_seat' => '100',
+            'Image' => 'borobudur.jpg',
+            'Category' => 'Wisata Sejarah dan Budaya',
+            'Opening_hours' => '08:00 - 17:00',
+            'tgl' => now()->format('Y-m-d H:i:s'),
+        ]);
+        $user = User::create([
+            'name' => 'John Doe',
+            'email' => 'johndoe@gmail.com',
+            'password' => bcrypt('password123'),
+            'role' => 2, 
+        ]);
+        $this->actingAs($user);
+        $response = $this->get('/destination');
+        $response->assertStatus(200);
+        $response->assertSee('Candi Borobudur');
+        $admin = User::create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('password123'),
+            'role' => 1, 
+        ]);
+        $this->actingAs($admin);
+        $response = $this->get('/destination');
+        $response->assertStatus(200);
+        $response->assertSee('Candi Borobudur');
+    }
+
+    #[Test]
+    public function admin_can_create_destination()
+    {
+        $admin = User::create([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('password123'),
+            'role' => 1, 
+        ]);
+        $this->actingAs($admin);
+        $file = UploadedFile::fake()->create('dummy.txt', 1);
+        $data = [
+            'Name_Destination' => 'Candi Borobudur',
+            'Locations' => 'Magelang',
+            'Description' => 'Candi Borobudur adalah candi Buddha terbesar di dunia.',
+            'Price_perticket' => "50000", 
+            'Available_seat' => "100", 
+            'Image' => $file, 
+            'Category' => 'Wisata Sejarah dan Budaya',
+            'Opening_hours' => '08:00 - 17:00',
+            'tgl' => now()->format('Y-m-d H:i:s'),
+            '_token' => csrf_token(),
+        ];
+        $response = $this->post('/create-destination', $data);
+        $this->assertDatabaseHas('destinations', array_diff_key($data, array_flip(['_token', 'Image'])));
+        $response->assertRedirect('/alldestination');
+    }
+
+    #[Test]
+    public function admin_can_update_destination()
+    {
+    $admin = User::create([
+        'name' => 'admin',
+        'email' => 'admin@gmail.com',
+        'password' => bcrypt('password123'),
+        'role' => 1, 
+    ]);
+    $this->actingAs($admin);
+    $file1 = UploadedFile::fake()->create('gambar1.jpg', 1);
+    $destination = Destination::create([
+        'Name_Destination' => 'Candi Borobudur',
+        'Locations' => 'Magelang',
+        'Description' => 'Candi Borobudur adalah candi Buddha terbesar di dunia.',
+        'Price_perticket' => "50000",
+        'Available_seat' => "100",
+        'Image' => $file1,
+        'Category' => 'Wisata Sejarah dan Budaya',
+        'Opening_hours' => '08:00 - 17:00',
+        'tgl' => now()->format('Y-m-d H:i:s'),
+    ]);
+    $file2 = UploadedFile::fake()->create('gambar2.jpg', 1);
+    $update_data = [
+        'idDestination' => $destination->idDestination, 
+        'Name_Destination' => 'Candi Prambanan',
+        'Locations' => 'Yogyakarta',
+        'Description' => 'Candi Prambanan adalah candi Hindu terbesar di Indonesia.',
+        'Price_perticket' => "60000", 
+        'Available_seat' => "200", 
+        'Image' => $file2, 
+        'Category' => 'Wisata Sejarah dan Budaya',
+        'Opening_hours' => '07:00 - 18:00',
+        'tgl' => now()->format('Y-m-d H:i:s'),
+        '_token' => csrf_token(),
+    ];
+    $response = $this->post('/edit-destination', $update_data);
+    $this->assertDatabaseHas('destinations', [
+        'idDestination' => $destination->idDestination,
+        'Name_Destination' => 'Candi Prambanan',
+        'Locations' => 'Yogyakarta',
+        'Description' => 'Candi Prambanan adalah candi Hindu terbesar di Indonesia.',
+        'Price_perticket' => '60000', 
+        'Available_seat' => '200', 
+        'Category' => 'Wisata Sejarah dan Budaya',
+        'Opening_hours' => '07:00 - 18:00',
+    ]);
+    $response->assertRedirect('/alldestination');
+    }
+
+    #[Test]
+    public function admin_can_delete_destination()
+    {
+    $admin = User::create([
+        'name' => 'admin',
+        'email' => 'admin@gmail.com',
+        'password' => bcrypt('password123'),
+        'role' => 1,
+    ]);
+    $this->actingAs($admin);
+    $destination = Destination::create([
+        'Name_Destination' => 'Candi Borobudur',
+        'Locations' => 'Magelang',
+        'Description' => 'Candi Borobudur adalah candi Buddha terbesar di dunia.',
+        'Price_perticket' => "50000",
+        'Available_seat' => "100",
+        'Image' => 'borobudur.jpg',
+        'Category' => 'Wisata Sejarah dan Budaya',
+        'Opening_hours' => '08:00 - 17:00',
+        'tgl' => now()->format('Y-m-d H:i:s'),
+    ]);
+    $response = $this->get("/delete-destination/{$destination->idDestination}");
+    $this->assertDatabaseMissing('destinations', [
+        'idDestination' => $destination->idDestination,
+        'Name_Destination' => 'Candi Borobudur',
+        'Locations' => 'Magelang',
+        'Description' => 'Candi Borobudur adalah candi Buddha terbesar di dunia.',
+        'Price_perticket' => "50000",
+        'Available_seat' => "100",
+        'Image' => 'borobudur.jpg',
+        'Category' => 'Wisata Sejarah dan Budaya',
+        'Opening_hours' => '08:00 - 17:00',
+        'tgl' => now()->format('Y-m-d H:i:s'),
+    ]);
+    $response->assertRedirect('/alldestination');
+    }
+}

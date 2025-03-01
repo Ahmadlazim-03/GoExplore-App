@@ -17,12 +17,6 @@ class Destination extends Model
         'Category', 'Opening_hours', 'tgl'
     ];
 
-   
-    public function bookings()
-    {
-        return $this->hasMany(Booking::class, 'destinations_id');
-    }
-
     
     public function eTickets()
     {

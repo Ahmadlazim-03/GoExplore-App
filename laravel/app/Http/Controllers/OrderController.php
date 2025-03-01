@@ -7,14 +7,13 @@ use App\Models\Order;
 use App\Models\E_ticket;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
-
-
 use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
-    public function checkout(Request $request){
-    
+    public function checkout(Request $request){ 
+
+       
 
         $request->request->add([
             'user_id' => $request->id_user,
@@ -43,6 +42,9 @@ class OrderController extends Controller
         ];
         
         $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        Log::info($snapToken);
+
 
         if ($snapToken) {
 

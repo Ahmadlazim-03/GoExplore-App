@@ -32,7 +32,6 @@ Route::group([], function () {
     Route::GET('/logout', [LogoutController::class, 'logout']);
 });
 
-
 // Group Dashboard Pengguna
 Route::group([], function () {
     Route::get('/', [HomeController::class,'index']);

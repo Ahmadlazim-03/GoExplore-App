@@ -22,9 +22,9 @@ class LoginController extends Controller
             }
 
             if (Auth::user()->role == 2 ) {
-                return response()->json(['redirect' => '/']);
+                return response()->json(['redirect' => '/mybookings']);
             }
-            return response()->json(['redirect' => '/']);
+            return response()->json(['redirect' => '/mybookings']);
         }
  
         return back()->withErrors([

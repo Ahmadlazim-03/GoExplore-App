@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\Models\Role;
-use App\Models\SettingMenu;
 use App\Models\Menu;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\SettingMenu;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 
 class SettingController extends Controller
 {
@@ -17,6 +18,7 @@ class SettingController extends Controller
     }
 
     public function users_create(Request $request){
+        Log::info($request->all());
         $nm = $request->profile_picture;
         $namaFile = $nm->getclientOriginalName();
         $user = new User();
