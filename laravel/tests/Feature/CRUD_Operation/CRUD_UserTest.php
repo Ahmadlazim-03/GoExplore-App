@@ -13,9 +13,7 @@ use Illuminate\Http\UploadedFile;
 class CRUD_UserTest extends TestCase
 {
     use RefreshDatabase;
-
     private $admin;
-
     public function setUp(): void
     {
         parent::setUp();
@@ -29,7 +27,6 @@ class CRUD_UserTest extends TestCase
 
         $this->actingAs($this->admin);
     }
-
     #[Test]
     public function admin_can_create_user()
     {   
@@ -58,8 +55,6 @@ class CRUD_UserTest extends TestCase
         $lihat_hasil = $this->get('/manajemenuser');
         $lihat_hasil->assertSee('fakeuser@gmail.com');
     }
-    
-
     #[Test]
     public function admin_can_read_user()
     {
@@ -71,7 +66,6 @@ class CRUD_UserTest extends TestCase
         $response = $this->get('/manajemenuser');
         $response->assertSee('test@gmail.com');
     }
-
     #[Test]
     public function admin_can_update_user()
     {
@@ -119,7 +113,6 @@ class CRUD_UserTest extends TestCase
             'email' => 'updatedummy@gmail.com',
         ]);
     }
-
     #[Test]
     public function admin_can_delete_user()
     {
