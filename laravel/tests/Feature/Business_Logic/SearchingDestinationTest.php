@@ -11,11 +11,9 @@ use PHPUnit\Framework\Attributes\Test;
 class SearchingDestinationTest extends TestCase
 {
     use RefreshDatabase; 
-
-    public function setUp(): void
+    #[Test]
+    public function user_can_search_destination_by_name()
     {
-        parent::setUp();
-
         Destination::create([
             'Name_Destination' => 'Tugu Pahlawan',
             'Locations' => 'Jalan Pahlawan, Surabaya',
@@ -31,11 +29,6 @@ class SearchingDestinationTest extends TestCase
             'created_at' => now(),
             'updated_at' => now()
         ]);
-    }
-
-    #[Test]
-    public function user_can_search_destination_by_name()
-    {
         $response1 = $this->get('/destination?name=Tugu')
                           ->assertStatus(200)
                           ->assertSee('Tugu Pahlawan');
@@ -44,6 +37,21 @@ class SearchingDestinationTest extends TestCase
     #[Test]
     public function user_can_search_destination_by_category()
     {
+        Destination::create([
+            'Name_Destination' => 'Tugu Pahlawan',
+            'Locations' => 'Jalan Pahlawan, Surabaya',
+            'Link_Location' => 'https://www.google.com/maps/place/Monumen+Tugu+Pahlawan/',
+            'Description' => 'Monumen untuk mengenang pertempuran Surabaya.',
+            'Price_perticket' => '15000',
+            'Available_seat' => '31',
+            'Image' => 'tugu_pahlawan.jpg',
+            'Category' => 'Wisata Sejarah dan Budaya',
+            'Opening_hours' => '19:00',
+            'tgl' => '2024-12-05 00:00:00',
+            'rating' => '4',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
         $response1 = $this->get('/destination?category=Wisata+Sejarah+dan+Budaya')
                           ->assertStatus(200)
                           ->assertSee('Tugu Pahlawan');
@@ -52,6 +60,21 @@ class SearchingDestinationTest extends TestCase
     #[Test]
     public function user_can_search_destination_by_rating()
     {
+        Destination::create([
+            'Name_Destination' => 'Tugu Pahlawan',
+            'Locations' => 'Jalan Pahlawan, Surabaya',
+            'Link_Location' => 'https://www.google.com/maps/place/Monumen+Tugu+Pahlawan/',
+            'Description' => 'Monumen untuk mengenang pertempuran Surabaya.',
+            'Price_perticket' => '15000',
+            'Available_seat' => '31',
+            'Image' => 'tugu_pahlawan.jpg',
+            'Category' => 'Wisata Sejarah dan Budaya',
+            'Opening_hours' => '19:00',
+            'tgl' => '2024-12-05 00:00:00',
+            'rating' => '4',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
         $csrfToken = csrf_token();
         $response1 = $this->get('/destination', [
             'X-CSRF-TOKEN' => $csrfToken,
@@ -63,6 +86,21 @@ class SearchingDestinationTest extends TestCase
     #[Test]
     public function user_can_search_destination_by_multiple_filters()
     {
+        Destination::create([
+            'Name_Destination' => 'Tugu Pahlawan',
+            'Locations' => 'Jalan Pahlawan, Surabaya',
+            'Link_Location' => 'https://www.google.com/maps/place/Monumen+Tugu+Pahlawan/',
+            'Description' => 'Monumen untuk mengenang pertempuran Surabaya.',
+            'Price_perticket' => '15000',
+            'Available_seat' => '31',
+            'Image' => 'tugu_pahlawan.jpg',
+            'Category' => 'Wisata Sejarah dan Budaya',
+            'Opening_hours' => '19:00',
+            'tgl' => '2024-12-05 00:00:00',
+            'rating' => '4',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
         $csrfToken = csrf_token();
         $response1 = $this->get('/destination', [
             'X-CSRF-TOKEN' => $csrfToken,
@@ -76,6 +114,21 @@ class SearchingDestinationTest extends TestCase
     #[Test]
     public function search_with_no_results_should_return_message()
     {
+        Destination::create([
+            'Name_Destination' => 'Tugu Pahlawan',
+            'Locations' => 'Jalan Pahlawan, Surabaya',
+            'Link_Location' => 'https://www.google.com/maps/place/Monumen+Tugu+Pahlawan/',
+            'Description' => 'Monumen untuk mengenang pertempuran Surabaya.',
+            'Price_perticket' => '15000',
+            'Available_seat' => '31',
+            'Image' => 'tugu_pahlawan.jpg',
+            'Category' => 'Wisata Sejarah dan Budaya',
+            'Opening_hours' => '19:00',
+            'tgl' => '2024-12-05 00:00:00',
+            'rating' => '4',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
         $response1 = $this->get('/destination?name=Invalid Name&category=Invalid Category&rating=Invalid Rating')
                           ->assertStatus(200)
                           ->assertSeeText('Oops! Tidak ada hasil yang ditemukan');

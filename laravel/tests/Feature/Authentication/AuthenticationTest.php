@@ -12,8 +12,7 @@ class AuthenticationTest extends TestCase
     use RefreshDatabase;
 
     #[Test]
-    public function user_can_login_with_valid_credentials_and_authentication()
-    {
+    public function user_can_login_with_valid_credentials_and_authentication(){
         $user = User::create([
             'name' => 'John Doe',
             'email' => 'johndoe@gmail.com',
