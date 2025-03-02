@@ -56,6 +56,23 @@ class CRUD_CommentTest extends TestCase
     }
 
     #[Test]
+    public function user_can_create_comment()
+    {
+        $commentData = [
+            "rating" => 4,
+            "comment" => "Tempat ini sangat indah dan nyaman.",
+            '_token' => csrf_token(),
+        ];
+        $response1 = $this->post('/tambah-comment/' . $this->destination->idDestination, $commentData)
+                          ->assertStatus(302);
+        $this->assertDatabaseHas('comments', data: [
+            "id_destination" => $this->destination->idDestination,
+            "id_user" => $this->user->id,
+            "rating" => 4,
+            "comment" => "Tempat ini sangat indah dan nyaman.",
+        ]);
+    }
+    #[Test]
     public function user_can_read_comment()
     {
         Comment::create([
@@ -64,24 +81,8 @@ class CRUD_CommentTest extends TestCase
             "rating" => 5,
             "comment" => "Sangat bagus, saya suka tempat ini!"
         ]);
-        $response = $this->get("/destination/single-page/" . $this->destination->idDestination);
-        $response->assertSeeText("Sangat bagus, saya suka tempat ini!");
-    }
-
-    #[Test]
-    public function user_can_create_comment()
-    {
-        $commentData = [
-            "rating" => 4,
-            "comment" => "Tempat ini sangat indah dan nyaman.",
-            '_token' => csrf_token(),
-        ];
-        $this->post('/tambah-comment/' . $this->destination->idDestination, $commentData);
-        $this->assertDatabaseHas('comments', data: [
-            "id_destination" => $this->destination->idDestination,
-            "id_user" => $this->user->id,
-            "rating" => 4,
-            "comment" => "Tempat ini sangat indah dan nyaman.",
-        ]);
+        $response1 = $this->get("/destination/single-page/" . $this->destination->idDestination)
+                          ->assertStatus(200)
+                          ->assertSeeText("Sangat bagus, saya suka tempat ini!");
     }
 }

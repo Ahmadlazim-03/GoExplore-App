@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\ListBookings;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class AddListController extends Controller
 {
@@ -14,6 +15,7 @@ class AddListController extends Controller
                                 ->where('id_destination', $id_destination);
 
         if ($existingBooking->exists()) {
+            Log::info($request->all());
             $existingBooking->delete(); 
             return response()->json([
                 'menghapus' => 'menghapus'

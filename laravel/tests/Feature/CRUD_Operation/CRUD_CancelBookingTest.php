@@ -60,7 +60,7 @@ class CRUD_CancelBookingTest extends TestCase
     #[Test]
     public function user_can_create_cancel_booking()
     {
-        $this->post('/cancelbookings', [
+        $response1 = $this->post('/cancelbookings', [
             "id_user" => $this->user->id, 
             "id_ticket" => $this->ticket->ticket_id, 
             "alasan" => "Maaf tidak bisa sekarang"
@@ -81,8 +81,9 @@ class CRUD_CancelBookingTest extends TestCase
             "id_ticket" => $this->ticket->id,
             "alasan" => "Maaf tidak bisa sekarang"
         ]);
-        $response = $this->get('/cancelbookings');
-        $response->assertSeeHtml('Maaf tidak bisa sekarang');
+        $response1 = $this->get('/cancelbookings')
+                          ->assertStatus(200)
+                          ->assertSeeHtml('Maaf tidak bisa sekarang');
     }
 
 }

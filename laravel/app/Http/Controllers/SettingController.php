@@ -18,7 +18,7 @@ class SettingController extends Controller
     }
 
     public function users_create(Request $request){
-        Log::info($request->all());
+
         $nm = $request->profile_picture;
         $namaFile = $nm->getclientOriginalName();
         $user = new User();
@@ -110,11 +110,6 @@ class SettingController extends Controller
         $user->delete();
         return redirect('/manajemenrole');
     }
-
-
-
-
-
 
 
     public function menu(){

@@ -47,13 +47,14 @@ class CRUD_DetailDestinationTest extends TestCase
             'video' => $video,
             'rating' => 5,
         ];
-        $response = $this->post('/create-detail-destination', $data_detail_destination);
+        $response1 = $this->post('/create-detail-destination', $data_detail_destination)
+                          ->assertStatus(302)
+                          ->assertRedirect();
         $this->assertDatabaseHas('detail_destinations', [
             'destinations_id' => $destination->idDestination,
             'description' => 'Detail lengkap Candi Borobudur.',
             'rating' => 5,
         ]);
-        $response->assertRedirect();
     }
     #[Test]
     public function user_and_admin_can_read_detail_destination()
@@ -93,8 +94,9 @@ class CRUD_DetailDestinationTest extends TestCase
             'role' => 2, 
         ]);
         $this->actingAs($user);
-        $response = $this->get("/destination/single-page/" . $destination->idDestination);
-        $response->assertSeeText("Detail lengkap mengenai Candi Borobudur.");
+        $response1 = $this->get("/destination/single-page/" . $destination->idDestination)
+                          ->assertStatus(200)
+                          ->assertSeeText("Detail lengkap mengenai Candi Borobudur.");
         $admin = User::create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
@@ -102,10 +104,10 @@ class CRUD_DetailDestinationTest extends TestCase
             'role' => 1, 
         ]);
         $this->actingAs($admin);
-        $response = $this->get("/destination/single-page/" . $destination->idDestination);
-        $response->assertSeeText("Detail lengkap mengenai Candi Borobudur.");
+        $response2 = $this->get("/destination/single-page/" . $destination->idDestination)
+                          ->assertStatus(200)
+                          ->assertSeeText("Detail lengkap mengenai Candi Borobudur.");
     }
-
     #[Test]
     public function admin_can_update_detail_destination()
     {
@@ -155,9 +157,11 @@ class CRUD_DetailDestinationTest extends TestCase
             'rating'                => 5,
             '_token'                => csrf_token(),
         ];
-        $response = $this->post('/edit-detail-destination', $updateData);
-        $response = $this->get("/destination/single-page/" . $destination->idDestination);
-        $response->assertSeeText("Deskripsi terbaru detail destinasi.");
+        $response1 = $this->post('/edit-detail-destination', $updateData)
+                          ->assertStatus(302);
+        $response2 = $this->get("/destination/single-page/" . $destination->idDestination)
+                          ->assertStatus(200)
+                          ->assertSeeText("Deskripsi terbaru detail destinasi.");
     }
     #[Test]
     public function admin_can_delete_detail_destination()
@@ -192,8 +196,9 @@ class CRUD_DetailDestinationTest extends TestCase
             'video'           => $videoPath,
             'rating'          => 5,
         ]);
-        $response = $this->get('/delete-detail-destination/' . $detailDestination->id);
-        $response->assertRedirect();
+        $response1 = $this->get('/delete-detail-destination/' . $detailDestination->id)
+                          ->assertStatus(302)
+                          ->assertRedirect();
         $this->assertDatabaseMissing('detail_destinations', [
             'id' => $detailDestination->id,
         ]);

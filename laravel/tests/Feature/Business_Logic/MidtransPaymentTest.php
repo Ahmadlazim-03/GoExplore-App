@@ -42,7 +42,8 @@ class MidtransPaymentTest extends TestCase
             'name' => 'John Doe',
             'phone' => '08123456789',
         ];     
-        $response = $this->postJson('/checkout', $requestData);
+        $response1 = $this->postJson('/checkout', $requestData)
+                          ->assertStatus(200);
         $this->assertDatabaseHas('orders', [
             'user_id' => $user->id,
             'count' => 2,

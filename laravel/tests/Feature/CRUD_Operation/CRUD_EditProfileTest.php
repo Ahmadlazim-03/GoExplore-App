@@ -32,10 +32,11 @@ class CRUD_EditProfileTest extends TestCase
             '_token' => csrf_token(),
         ]);
         $this->actingAs($create_user);
-        $response = $this->get('/editprofile');
-        $response->assertSee('fake user')
-                 ->assertSee('fakeuser@gmail.com')
-                 ->assertSee('081234567890');
+        $response1 = $this->get('/editprofile')
+                          ->assertStatus(200)
+                          ->assertSee('fake user')
+                          ->assertSee('fakeuser@gmail.com')
+                          ->assertSee('081234567890');
     }
     #[Test]
     public function user_can_update_edit_profile()
@@ -73,10 +74,12 @@ class CRUD_EditProfileTest extends TestCase
             'status' => 'inactive',
             '_token' => csrf_token(),
         ];
-        $this->post('/editprofile', $new_data_profile);
-        $response = $this->get('/editprofile');
-        $response->assertSee('fake user 2')
-                 ->assertSee('fakeuser2@gmail.com');
+        $response1 = $this->post('/editprofile', $new_data_profile)
+                          ->assertStatus(302);
+        $response2 = $this->get('/editprofile')
+                          ->assertStatus(200)
+                          ->assertSee('fake user 2')
+                          ->assertSee('fakeuser2@gmail.com');
     }
 }
 

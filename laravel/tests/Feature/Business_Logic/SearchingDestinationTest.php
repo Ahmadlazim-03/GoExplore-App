@@ -36,50 +36,48 @@ class SearchingDestinationTest extends TestCase
     #[Test]
     public function user_can_search_destination_by_name()
     {
-        $response = $this->get('/destination?name=Tugu');
-        $response->assertStatus(200);
-        $response->assertSee('Tugu Pahlawan');
+        $response1 = $this->get('/destination?name=Tugu')
+                          ->assertStatus(200)
+                          ->assertSee('Tugu Pahlawan');
     }
 
     #[Test]
     public function user_can_search_destination_by_category()
     {
-        $response = $this->get('/destination?category=Wisata+Sejarah+dan+Budaya');
-        $response->assertStatus(200);
-        $response->assertSee('Tugu Pahlawan');
+        $response1 = $this->get('/destination?category=Wisata+Sejarah+dan+Budaya')
+                          ->assertStatus(200)
+                          ->assertSee('Tugu Pahlawan');
     }
 
     #[Test]
     public function user_can_search_destination_by_rating()
     {
         $csrfToken = csrf_token();
-        $response = $this->get('/destination', [
+        $response1 = $this->get('/destination', [
             'X-CSRF-TOKEN' => $csrfToken,
             'rating' => '4'
-        ] ); 
-        $response->assertStatus(200); 
-        $response->assertSeeText('Tugu Pahlawan');
+        ])->assertStatus(200)
+          ->assertSeeText('Tugu Pahlawan');
     }
     
     #[Test]
     public function user_can_search_destination_by_multiple_filters()
     {
         $csrfToken = csrf_token();
-        $response = $this->get('/destination', [
+        $response1 = $this->get('/destination', [
             'X-CSRF-TOKEN' => $csrfToken,
             'name' => 'Tugu',
             'category' => 'Wisata Sejarah dan Budaya',
             'rating' => '4'
-        ]);
-        $response->assertStatus(200);
-        $response->assertSeeText('Tugu Pahlawan');
+        ])->assertStatus(200)
+          ->assertSeeText('Tugu Pahlawan');
     }
 
     #[Test]
     public function search_with_no_results_should_return_message()
     {
-        $response = $this->get('/destination?name=Invalid Name&category=Invalid Category&rating=Invalid Rating');
-        $response->assertStatus(200);
-        $response->assertSeeText('Oops! Tidak ada hasil yang ditemukan');
+        $response1 = $this->get('/destination?name=Invalid Name&category=Invalid Category&rating=Invalid Rating')
+                          ->assertStatus(200)
+                          ->assertSeeText('Oops! Tidak ada hasil yang ditemukan');
     }   
 }
