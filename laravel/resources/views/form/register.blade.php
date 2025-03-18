@@ -49,6 +49,24 @@
             var email = $('#email').val();
             var password = $('#password').val();
 
+            if (name == "" || email == "" || password == "") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Form harus di isi !"
+                });
+                return false;
+            }
+
+            if (password.length < 5) { 
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Masukkan password minimal 5 karakter !"
+                });
+                return false;
+            }
+
             $.ajax({
                 type: 'POST',
                 url: '/register',
@@ -71,7 +89,7 @@
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Harap isi form dengan benar!"
+                    text: "Email sudah digunakan !"
                 });
                 }
             });

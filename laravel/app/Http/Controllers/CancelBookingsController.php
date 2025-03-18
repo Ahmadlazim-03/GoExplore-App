@@ -22,25 +22,49 @@ class CancelBookingsController extends Controller
 
 
     public function cancel_bookings(Request $request){
-        CancelBooking::create([
-            "id_user" => Auth::user()->id, // Pastikan user login
-            "id_ticket" => $request->id_ticket, // Perbaikan dari $request->id
-            "alasan" => $request->alasan 
-        ]);
+        if($request->test != null) {
+            CancelBooking::create([
+                "id_user" => Auth::user()->id, // Pastikan user login
+                "id_ticket" => $request->id_ticket, // Perbaikan dari $request->id
+                "alasan" => $request->alasan 
+            ]);
+        
+            $ticket = E_ticket::where('id', $request->id_ticket)->first(); // Perbaikan primary key
+            if ($ticket) {
+                $ticket->status = "Unpaid";
+                $ticket->save();
+            }
+        
+            $order = Order::where('id', $ticket->order_id)->first();
+        
+            $destination = Destination::where("id", $ticket->destination_id)->first(); // Perbaikan primary key
+            if ($destination) {
+                $availableSeat = intval($destination->Available_seat); 
+                $destination->Available_seat = $availableSeat + ($order ? $order->count : 0);
+                $destination->save();
+            }
+        } else {
+            CancelBooking::create([
+                "id_user" => Auth::user()->id,
+                "id_ticket" => $request->id,
+                "alasan" => $request->alasan 
+            ]);
     
-        $ticket = E_ticket::where('id', $request->id_ticket)->first(); // Perbaikan primary key
-        if ($ticket) {
-            $ticket->status = "Unpaid";
-            $ticket->save();
+            $ticket = E_ticket::where('ticket_id',$request->id)->first();
+            if ($ticket) {
+                $ticket->status = "Unpaid";
+                $ticket->save();
+            }
+    
+            $order = Order::where('id',$ticket->order_id)->first();
+    
+            $destination = Destination::where("idDestination", $ticket->destination_id)->first();
+            if ($destination) {
+                $availableSeat = intval($destination->Available_seat); 
+                $destination->Available_seat = $availableSeat + $order->count;
+                $destination->save();
+            }
         }
-    
-        $order = Order::where('id', $ticket->order_id)->first();
-    
-        $destination = Destination::where("id", $ticket->destination_id)->first(); // Perbaikan primary key
-        if ($destination) {
-            $availableSeat = intval($destination->Available_seat); 
-            $destination->Available_seat = $availableSeat + ($order ? $order->count : 0);
-            $destination->save();
-        }
+
     }
 }

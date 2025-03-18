@@ -38,42 +38,50 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 	<script>
-		$(document).ready(function(){
-			$.ajaxSetup({
-				headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				}
-			});
-			$('#login').click(function(e){
-				e.preventDefault();
-				var email = $('#email').val();
-				var password = $('#password').val();	
-					$.ajax({
-						type: 'POST',
-						url: '/login', 
-						data: {
-							email : email,
-							password : password,
-						},
-						success: function(response) {
-							Swal.fire({
-								icon: "success",
-								title: "Login Berhasil !",
-								showConfirmButton: false,
-								timer: 1500
-							}).then(function() {
-                				window.location.href = response.redirect;
-            				});
-						},
-						error: function() {
-							Swal.fire({
-								icon: "error",
-								title: "Oops...",
-								text: "Harap isi form dengan benar !"
-							});
-						}
-					});
-				})
-			});	
+    $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#login').click(function(e){
+            e.preventDefault();
+            var email = $('#email').val();
+            var password = $('#password').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/login', 
+                data: {
+                    email: email,
+                    password: password,
+                },
+                success: function(response) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Login Berhasil!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(function() {
+                        window.location.href = response.redirect;
+                    });
+                },
+                error: function(xhr) {
+                    let errorMessage = "Harap isi form dengan benar!";
+                    if (xhr.status === 401) {
+                        errorMessage = "Email atau password salah!";
+                    }
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Login Gagal!",
+                        text: errorMessage
+                    });
+                }
+            });
+        });
+    });
 	</script>
+
 </html>

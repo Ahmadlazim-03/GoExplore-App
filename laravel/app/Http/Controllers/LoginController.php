@@ -25,10 +25,9 @@ class LoginController extends Controller
                 return response()->json(['redirect' => '/mybookings']);
             }
             return response()->json(['redirect' => '/mybookings']);
+        } else {
+            return response()->json(['error' => 'Email atau password salah!'], 401);
         }
- 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email'); 
+
     }
 }

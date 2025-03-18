@@ -63,8 +63,11 @@ class CRUD_CancelBookingTest extends TestCase
         $response1 = $this->post('/cancelbookings', [
             "id_user" => $this->user->id, 
             "id_ticket" => $this->ticket->ticket_id, 
-            "alasan" => "Maaf tidak bisa sekarang"
+            "alasan" => "Maaf tidak bisa sekarang",
+            "test" => "test"
         ]);
+
+     
 
         $this->assertDatabaseHas('cancel_bookings', [
             "id_user" => $this->user->id,

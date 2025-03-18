@@ -118,10 +118,17 @@
                   let csrfToken = $('meta[name="csrf-token"]').attr('content');    
                   $('#submit-button').on('click', function () {
 
+
                     var name = $('#name').val();
                     var email = $('#email').val();
                     var subject = $('#subject').val();
                     var pesan = $('#pesan').val();
+
+                    if (name == "" || email == "" || subject == "" || pesan == "") {
+                        alert('Semua form harus diisi!');
+                        return false;
+                    }
+                    
                     $.ajax({
                     url: "/send-email",
                     method: "POST",
