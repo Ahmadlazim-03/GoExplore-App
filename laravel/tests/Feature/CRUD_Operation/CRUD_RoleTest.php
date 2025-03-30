@@ -2,15 +2,14 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\Role;
 use App\Models\User;
-use PHPUnit\Framework\Attributes\Test;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 class CRUD_RoleTest extends TestCase
 {
-
     use RefreshDatabase;
 
     #[Test]
@@ -20,18 +19,19 @@ class CRUD_RoleTest extends TestCase
             'name' => 'user',
             'email' => 'user@gmail.com',
             'password' => bcrypt('password123'),
-            'role' => 1, 
+            'role' => 1,
         ]);
         $this->actingAs($admin);
         $create_role = [
-            "role" => "user"
+            'role' => 'user',
         ];
         $response1 = $this->post('/manajemen-role-create', $create_role)
-                          ->assertStatus(302);
+            ->assertStatus(302);
         $this->assertDatabaseHas('roles', [
-            'name' => 'user'
+            'name' => 'user',
         ]);
     }
+
     #[Test]
     public function admin_can_read_role()
     {
@@ -43,12 +43,13 @@ class CRUD_RoleTest extends TestCase
         ]);
         $this->actingAs($admin);
         $create_role = Role::create([
-            'name' => "user"
+            'name' => 'user',
         ]);
         $response1 = $this->get('/manajemenrole')
-                          ->assertStatus(200)
-                          ->assertSee('user');
+            ->assertStatus(200)
+            ->assertSee('user');
     }
+
     #[Test]
     public function admin_can_update_role()
     {
@@ -60,21 +61,22 @@ class CRUD_RoleTest extends TestCase
         ]);
         $this->actingAs($admin);
         $create_role = Role::create([
-            'name' => "user"
+            'name' => 'user',
         ]);
         $response1 = $this->get('/manajemenrole')
-                          ->assertStatus(200)
-                          ->assertSee('user');
+            ->assertStatus(200)
+            ->assertSee('user');
         $update_role = [
             'ID' => $create_role->id,
-            'role' => "admin"
+            'role' => 'admin',
         ];
         $response2 = $this->post('/manajemen-role-edit', $update_role)
-                          ->assertStatus(302);
+            ->assertStatus(302);
         $response3 = $this->get('/manajemenrole')
-                          ->assertStatus(200)
-                          ->assertSee('user');
+            ->assertStatus(200)
+            ->assertSee('user');
     }
+
     #[Test]
     public function admin_can_delete_role()
     {
@@ -86,15 +88,15 @@ class CRUD_RoleTest extends TestCase
         ]);
         $this->actingAs($admin);
         $create_role = Role::create([
-            'name' => "user"
+            'name' => 'user',
         ]);
         $response1 = $this->get('/manajemenrole')
-                          ->assertStatus(200)
-                          ->assertSee('user'); 
-        $response2 = $this->get('/manajemen-role-delete/' . $create_role->id)
-                          ->assertStatus(302)
-                          ->assertRedirect('/manajemenrole')
-                          ->assertDontSee('user');
+            ->assertStatus(200)
+            ->assertSee('user');
+        $response2 = $this->get('/manajemen-role-delete/'.$create_role->id)
+            ->assertStatus(302)
+            ->assertRedirect('/manajemenrole')
+            ->assertDontSee('user');
         $this->assertDatabaseMissing('roles', [
             'name' => 'user',
         ]);

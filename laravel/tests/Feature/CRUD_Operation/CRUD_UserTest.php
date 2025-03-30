@@ -2,19 +2,20 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 class CRUD_UserTest extends TestCase
 {
     use RefreshDatabase;
+
     private $admin;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->admin = User::create([
@@ -26,14 +27,15 @@ class CRUD_UserTest extends TestCase
 
         $this->actingAs($this->admin);
     }
+
     #[Test]
     public function admin_can_create_user()
-    {   
-        $file = UploadedFile::fake()->create('dummy.jpg', 1);    
+    {
+        $file = UploadedFile::fake()->create('dummy.jpg', 1);
         $userData = [
             'name' => 'fake user',
             'email' => 'fakeuser@gmail.com',
-            'password' => '12345', 
+            'password' => '12345',
             'contact_info' => '081234567890',
             'profile_picture' => $file,
             'full_name' => 'Fake User',
@@ -44,7 +46,7 @@ class CRUD_UserTest extends TestCase
             'role' => 'user',
             'status' => 'inactive',
             '_token' => csrf_token(),
-        ];   
+        ];
         $response1 = $this->post('/manajemen-user-create', $userData);
         $response1->assertStatus(302);
         $response1->assertRedirect('/manajemenuser');
@@ -73,11 +75,11 @@ class CRUD_UserTest extends TestCase
     #[Test]
     public function admin_can_update_user()
     {
-        $file = UploadedFile::fake()->create('dummy.jpg', 1);    
+        $file = UploadedFile::fake()->create('dummy.jpg', 1);
         $user_create = User::create([
             'name' => 'dummy',
             'email' => 'dummy@gmail.com',
-            'password' => '12345', 
+            'password' => '12345',
             'contact_info' => '081234567890',
             'profile_picture' => $file,
             'full_name' => 'fake User',
@@ -92,7 +94,7 @@ class CRUD_UserTest extends TestCase
             'name' => 'dummy',
             'email' => 'dummy@gmail.com',
         ]);
-        $file = UploadedFile::fake()->create('updatedummy.jpg', 1);    
+        $file = UploadedFile::fake()->create('updatedummy.jpg', 1);
         $data_update_user = [
             'ID' => $user_create->id,
             'name' => 'update dummy',
@@ -123,11 +125,11 @@ class CRUD_UserTest extends TestCase
     #[Test]
     public function admin_can_delete_user()
     {
-        $file = UploadedFile::fake()->create('dummy.jpg', 1);    
+        $file = UploadedFile::fake()->create('dummy.jpg', 1);
         $user_create = User::create([
             'name' => 'test',
             'email' => 'test@gmail.com',
-            'password' => '12345', 
+            'password' => '12345',
             'contact_info' => '081234567890',
             'profile_picture' => $file,
             'full_name' => 'fake User',
@@ -142,7 +144,7 @@ class CRUD_UserTest extends TestCase
             'name' => 'test',
             'email' => 'test@gmail.com',
         ]);
-        $response1 = $this->get('/manajemen-user-delete/' . $user_create->id);
+        $response1 = $this->get('/manajemen-user-delete/'.$user_create->id);
         $response1->assertStatus(302);
         $response1->assertRedirect('/manajemenuser');
         $this->assertDatabaseMissing('users', [

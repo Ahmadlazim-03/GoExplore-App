@@ -2,16 +2,17 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\Models\User;
-use App\Models\Order;
 use App\Models\Destination;
-use PHPUnit\Framework\Attributes\Test;
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 class MidtransPaymentTest extends TestCase
 {
     use RefreshDatabase;
+
     #[Test]
     public function user_can_make_midtrans_payment()
     {
@@ -25,32 +26,32 @@ class MidtransPaymentTest extends TestCase
             'category' => 'Wisata Sejarah dan Budaya',
             'opening_hours' => '19:00',
             'tgl' => '2024-12-05 00:00:00',
-            'rating' => 4
+            'rating' => 4,
         ]);
         $user = User::create([
             'name' => 'John Doe',
             'email' => 'johndoe@gmail.com',
             'password' => bcrypt('password123'),
-            'role' => 1, 
+            'role' => 1,
         ]);
         $requestData = [
             'id_user' => $user->id,
             'id_destination' => 1,
             'qty' => 2,
-            'mount' => 50000, 
+            'mount' => 50000,
             'date' => now()->toDateString(),
             'name' => 'John Doe',
             'phone' => '08123456789',
-        ];     
+        ];
         $response1 = $this->postJson('/checkout', $requestData)
-                          ->assertStatus(200);
+            ->assertStatus(200);
         $this->assertDatabaseHas('orders', [
             'user_id' => $user->id,
             'count' => 2,
-            'total_price' => 100000, 
+            'total_price' => 100000,
             'status' => 'Unpaid',
         ]);
-        $order = Order::latest()->first();   
+        $order = Order::latest()->first();
         $params = [
             'transaction_details' => [
                 'order_id' => $order->id,
@@ -60,7 +61,7 @@ class MidtransPaymentTest extends TestCase
                 'name' => $user->name,
                 'phone' => '08123456789',
             ],
-        ];     
+        ];
         $snapToken = \Midtrans\Snap::getSnapToken($params);
         $this->assertNotEmpty($snapToken);
     }

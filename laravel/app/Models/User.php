@@ -18,9 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'password', 'email', 'email_verified_at','phone_number', 'profile_picture', 
-        'full_name', 'address', 'date_of_birth', 'gender', 'nationality', 
-        'contact_info', 'role', 'status'
+        'name', 'password', 'email', 'email_verified_at', 'phone_number', 'profile_picture',
+        'full_name', 'address', 'date_of_birth', 'gender', 'nationality',
+        'contact_info', 'role', 'status',
     ];
 
     /**
@@ -45,10 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
     public function transactions()
     {
         return $this->hasMany(Transaction::class, 'users_id');
     }
+
     public function eTickets()
     {
         return $this->hasMany(E_ticket::class, 'users_id');

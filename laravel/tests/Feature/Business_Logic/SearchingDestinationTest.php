@@ -2,15 +2,15 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\Destination;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
-
+use Tests\TestCase;
 
 class SearchingDestinationTest extends TestCase
 {
-    use RefreshDatabase; 
+    use RefreshDatabase;
+
     #[Test]
     public function user_can_search_destination_by_name()
     {
@@ -27,11 +27,11 @@ class SearchingDestinationTest extends TestCase
             'tgl' => '2024-12-05 00:00:00',
             'rating' => '4',
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
         $response1 = $this->get('/destination?name=Tugu')
-                          ->assertStatus(200)
-                          ->assertSee('Tugu Pahlawan');
+            ->assertStatus(200)
+            ->assertSee('Tugu Pahlawan');
     }
 
     #[Test]
@@ -50,11 +50,11 @@ class SearchingDestinationTest extends TestCase
             'tgl' => '2024-12-05 00:00:00',
             'rating' => '4',
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
         $response1 = $this->get('/destination?category=Wisata+Sejarah+dan+Budaya')
-                          ->assertStatus(200)
-                          ->assertSee('Tugu Pahlawan');
+            ->assertStatus(200)
+            ->assertSee('Tugu Pahlawan');
     }
 
     #[Test]
@@ -73,16 +73,16 @@ class SearchingDestinationTest extends TestCase
             'tgl' => '2024-12-05 00:00:00',
             'rating' => '4',
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
         $csrfToken = csrf_token();
         $response1 = $this->get('/destination', [
             'X-CSRF-TOKEN' => $csrfToken,
-            'rating' => '4'
+            'rating' => '4',
         ])->assertStatus(200)
-          ->assertSeeText('Tugu Pahlawan');
+            ->assertSeeText('Tugu Pahlawan');
     }
-    
+
     #[Test]
     public function user_can_search_destination_by_multiple_filters()
     {
@@ -99,16 +99,16 @@ class SearchingDestinationTest extends TestCase
             'tgl' => '2024-12-05 00:00:00',
             'rating' => '4',
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
         $csrfToken = csrf_token();
         $response1 = $this->get('/destination', [
             'X-CSRF-TOKEN' => $csrfToken,
             'name' => 'Tugu',
             'category' => 'Wisata Sejarah dan Budaya',
-            'rating' => '4'
+            'rating' => '4',
         ])->assertStatus(200)
-          ->assertSeeText('Tugu Pahlawan');
+            ->assertSeeText('Tugu Pahlawan');
     }
 
     #[Test]
@@ -127,10 +127,10 @@ class SearchingDestinationTest extends TestCase
             'tgl' => '2024-12-05 00:00:00',
             'rating' => '4',
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
         $response1 = $this->get('/destination?name=Invalid Name&category=Invalid Category&rating=Invalid Rating')
-                          ->assertStatus(200)
-                          ->assertSeeText('Oops! Tidak ada hasil yang ditemukan');
-    }   
+            ->assertStatus(200)
+            ->assertSeeText('Oops! Tidak ada hasil yang ditemukan');
+    }
 }

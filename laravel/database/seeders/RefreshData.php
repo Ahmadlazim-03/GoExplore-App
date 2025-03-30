@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RefreshData extends Seeder
 {
@@ -13,7 +12,7 @@ class RefreshData extends Seeder
      */
     public function run(): void
     {
-         // Insert Users
+        // Insert Users
         DB::table('users')->insert([
             [
                 'id' => 1,
@@ -52,7 +51,7 @@ class RefreshData extends Seeder
                 'created_at' => '2024-12-01 07:48:50',
                 'updated_at' => '2024-12-17 18:46:34',
                 'remember_token' => null,
-            ]
+            ],
         ]);
 
         // Insert Roles

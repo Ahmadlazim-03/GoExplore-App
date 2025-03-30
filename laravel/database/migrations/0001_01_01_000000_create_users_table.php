@@ -25,7 +25,7 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female', 'other'])->nullable();
             $table->string('nationality', 50)->nullable();
             $table->string('contact_info', 255)->nullable();
-            $table->string('role',)->default('user');
+            $table->string('role')->default('user');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
             $table->rememberToken();

@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\Models\User;
 use App\Models\Destination;
 use App\Models\ListBookings;
-use PHPUnit\Framework\Attributes\Test;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 class CRUD_ListBookingsTest extends TestCase
 {
@@ -20,7 +20,7 @@ class CRUD_ListBookingsTest extends TestCase
             'name' => 'user',
             'email' => 'user@gmail.com',
             'password' => bcrypt('password123'),
-            'role' => 1, 
+            'role' => 1,
         ]);
         $this->actingAs($user);
         $create_destination = Destination::create([
@@ -36,19 +36,20 @@ class CRUD_ListBookingsTest extends TestCase
             'tgl' => now()->format('Y-m-d H:i:s'),
         ]);
         $data_list_booking = [
-            "id_user" => $user->id,
-            "id_destination" => $create_destination->idDestination,
+            'id_user' => $user->id,
+            'id_destination' => $create_destination->idDestination,
         ];
         $response1 = $this->post('/add-list', $data_list_booking)
-                          ->assertStatus(200);
+            ->assertStatus(200);
         $response2 = $this->get('/listbookings')
-                          ->assertStatus(200)
-                          ->assertSee('Candi Borobudur');
-        $this->assertDatabaseHas('list_bookings',[
-            "id_user" => $user->id,
-            "id_destination" => $create_destination->idDestination,
+            ->assertStatus(200)
+            ->assertSee('Candi Borobudur');
+        $this->assertDatabaseHas('list_bookings', [
+            'id_user' => $user->id,
+            'id_destination' => $create_destination->idDestination,
         ]);
     }
+
     #[Test]
     public function user_can_read_list_bookings()
     {
@@ -56,7 +57,7 @@ class CRUD_ListBookingsTest extends TestCase
             'name' => 'user',
             'email' => 'user@gmail.com',
             'password' => bcrypt('password123'),
-            'role' => 1, 
+            'role' => 1,
         ]);
         $this->actingAs($user);
         $create_destination = Destination::create([
@@ -72,13 +73,14 @@ class CRUD_ListBookingsTest extends TestCase
             'tgl' => now()->format('Y-m-d H:i:s'),
         ]);
         $create_list_bookings = ListBookings::create([
-            "id_user" => $user->id,
-            "id_destination" => $create_destination->idDestination,
+            'id_user' => $user->id,
+            'id_destination' => $create_destination->idDestination,
         ]);
         $response1 = $this->get('/listbookings')
-                          ->assertStatus(200)
-                          ->assertSee('Candi Borobudur');
+            ->assertStatus(200)
+            ->assertSee('Candi Borobudur');
     }
+
     #[Test]
     public function user_can_delete_list_bookings()
     {
@@ -86,7 +88,7 @@ class CRUD_ListBookingsTest extends TestCase
             'name' => 'user',
             'email' => 'user@gmail.com',
             'password' => bcrypt('password123'),
-            'role' => 1, 
+            'role' => 1,
         ]);
         $this->actingAs($user);
         $create_destination = Destination::create([
@@ -102,18 +104,17 @@ class CRUD_ListBookingsTest extends TestCase
             'tgl' => now()->format('Y-m-d H:i:s'),
         ]);
         $create_list_bookings = ListBookings::create([
-            "id_user" => $user->id,
-            "id_destination" => $create_destination->idDestination,
+            'id_user' => $user->id,
+            'id_destination' => $create_destination->idDestination,
         ]);
-        $response1 = $this->post('/add-list',[ "id_user" => $user->id, "id_destination" => $create_destination->idDestination ])
-                          ->assertStatus(200);
+        $response1 = $this->post('/add-list', ['id_user' => $user->id, 'id_destination' => $create_destination->idDestination])
+            ->assertStatus(200);
         $response2 = $this->get('/listbookings')
-                          ->assertStatus(200)
-                          ->assertDontSee('Candi Borobudur');
-        $this->assertDatabaseMissing('list_bookings',[
-            "id_user" => $user->id,
-            "id_destination" => $create_destination->idDestination,
+            ->assertStatus(200)
+            ->assertDontSee('Candi Borobudur');
+        $this->assertDatabaseMissing('list_bookings', [
+            'id_user' => $user->id,
+            'id_destination' => $create_destination->idDestination,
         ]);
     }
 }
-

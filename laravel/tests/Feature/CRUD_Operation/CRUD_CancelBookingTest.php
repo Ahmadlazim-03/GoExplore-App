@@ -2,25 +2,27 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\Models\User;
-use App\Models\E_ticket;
-use App\Models\Destination;
-use Illuminate\Support\Str;
 use App\Models\CancelBooking;
-use Illuminate\Support\Facades\Hash;
-use PHPUnit\Framework\Attributes\Test;
+use App\Models\Destination;
+use App\Models\E_ticket;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 class CRUD_CancelBookingTest extends TestCase
 {
     use RefreshDatabase;
 
     private $user;
+
     private $destination;
+
     private $ticket;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -46,14 +48,14 @@ class CRUD_CancelBookingTest extends TestCase
         ]);
 
         $this->ticket = E_ticket::create([
-            "destination_id" => $this->destination->idDestination, 
-            "users_id" => $this->user->id, 
-            "order_id" => 1,
-            "ticket_code" => Str::random(5),
-            "issue_date" => now(),
-            "valid_until" => now(),
-            "qr_code" => "",
-            "status" => 'Unpaid'
+            'destination_id' => $this->destination->idDestination,
+            'users_id' => $this->user->id,
+            'order_id' => 1,
+            'ticket_code' => Str::random(5),
+            'issue_date' => now(),
+            'valid_until' => now(),
+            'qr_code' => '',
+            'status' => 'Unpaid',
         ]);
     }
 
@@ -61,18 +63,16 @@ class CRUD_CancelBookingTest extends TestCase
     public function user_can_create_cancel_booking()
     {
         $response1 = $this->post('/cancelbookings', [
-            "id_user" => $this->user->id, 
-            "id_ticket" => $this->ticket->ticket_id, 
-            "alasan" => "Maaf tidak bisa sekarang",
-            "test" => "test"
+            'id_user' => $this->user->id,
+            'id_ticket' => $this->ticket->ticket_id,
+            'alasan' => 'Maaf tidak bisa sekarang',
+            'test' => 'test',
         ]);
 
-     
-
         $this->assertDatabaseHas('cancel_bookings', [
-            "id_user" => $this->user->id,
-            "id_ticket" => $this->ticket->ticket_id,
-            "alasan" => "Maaf tidak bisa sekarang"
+            'id_user' => $this->user->id,
+            'id_ticket' => $this->ticket->ticket_id,
+            'alasan' => 'Maaf tidak bisa sekarang',
         ]);
     }
 
@@ -80,13 +80,12 @@ class CRUD_CancelBookingTest extends TestCase
     public function user_can_read_cancel_booking()
     {
         CancelBooking::create([
-            "id_user" => $this->user->id,
-            "id_ticket" => $this->ticket->id,
-            "alasan" => "Maaf tidak bisa sekarang"
+            'id_user' => $this->user->id,
+            'id_ticket' => $this->ticket->id,
+            'alasan' => 'Maaf tidak bisa sekarang',
         ]);
         $response1 = $this->get('/cancelbookings')
-                          ->assertStatus(200)
-                          ->assertSeeHtml('Maaf tidak bisa sekarang');
+            ->assertStatus(200)
+            ->assertSeeHtml('Maaf tidak bisa sekarang');
     }
-
 }
