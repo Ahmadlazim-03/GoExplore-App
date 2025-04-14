@@ -12,7 +12,6 @@
 </head>
 
 <body>
-
     <body>
         <section>
             <div class="form-box">
@@ -49,7 +48,6 @@
             e.preventDefault();
             var email = $('#email').val();
             var password = $('#password').val();
-
             $.ajax({
                 type: 'POST',
                 url: '/login', 
@@ -83,5 +81,4 @@
         });
     });
 	</script>
-
 </html>

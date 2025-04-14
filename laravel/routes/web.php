@@ -95,3 +95,10 @@ Route::get('/editprofile', [EditProfileController::class, 'index']);
 
 Route::POST('/send-email', [EmailController::class, 'index']);
 Route::get('/show-email/{id}', [EmailController::class, 'show']);
+
+
+
+use App\Http\Controllers\UserController;
+
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
